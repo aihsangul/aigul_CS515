@@ -32,8 +32,15 @@ from corecode.models.simple_cnn import SimpleCNN
 from corecode.models.mobilenet_cifar import build_mobilenetv2_cifar
 from logging_utils import log_environment_info, save_config_snapshot, setup_experiment_logger
 from parameters import Config, get_config
-from test import run_test
-from train import run_training
+from plotting import (
+    plot_accuracy_curve,
+    plot_confusion_matrix,
+    plot_loss_curve,
+    plot_lr_curve,
+    plot_tsne,
+)
+from test import get_test_loader, run_test
+from train import CIFAR10_CLASSES, run_training
 
 ssl._create_default_https_context = ssl._create_unverified_context
 
@@ -252,8 +259,15 @@ def main() -> None:
         if config.train.training_mode in ("kd", "kd_ls"):
             teacher = build_teacher(config, device)
 
+        plot_dir = config.run.plot_dir
+        exp = config.run.experiment_name
+
         if config.run.mode in ("train", "both"):
-            run_training(model=model, config=config, device=device, teacher=teacher)
+            history = run_training(model=model, config=config, device=device, teacher=teacher)
+            os.makedirs(plot_dir, exist_ok=True)
+            plot_loss_curve(history, os.path.join(plot_dir, f"{exp}_loss.png"))
+            plot_accuracy_curve(history, os.path.join(plot_dir, f"{exp}_accuracy.png"))
+            plot_lr_curve(history, os.path.join(plot_dir, f"{exp}_lr.png"))
 
         if config.run.mode in ("test", "both"):
             if (
@@ -264,7 +278,15 @@ def main() -> None:
                     f"Checkpoint not found at: {config.run.save_path}. "
                     "Train the model first or provide a valid checkpoint path."
                 )
-            run_test(model=model, config=config, device=device)
+            results = run_test(model=model, config=config, device=device)
+            os.makedirs(plot_dir, exist_ok=True)
+            plot_confusion_matrix(
+                results["confusion_matrix"],
+                os.path.join(plot_dir, f"{exp}_confusion_matrix.png"),
+                class_names=list(CIFAR10_CLASSES),
+            )
+            test_loader = get_test_loader(config)
+            plot_tsne(model, test_loader, device, os.path.join(plot_dir, f"{exp}_tsne.png"))
 
         exp_logger.info("Run completed successfully.")
 

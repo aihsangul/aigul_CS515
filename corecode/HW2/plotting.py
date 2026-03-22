@@ -44,7 +44,7 @@ def plot_loss_curve(history: Dict[str, Any], save_path: str) -> None:
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    logger.info("Loss curve saved → %s", save_path)
+    logger.info("Loss curve saved -> %s", save_path)
 
 
 def plot_accuracy_curve(history: Dict[str, Any], save_path: str) -> None:
@@ -68,7 +68,7 @@ def plot_accuracy_curve(history: Dict[str, Any], save_path: str) -> None:
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    logger.info("Accuracy curve saved → %s", save_path)
+    logger.info("Accuracy curve saved -> %s", save_path)
 
 
 def plot_lr_curve(history: Dict[str, Any], save_path: str) -> None:
@@ -88,7 +88,7 @@ def plot_lr_curve(history: Dict[str, Any], save_path: str) -> None:
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    logger.info("LR curve saved → %s", save_path)
+    logger.info("LR curve saved -> %s", save_path)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -144,7 +144,7 @@ def plot_confusion_matrix(
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    logger.info("Confusion matrix saved → %s", save_path)
+    logger.info("Confusion matrix saved -> %s", save_path)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -274,7 +274,7 @@ def plot_tsne(
     fig.tight_layout()
     fig.savefig(save_path, dpi=150)
     plt.close(fig)
-    logger.info("t-SNE plot saved → %s", save_path)
+    logger.info("t-SNE plot saved -> %s", save_path)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
