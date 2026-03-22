@@ -1,0 +1,33 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <list>
+          <option value="torch" />
+          <option value="transformers" />
+          <option value="datasets" />
+          <option value="evaluate" />
+          <option value="peft" />
+          <option value="accelerate" />
+          <option value="sentencepiece" />
+          <option value="scikit-learn" />
+          <option value="numpy" />
+          <option value="pandas" />
+          <option value="tqdm" />
+          <option value="matplotlib" />
+          <option value="seaborn" />
+          <option value="wandb" />
+          <option value="yaml" />
+        </list>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8Inspection" enabled="true" level="INFORMATION" enabled_by_default="true" editorAttributes="INFORMATION_ATTRIBUTES">
+      <option name="ignoredErrors">
+        <list>
+          <option value="E266" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
