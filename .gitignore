@@ -8,9 +8,6 @@ __pycache__/
 .vscode/
 *.swp
 
-# Claude Code help was utilized to see how it performs
-/.claude/
-
 # Datasets (downloaded at runtime)
 data/
 
