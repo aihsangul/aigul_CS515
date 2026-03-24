@@ -119,14 +119,12 @@ class Config:
     run: RunConfig
 
 
-# ── Helpers ──────────────────────────────────────────────────────────────────
-
-
+# Helpers
 def _resolve_device(device: str) -> str:
     """Resolve the device string, auto-detecting CUDA or MPS when available.
 
     Args:
-        device: One of ``"auto"``, ``"cpu"``, ``"cuda"``, or ``"mps"``.
+        device: One of "auto", "cpu", "cuda", or "mps".
 
     Returns:
         Resolved device string.
@@ -198,13 +196,13 @@ def get_parser() -> argparse.ArgumentParser:
     """Build the argument parser for the HW2 training script.
 
     Returns:
-        Configured :class:`argparse.ArgumentParser`.
+        Configured :class:'argparse.ArgumentParser'.
     """
     parser = argparse.ArgumentParser(
         description="CS515 HW2 - Transfer Learning and Knowledge Distillation on CIFAR-10"
     )
 
-    # ── Run / execution ───────────────────────────────────────────────────
+    # Run / execution
     parser.add_argument("--mode", choices=["train", "test", "both"], default="both",
                         help="Run training, testing, or both.")
     parser.add_argument("--seed", type=int, default=42)
@@ -221,17 +219,17 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--log_interval", type=int, default=50,
                         help="Print training progress every N batches.")
 
-    # ── Data ──────────────────────────────────────────────────────────────
+    # Data
     parser.add_argument("--data_dir", type=str, default=str(_DATA_ROOT))
     parser.add_argument("--val_split", type=float, default=0.1)
     parser.add_argument("--num_workers", type=int, default=2)
     parser.add_argument("--pin_memory", action="store_true")
 
-    # ── Model ─────────────────────────────────────────────────────────────
+    # Model
     parser.add_argument("--dropout", type=float, default=0.5,
                         help="Dropout probability for the SimpleCNN classifier head.")
 
-    # ── Training ──────────────────────────────────────────────────────────
+    # Training
     parser.add_argument(
         "--training_mode",
         choices=TRAINING_MODES,
@@ -261,11 +259,11 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument("--early_stopping_patience", type=int, default=10)
     parser.add_argument("--min_delta", type=float, default=0.0)
 
-    # ── Label smoothing ───────────────────────────────────────────────────
+    # Label smoothing
     parser.add_argument("--label_smoothing", type=float, default=0.1,
                         help="Label smoothing epsilon (used in scratch_ls mode).")
 
-    # ── Knowledge distillation ────────────────────────────────────────────
+    # Knowledge distillation
     parser.add_argument("--teacher_checkpoint", type=str, default="",
                         help="Path to the teacher model checkpoint (required for kd/kd_ls).")
     parser.add_argument("--kd_temperature", type=float, default=4.0,

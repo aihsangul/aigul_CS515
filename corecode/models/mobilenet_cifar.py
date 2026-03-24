@@ -5,16 +5,18 @@ from torchvision import models
 
 
 def build_mobilenetv2_cifar(num_classes: int = 10) -> nn.Module:
-    """Build MobileNetV2 for CIFAR-10 classification from random initialisation.
+    """
+    -> Build MobileNetV2 for CIFAR-10 classification from random initialization.
 
     The standard MobileNetV2 stem uses a stride-2 convolution followed by
-    stride-2 inverted residuals, quickly reducing a 32×32 input to 1×1 before
-    the classifier. To prevent this, the first convolution's stride is changed
-    from 2 to 1 so the spatial resolution is 32×32 throughout the early layers.
+    stride-2 inverted residuals, quickly reducing a 32x32 input to 1x1 before
+    the classifier.
+    To prevent this, the first convolution's stride is changed
+    from 2 to 1 so the spatial resolution is 32x32 throughout the early layers.
 
     Modifications:
-        - ``features[0][0]``: stride 2 → 1 (keeps 32×32 spatial size)
-        - ``classifier[1]``: replaced for ``num_classes``
+        - "features[0][0]": stride 2 -> 1 (keeps 32x32 spatial size)
+        - "classifier[1]": replaced for "num_classes"
 
     Args:
         num_classes: Number of output classes.
@@ -24,7 +26,7 @@ def build_mobilenetv2_cifar(num_classes: int = 10) -> nn.Module:
     """
     model = models.mobilenet_v2(weights=None)
 
-    # Adapt the first conv for 32×32 inputs
+    # Adapt the first conv for 32x32 inputs
     first_conv: nn.Conv2d = model.features[0][0]
     model.features[0][0] = nn.Conv2d(
         first_conv.in_channels,

@@ -13,16 +13,9 @@ Phase 2 (require teacher checkpoint from Phase 1):
     6. mobilenet_kd_ls -- MobileNetV2 student, modified KD loss
 
 After Phase 1 the script automatically compares the test accuracy of
-``resnet_scratch`` and ``resnet_scratch_ls`` and uses the **better
-performing** model as the teacher for Phase 2 experiments.
+"resnet_scratch" and "resnet_scratch_ls" and uses the BETTER PERFORMING
+ model as the teacher for Phase 2 experiments.
 
-Usage::
-
-    cd corecode/HW2
-    python run_experiments.py                 # run all experiments
-    python run_experiments.py --phase 1       # phase 1 only
-    python run_experiments.py --phase 2       # phase 2 only (teacher must exist)
-    python run_experiments.py --device cpu    # override device for all runs
 """
 
 from __future__ import annotations
@@ -34,7 +27,7 @@ import sys
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-# ── Paths ────────────────────────────────────────────────────────────────────
+# Paths
 _HW2_DIR = Path(__file__).resolve().parent
 _REPO_ROOT = _HW2_DIR.parents[1]
 _RESULTS_ROOT = _REPO_ROOT / "results"
@@ -43,7 +36,7 @@ _CKPT_ROOT = _RESULTS_ROOT / "checkpoints" / "HW2"
 PYTHON = sys.executable
 
 
-# ── Experiment definitions ────────────────────────────────────────────────────
+# Experiment definitions
 
 PHASE_1_EXPERIMENTS: List[Tuple[str, List[str]]] = [
     (
@@ -140,7 +133,7 @@ def _build_phase_2(teacher_ckpt: Path) -> List[Tuple[str, List[str]]]:
     ]
 
 
-# ── Teacher selection ─────────────────────────────────────────────────────────
+# Teacher selection
 
 def _load_test_accuracy(experiment_name: str) -> float:
     """Load the test accuracy from a saved test-results JSON.
@@ -200,7 +193,7 @@ def _pick_teacher_checkpoint() -> Path:
     return ckpt
 
 
-# ── Runner ────────────────────────────────────────────────────────────────────
+# Runner
 
 def run_experiment(
     experiment_name: str,
@@ -261,7 +254,7 @@ def run_phase(
             sys.exit(rc)
 
 
-# ── CLI ───────────────────────────────────────────────────────────────────────
+# CLI
 
 def get_parser() -> argparse.ArgumentParser:
     """Build the argument parser for the experiment runner.

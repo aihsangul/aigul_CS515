@@ -1,21 +1,15 @@
 """Compare test results across all HW2 experiments.
 
-Loads the ``*_test_results.json`` files produced by each experiment and
+Loads the "*_test_results.json" files produced by each experiment and
 outputs:
 
-1. A console table summarising accuracy, MACs, and parameter counts.
+1. A console table summarizing accuracy, MACs, and parameter counts.
 2. A bar-chart comparing test accuracy across all experiments (saved as PNG).
 3. A bar-chart comparing computational complexity (MACs) across all
    experiments, with a note that transfer_resize uses 224x224 input while
    all other experiments use 32x32 (so absolute MACs are not directly
    comparable across the two groups).
 
-Usage::
-
-    cd corecode/HW2
-    python compare_results.py
-    python compare_results.py --plot_dir /custom/plot/dir
-    python compare_results.py --no_plots
 """
 
 from __future__ import annotations

@@ -19,15 +19,13 @@ from train import CIFAR10_CLASSES
 logger = logging.getLogger("cs515")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Curve plots
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_loss_curve(history: Dict[str, Any], save_path: str) -> None:
     """Plot training and validation loss over epochs.
 
     Args:
-        history: Training history dictionary with ``train_loss`` and ``val_loss``.
+        history: Training history dictionary with   "train_loss" and "val_loss".
         save_path: Absolute path where the figure is saved (PNG).
     """
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -51,7 +49,7 @@ def plot_accuracy_curve(history: Dict[str, Any], save_path: str) -> None:
     """Plot training and validation accuracy over epochs.
 
     Args:
-        history: Training history dictionary with ``train_acc`` and ``val_acc``.
+        history: Training history dictionary with "train_acc" and "val_acc".
         save_path: Absolute path where the figure is saved (PNG).
     """
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -75,7 +73,7 @@ def plot_lr_curve(history: Dict[str, Any], save_path: str) -> None:
     """Plot the learning-rate schedule over epochs.
 
     Args:
-        history: Training history dictionary with ``learning_rate``.
+        history: Training history dictionary with "learning_rate".
         save_path: Absolute path where the figure is saved (PNG).
     """
     fig, ax = plt.subplots(figsize=(8, 5))
@@ -91,9 +89,7 @@ def plot_lr_curve(history: Dict[str, Any], save_path: str) -> None:
     logger.info("LR curve saved -> %s", save_path)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Confusion matrix
-# ─────────────────────────────────────────────────────────────────────────────
 
 def plot_confusion_matrix(
     confusion_matrix: List[List[int]],
@@ -147,9 +143,7 @@ def plot_confusion_matrix(
     logger.info("Confusion matrix saved -> %s", save_path)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # t-SNE embedding visualisation
-# ─────────────────────────────────────────────────────────────────────────────
 
 @torch.no_grad()
 def collect_embeddings(
@@ -161,7 +155,7 @@ def collect_embeddings(
     """Extract penultimate-layer embeddings from the model.
 
     For ResNet-18 and MobileNetV2 the feature vector before the final FC layer
-    is obtained via ``forward_features`` if defined, otherwise by hooking the
+    is obtained via "forward_features" if defined, otherwise by hooking the
     global average pooling output. For SimpleCNN the flatten output before the
     final linear is used.
 
@@ -277,15 +271,13 @@ def plot_tsne(
     logger.info("t-SNE plot saved -> %s", save_path)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Convenience: generate all plots from saved JSON files
-# ─────────────────────────────────────────────────────────────────────────────
 
 def generate_all_plots(experiment_dir: str) -> None:
     """Load training history and test results from JSON and generate all plots.
 
-    Searches ``experiment_dir`` for ``*_history.json`` and
-    ``*_test_results.json`` files and produces the standard set of plots.
+    Searches "experiment_dir" for "*_history.json" and
+    "*_test_results.json" files and produces the standard set of plots.
 
     Args:
         experiment_dir: Directory containing the experiment JSON outputs.

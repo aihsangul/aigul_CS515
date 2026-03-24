@@ -22,7 +22,7 @@ def setup_experiment_logger(config: Config) -> Tuple[logging.Logger, str]:
 
     Returns:
         Tuple of:
-            - configured logger (name ``"cs515"``)
+            - configured logger (name "cs515")
             - log file path as a string
     """
     log_dir = Path(config.run.log_dir)

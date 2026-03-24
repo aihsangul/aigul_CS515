@@ -47,9 +47,7 @@ ssl._create_default_https_context = ssl._create_unverified_context
 logger = logging.getLogger("cs515")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Reproducibility
-# ─────────────────────────────────────────────────────────────────────────────
 
 def set_seed(seed: int) -> None:
     """Set random seeds for reproducibility across Python, NumPy, and PyTorch.
@@ -70,9 +68,7 @@ def set_seed(seed: int) -> None:
         torch.backends.cudnn.benchmark = False
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Output paths
-# ─────────────────────────────────────────────────────────────────────────────
 
 def ensure_output_paths(config: Config) -> None:
     """Create checkpoint, log, and plot directories if they do not yet exist.
@@ -85,14 +81,12 @@ def ensure_output_paths(config: Config) -> None:
     os.makedirs(config.run.plot_dir, exist_ok=True)
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Model factory
-# ─────────────────────────────────────────────────────────────────────────────
 
 def build_model(config: Config) -> nn.Module:
     """Instantiate the student (or solo) model for the requested training mode.
 
-    Mode → student model mapping:
+    Mode -> student model mapping:
 
     +-----------------+-----------------------------------------------------+
     | training_mode   | Model                                               |
@@ -112,7 +106,7 @@ def build_model(config: Config) -> nn.Module:
         Instantiated PyTorch model.
 
     Raises:
-        ValueError: If ``training_mode`` is unrecognised.
+        ValueError: If "training_mode" is unrecognized.
     """
     mode = config.train.training_mode
     num_classes = config.data.num_classes

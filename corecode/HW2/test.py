@@ -16,15 +16,13 @@ from train import CIFAR10_CLASSES, get_val_transforms
 logger = logging.getLogger("cs515")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
 # Test data loader
-# ─────────────────────────────────────────────────────────────────────────────
 
 def get_test_loader(config: Config) -> DataLoader:
     """Create the CIFAR-10 test DataLoader.
 
     Uses the official CIFAR-10 test split (10 000 images). Transform is chosen
-    based on ``config.train.training_mode`` (resize to 224 for transfer_resize,
+    based on "config.train.training_mode" (resize to 224 for transfer_resize,
     otherwise standard CIFAR-10 normalisation).
 
     Args:
