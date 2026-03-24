@@ -1,0 +1,70 @@
+{
+  "data": {
+    "dataset": "cifar10",
+    "data_dir": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\data",
+    "val_split": 0.1,
+    "num_workers": 2,
+    "pin_memory": false,
+    "num_classes": 10,
+    "mean": [
+      0.4914,
+      0.4822,
+      0.4465
+    ],
+    "std": [
+      0.247,
+      0.2435,
+      0.2616
+    ],
+    "imagenet_mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "imagenet_std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "model": {
+    "num_classes": 10,
+    "dropout": 0.5
+  },
+  "train": {
+    "training_mode": "transfer_resize",
+    "epochs": 30,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "momentum": 0.9,
+    "weight_decay": 0.0001,
+    "scheduler": "cosine",
+    "step_size": 20,
+    "gamma": 0.1,
+    "scheduler_patience": 5,
+    "scheduler_factor": 0.5,
+    "min_lr": 1e-06,
+    "early_stopping_patience": 7,
+    "min_delta": 0.0,
+    "label_smoothing": 0.1,
+    "teacher_checkpoint": "",
+    "kd_temperature": 4.0,
+    "kd_alpha": 0.5
+  },
+  "run": {
+    "mode": "both",
+    "seed": 42,
+    "device": "cuda",
+    "project_name": "HW2",
+    "experiment_name": "transfer_resize",
+    "checkpoint_root": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\checkpoints",
+    "log_root": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\logs",
+    "plot_root": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\plots",
+    "checkpoint_dir": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\checkpoints\\HW2\\transfer_resize",
+    "log_dir": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\logs\\HW2\\transfer_resize",
+    "plot_dir": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\plots\\HW2\\transfer_resize",
+    "save_path": "C:\\Users\\\u0130hsan\\Desktop\\Development\\cs515\\aigul_CS515\\results\\checkpoints\\HW2\\transfer_resize\\transfer_resize_best_model.pt",
+    "log_interval": 50
+  }
+}

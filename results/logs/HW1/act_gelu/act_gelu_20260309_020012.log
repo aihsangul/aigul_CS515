@@ -1,0 +1,183 @@
+2026-03-09 02:00:12 | INFO | Log file path: results\logs\HW1\act_gelu\act_gelu_20260309_020012.log
+2026-03-09 02:00:12 | INFO | Config snapshot path: results\logs\HW1\act_gelu\act_gelu_20260309_020012.config.json
+2026-03-09 02:00:12 | INFO | Environment information
+2026-03-09 02:00:12 | INFO | Python platform: Windows-10-10.0.26200-SP0
+2026-03-09 02:00:12 | INFO | PyTorch version: 2.9.0+cpu
+2026-03-09 02:00:12 | INFO | CUDA available: False
+2026-03-09 02:00:12 | INFO | MPS available: False
+2026-03-09 02:00:12 | INFO | ======================================================================
+2026-03-09 02:00:12 | INFO | CS515 HW1a - MNIST Classification with MLP
+2026-03-09 02:00:12 | INFO | ======================================================================
+2026-03-09 02:00:12 | INFO | Mode             : both
+2026-03-09 02:00:12 | INFO | Project name     : HW1
+2026-03-09 02:00:12 | INFO | Experiment name  : act_gelu
+2026-03-09 02:00:12 | INFO | Seed             : 42
+2026-03-09 02:00:12 | INFO | Device           : cpu
+2026-03-09 02:00:12 | INFO | Dataset          : mnist
+2026-03-09 02:00:12 | INFO | Input size       : 784
+2026-03-09 02:00:12 | INFO | Num classes      : 10
+2026-03-09 02:00:12 | INFO | Hidden sizes     : [256, 128]
+2026-03-09 02:00:12 | INFO | Activation       : gelu
+2026-03-09 02:00:12 | INFO | Dropout          : 0.2
+2026-03-09 02:00:12 | INFO | BatchNorm        : False
+2026-03-09 02:00:12 | INFO | Epochs           : 15
+2026-03-09 02:00:12 | INFO | Batch size       : 64
+2026-03-09 02:00:12 | INFO | Learning rate    : 0.001
+2026-03-09 02:00:12 | INFO | Optimizer        : adam
+2026-03-09 02:00:12 | INFO | Scheduler        : none
+2026-03-09 02:00:12 | INFO | Regularizer      : none
+2026-03-09 02:00:12 | INFO | reg_lambda       : 0.0
+2026-03-09 02:00:12 | INFO | Weight decay     : 0.0
+2026-03-09 02:00:12 | INFO | Checkpoint dir   : results\checkpoints\HW1\act_gelu
+2026-03-09 02:00:12 | INFO | Checkpoint path  : results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt
+2026-03-09 02:00:12 | INFO | Log directory    : results\logs\HW1\act_gelu
+2026-03-09 02:00:12 | INFO | Plot directory   : results\plots\HW1\act_gelu
+2026-03-09 02:00:12 | INFO | Trainable params : 235,146
+2026-03-09 02:00:12 | INFO | ======================================================================
+2026-03-09 02:00:12 | INFO | Model architecture:
+MLP(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (hidden_blocks): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=784, out_features=256, bias=True)
+      (1): GELU(approximate='none')
+      (2): Dropout(p=0.2, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): GELU(approximate='none')
+      (2): Dropout(p=0.2, inplace=False)
+    )
+  )
+  (classifier): Linear(in_features=128, out_features=10, bias=True)
+)
+2026-03-09 02:00:12 | INFO | ======================================================================
+2026-03-09 02:00:12 | INFO | Starting training...
+2026-03-09 02:00:12 | INFO | Train size: 54000 | Val size: 6000
+2026-03-09 02:00:12 | INFO | Epoch 1/15
+2026-03-09 02:00:18 | INFO |   [Batch  100/844] train_loss=0.6658 | train_acc=0.7956
+2026-03-09 02:00:19 | INFO |   [Batch  200/844] train_loss=0.4856 | train_acc=0.8509
+2026-03-09 02:00:20 | INFO |   [Batch  300/844] train_loss=0.4124 | train_acc=0.8729
+2026-03-09 02:00:21 | INFO |   [Batch  400/844] train_loss=0.3630 | train_acc=0.8879
+2026-03-09 02:00:22 | INFO |   [Batch  500/844] train_loss=0.3312 | train_acc=0.8984
+2026-03-09 02:00:24 | INFO |   [Batch  600/844] train_loss=0.3073 | train_acc=0.9056
+2026-03-09 02:00:25 | INFO |   [Batch  700/844] train_loss=0.2894 | train_acc=0.9109
+2026-03-09 02:00:26 | INFO |   [Batch  800/844] train_loss=0.2749 | train_acc=0.9156
+2026-03-09 02:00:35 | INFO |   Train | loss: 0.2691 | acc: 0.9176 | Val | loss: 0.1348 | acc: 0.9612 | LR: 0.001000
+2026-03-09 02:00:35 | INFO |   Saved best model to results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt (best_val_loss=0.1348)
+2026-03-09 02:00:35 | INFO | Epoch 2/15
+2026-03-09 02:00:41 | INFO |   [Batch  100/844] train_loss=0.1143 | train_acc=0.9653
+2026-03-09 02:00:42 | INFO |   [Batch  200/844] train_loss=0.1257 | train_acc=0.9596
+2026-03-09 02:00:43 | INFO |   [Batch  300/844] train_loss=0.1260 | train_acc=0.9593
+2026-03-09 02:00:44 | INFO |   [Batch  400/844] train_loss=0.1243 | train_acc=0.9602
+2026-03-09 02:00:45 | INFO |   [Batch  500/844] train_loss=0.1239 | train_acc=0.9606
+2026-03-09 02:00:46 | INFO |   [Batch  600/844] train_loss=0.1236 | train_acc=0.9608
+2026-03-09 02:00:47 | INFO |   [Batch  700/844] train_loss=0.1220 | train_acc=0.9615
+2026-03-09 02:00:47 | INFO |   [Batch  800/844] train_loss=0.1219 | train_acc=0.9617
+2026-03-09 02:00:56 | INFO |   Train | loss: 0.1223 | acc: 0.9617 | Val | loss: 0.1016 | acc: 0.9707 | LR: 0.001000
+2026-03-09 02:00:56 | INFO |   Saved best model to results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt (best_val_loss=0.1016)
+2026-03-09 02:00:56 | INFO | Epoch 3/15
+2026-03-09 02:01:02 | INFO |   [Batch  100/844] train_loss=0.0859 | train_acc=0.9734
+2026-03-09 02:01:04 | INFO |   [Batch  200/844] train_loss=0.0846 | train_acc=0.9730
+2026-03-09 02:01:05 | INFO |   [Batch  300/844] train_loss=0.0876 | train_acc=0.9718
+2026-03-09 02:01:06 | INFO |   [Batch  400/844] train_loss=0.0902 | train_acc=0.9717
+2026-03-09 02:01:07 | INFO |   [Batch  500/844] train_loss=0.0915 | train_acc=0.9712
+2026-03-09 02:01:08 | INFO |   [Batch  600/844] train_loss=0.0932 | train_acc=0.9707
+2026-03-09 02:01:09 | INFO |   [Batch  700/844] train_loss=0.0923 | train_acc=0.9710
+2026-03-09 02:01:10 | INFO |   [Batch  800/844] train_loss=0.0949 | train_acc=0.9704
+2026-03-09 02:01:19 | INFO |   Train | loss: 0.0948 | acc: 0.9705 | Val | loss: 0.0963 | acc: 0.9722 | LR: 0.001000
+2026-03-09 02:01:19 | INFO |   Saved best model to results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt (best_val_loss=0.0963)
+2026-03-09 02:01:19 | INFO | Epoch 4/15
+2026-03-09 02:01:25 | INFO |   [Batch  100/844] train_loss=0.0702 | train_acc=0.9773
+2026-03-09 02:01:26 | INFO |   [Batch  200/844] train_loss=0.0788 | train_acc=0.9755
+2026-03-09 02:01:28 | INFO |   [Batch  300/844] train_loss=0.0795 | train_acc=0.9760
+2026-03-09 02:01:29 | INFO |   [Batch  400/844] train_loss=0.0796 | train_acc=0.9760
+2026-03-09 02:01:30 | INFO |   [Batch  500/844] train_loss=0.0783 | train_acc=0.9763
+2026-03-09 02:01:31 | INFO |   [Batch  600/844] train_loss=0.0789 | train_acc=0.9757
+2026-03-09 02:01:32 | INFO |   [Batch  700/844] train_loss=0.0775 | train_acc=0.9760
+2026-03-09 02:01:33 | INFO |   [Batch  800/844] train_loss=0.0796 | train_acc=0.9755
+2026-03-09 02:01:42 | INFO |   Train | loss: 0.0797 | acc: 0.9754 | Val | loss: 0.0817 | acc: 0.9758 | LR: 0.001000
+2026-03-09 02:01:42 | INFO |   Saved best model to results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt (best_val_loss=0.0817)
+2026-03-09 02:01:42 | INFO | Epoch 5/15
+2026-03-09 02:01:48 | INFO |   [Batch  100/844] train_loss=0.0603 | train_acc=0.9808
+2026-03-09 02:01:49 | INFO |   [Batch  200/844] train_loss=0.0632 | train_acc=0.9789
+2026-03-09 02:01:50 | INFO |   [Batch  300/844] train_loss=0.0637 | train_acc=0.9788
+2026-03-09 02:01:51 | INFO |   [Batch  400/844] train_loss=0.0649 | train_acc=0.9788
+2026-03-09 02:01:52 | INFO |   [Batch  500/844] train_loss=0.0666 | train_acc=0.9780
+2026-03-09 02:01:54 | INFO |   [Batch  600/844] train_loss=0.0675 | train_acc=0.9781
+2026-03-09 02:01:55 | INFO |   [Batch  700/844] train_loss=0.0673 | train_acc=0.9783
+2026-03-09 02:01:56 | INFO |   [Batch  800/844] train_loss=0.0681 | train_acc=0.9780
+2026-03-09 02:02:05 | INFO |   Train | loss: 0.0677 | acc: 0.9783 | Val | loss: 0.0857 | acc: 0.9752 | LR: 0.001000
+2026-03-09 02:02:05 | INFO |   No improvement in validation loss. Early-stop counter: 1/5
+2026-03-09 02:02:05 | INFO | Epoch 6/15
+2026-03-09 02:02:11 | INFO |   [Batch  100/844] train_loss=0.0585 | train_acc=0.9822
+2026-03-09 02:02:12 | INFO |   [Batch  200/844] train_loss=0.0587 | train_acc=0.9816
+2026-03-09 02:02:13 | INFO |   [Batch  300/844] train_loss=0.0593 | train_acc=0.9815
+2026-03-09 02:02:14 | INFO |   [Batch  400/844] train_loss=0.0587 | train_acc=0.9818
+2026-03-09 02:02:15 | INFO |   [Batch  500/844] train_loss=0.0595 | train_acc=0.9815
+2026-03-09 02:02:16 | INFO |   [Batch  600/844] train_loss=0.0599 | train_acc=0.9812
+2026-03-09 02:02:17 | INFO |   [Batch  700/844] train_loss=0.0606 | train_acc=0.9810
+2026-03-09 02:02:18 | INFO |   [Batch  800/844] train_loss=0.0614 | train_acc=0.9807
+2026-03-09 02:02:26 | INFO |   Train | loss: 0.0618 | acc: 0.9806 | Val | loss: 0.0890 | acc: 0.9732 | LR: 0.001000
+2026-03-09 02:02:26 | INFO |   No improvement in validation loss. Early-stop counter: 2/5
+2026-03-09 02:02:26 | INFO | Epoch 7/15
+2026-03-09 02:02:32 | INFO |   [Batch  100/844] train_loss=0.0705 | train_acc=0.9773
+2026-03-09 02:02:33 | INFO |   [Batch  200/844] train_loss=0.0604 | train_acc=0.9808
+2026-03-09 02:02:34 | INFO |   [Batch  300/844] train_loss=0.0559 | train_acc=0.9822
+2026-03-09 02:02:35 | INFO |   [Batch  400/844] train_loss=0.0552 | train_acc=0.9829
+2026-03-09 02:02:36 | INFO |   [Batch  500/844] train_loss=0.0541 | train_acc=0.9827
+2026-03-09 02:02:37 | INFO |   [Batch  600/844] train_loss=0.0552 | train_acc=0.9825
+2026-03-09 02:02:38 | INFO |   [Batch  700/844] train_loss=0.0573 | train_acc=0.9821
+2026-03-09 02:02:39 | INFO |   [Batch  800/844] train_loss=0.0583 | train_acc=0.9815
+2026-03-09 02:02:48 | INFO |   Train | loss: 0.0583 | acc: 0.9815 | Val | loss: 0.0872 | acc: 0.9742 | LR: 0.001000
+2026-03-09 02:02:48 | INFO |   No improvement in validation loss. Early-stop counter: 3/5
+2026-03-09 02:02:48 | INFO | Epoch 8/15
+2026-03-09 02:02:54 | INFO |   [Batch  100/844] train_loss=0.0461 | train_acc=0.9847
+2026-03-09 02:02:55 | INFO |   [Batch  200/844] train_loss=0.0475 | train_acc=0.9842
+2026-03-09 02:02:56 | INFO |   [Batch  300/844] train_loss=0.0467 | train_acc=0.9848
+2026-03-09 02:02:57 | INFO |   [Batch  400/844] train_loss=0.0500 | train_acc=0.9836
+2026-03-09 02:02:58 | INFO |   [Batch  500/844] train_loss=0.0500 | train_acc=0.9835
+2026-03-09 02:02:59 | INFO |   [Batch  600/844] train_loss=0.0503 | train_acc=0.9836
+2026-03-09 02:03:00 | INFO |   [Batch  700/844] train_loss=0.0517 | train_acc=0.9833
+2026-03-09 02:03:02 | INFO |   [Batch  800/844] train_loss=0.0504 | train_acc=0.9836
+2026-03-09 02:03:09 | INFO |   Train | loss: 0.0507 | acc: 0.9835 | Val | loss: 0.0964 | acc: 0.9730 | LR: 0.001000
+2026-03-09 02:03:09 | INFO |   No improvement in validation loss. Early-stop counter: 4/5
+2026-03-09 02:03:09 | INFO | Epoch 9/15
+2026-03-09 02:03:15 | INFO |   [Batch  100/844] train_loss=0.0469 | train_acc=0.9827
+2026-03-09 02:03:16 | INFO |   [Batch  200/844] train_loss=0.0436 | train_acc=0.9844
+2026-03-09 02:03:18 | INFO |   [Batch  300/844] train_loss=0.0456 | train_acc=0.9841
+2026-03-09 02:03:19 | INFO |   [Batch  400/844] train_loss=0.0466 | train_acc=0.9841
+2026-03-09 02:03:20 | INFO |   [Batch  500/844] train_loss=0.0469 | train_acc=0.9841
+2026-03-09 02:03:21 | INFO |   [Batch  600/844] train_loss=0.0475 | train_acc=0.9839
+2026-03-09 02:03:22 | INFO |   [Batch  700/844] train_loss=0.0485 | train_acc=0.9837
+2026-03-09 02:03:23 | INFO |   [Batch  800/844] train_loss=0.0484 | train_acc=0.9838
+2026-03-09 02:03:31 | INFO |   Train | loss: 0.0484 | acc: 0.9838 | Val | loss: 0.0948 | acc: 0.9767 | LR: 0.001000
+2026-03-09 02:03:31 | INFO |   No improvement in validation loss. Early-stop counter: 5/5
+2026-03-09 02:03:31 | INFO |   Early stopping triggered.
+2026-03-09 02:03:31 | INFO | Training complete.
+2026-03-09 02:03:31 | INFO | Best epoch     : 4
+2026-03-09 02:03:31 | INFO | Best val loss  : 0.0817
+2026-03-09 02:03:31 | INFO | Best val acc   : 0.9758
+2026-03-09 02:03:31 | INFO | Checkpoint     : results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt
+2026-03-09 02:03:31 | INFO | Loading checkpoint from results\checkpoints\HW1\act_gelu\act_gelu_best_model.pt
+2026-03-09 02:03:31 | INFO | Starting test evaluation...
+2026-03-09 02:03:31 | INFO | Test size: 10000
+2026-03-09 02:03:36 | INFO | ======================================================================
+2026-03-09 02:03:36 | INFO | Test Results
+2026-03-09 02:03:36 | INFO | ======================================================================
+2026-03-09 02:03:36 | INFO | Average test loss : 0.0731
+2026-03-09 02:03:36 | INFO | Overall accuracy  : 0.9791 (9791/10000)
+2026-03-09 02:03:36 | INFO | ----------------------------------------------------------------------
+2026-03-09 02:03:36 | INFO | Per-class accuracy:
+2026-03-09 02:03:36 | INFO |   Class 0: 0.9847 (965/980)
+2026-03-09 02:03:36 | INFO |   Class 1: 0.9903 (1124/1135)
+2026-03-09 02:03:36 | INFO |   Class 2: 0.9787 (1010/1032)
+2026-03-09 02:03:36 | INFO |   Class 3: 0.9772 (987/1010)
+2026-03-09 02:03:36 | INFO |   Class 4: 0.9817 (964/982)
+2026-03-09 02:03:36 | INFO |   Class 5: 0.9753 (870/892)
+2026-03-09 02:03:36 | INFO |   Class 6: 0.9875 (946/958)
+2026-03-09 02:03:36 | INFO |   Class 7: 0.9776 (1005/1028)
+2026-03-09 02:03:36 | INFO |   Class 8: 0.9651 (940/974)
+2026-03-09 02:03:36 | INFO |   Class 9: 0.9713 (980/1009)
+2026-03-09 02:03:36 | INFO | ======================================================================
+2026-03-09 02:03:36 | INFO | Run completed successfully.

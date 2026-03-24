@@ -1,0 +1,47 @@
+{
+  "train_loss": [
+    0.2928584673559224,
+    0.1308189806204151,
+    0.10357256062052868
+  ],
+  "train_acc": [
+    0.9095,
+    0.9598148148148148,
+    0.9679074074074074
+  ],
+  "val_loss": [
+    0.1461084591348966,
+    0.09996195986866951,
+    0.08943755677342415
+  ],
+  "val_acc": [
+    0.9546666666666667,
+    0.9708333333333333,
+    0.9728333333333333
+  ],
+  "learning_rate": [
+    0.001,
+    0.001,
+    0.001
+  ],
+  "best_epoch": 3,
+  "best_val_loss": 0.08943755677342415,
+  "best_val_acc": 0.9728333333333333,
+  "config": {
+    "hidden_sizes": [
+      256,
+      128
+    ],
+    "activation": "relu",
+    "dropout": 0.2,
+    "use_batch_norm": false,
+    "epochs": 3,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "scheduler": "none",
+    "regularizer": "none",
+    "reg_lambda": 0.0,
+    "weight_decay": 0.0
+  }
+}

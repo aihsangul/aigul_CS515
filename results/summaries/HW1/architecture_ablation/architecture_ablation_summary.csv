@@ -1,0 +1,4 @@
+project_name,experiment_name,hidden_sizes,activation,dropout,use_batch_norm,optimizer,scheduler,regularizer,reg_lambda,weight_decay,learning_rate,batch_size,best_epoch,best_val_loss,best_val_acc,test_loss,test_accuracy
+HW1,arch_medium_256_128,"[256, 128]",relu,0.2,False,adam,none,none,0.0,0.0,0.001,64,12,0.07414034351271888,0.9793333333333333,0.07526249337498593,0.9804
+HW1,arch_deep_512_256_128,"[512, 256, 128]",relu,0.2,False,adam,none,none,0.0,0.0,0.001,64,8,0.08108403160360952,0.979,0.07999457536468399,0.9785
+HW1,arch_shallow_128,[128],relu,0.2,False,adam,none,none,0.0,0.0,0.001,64,6,0.0821263378560543,0.9768333333333333,0.07245875955191441,0.9779

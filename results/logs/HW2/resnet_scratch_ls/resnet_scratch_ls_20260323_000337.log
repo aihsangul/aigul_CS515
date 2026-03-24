@@ -1,0 +1,1156 @@
+2026-03-23 00:03:37 | INFO | Log file         : C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\logs\HW2\resnet_scratch_ls\resnet_scratch_ls_20260323_000337.log
+2026-03-23 00:03:37 | INFO | Config snapshot  : C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\logs\HW2\resnet_scratch_ls\resnet_scratch_ls_20260323_000337.config.json
+2026-03-23 00:03:37 | INFO | Environment information
+2026-03-23 00:03:37 | INFO | Python platform : Windows-10-10.0.26200-SP0
+2026-03-23 00:03:37 | INFO | PyTorch version : 2.6.0+cu124
+2026-03-23 00:03:37 | INFO | CUDA available  : True
+2026-03-23 00:03:37 | INFO | CUDA device count : 1
+2026-03-23 00:03:37 | INFO | CUDA device name  : NVIDIA GeForce RTX 4070 Laptop GPU
+2026-03-23 00:03:37 | INFO | MPS available   : False
+2026-03-23 00:03:37 | INFO | ======================================================================
+2026-03-23 00:03:37 | INFO | CS515 HW2 - Transfer Learning & Knowledge Distillation
+2026-03-23 00:03:37 | INFO | ======================================================================
+2026-03-23 00:03:37 | INFO | Training mode    : scratch_ls
+2026-03-23 00:03:37 | INFO | Run mode         : both
+2026-03-23 00:03:37 | INFO | Experiment       : resnet_scratch_ls
+2026-03-23 00:03:37 | INFO | Seed             : 42
+2026-03-23 00:03:37 | INFO | Device           : cuda
+2026-03-23 00:03:37 | INFO | Dataset          : cifar10
+2026-03-23 00:03:37 | INFO | Num classes      : 10
+2026-03-23 00:03:37 | INFO | Epochs           : 100
+2026-03-23 00:03:37 | INFO | Batch size       : 128
+2026-03-23 00:03:37 | INFO | Learning rate    : 0.001
+2026-03-23 00:03:37 | INFO | Optimizer        : adam
+2026-03-23 00:03:37 | INFO | Scheduler        : cosine
+2026-03-23 00:03:37 | INFO | Weight decay     : 0.0001
+2026-03-23 00:03:37 | INFO | Label smoothing  : 0.1
+2026-03-23 00:03:37 | INFO | KD temperature   : 4
+2026-03-23 00:03:37 | INFO | KD alpha         : 0.5
+2026-03-23 00:03:37 | INFO | Teacher ckpt     : N/A
+2026-03-23 00:03:37 | INFO | Checkpoint dir   : C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls
+2026-03-23 00:03:37 | INFO | Log dir          : C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\logs\HW2\resnet_scratch_ls
+2026-03-23 00:03:37 | INFO | Trainable params : 11,173,962
+2026-03-23 00:03:37 | INFO | ======================================================================
+2026-03-23 00:03:37 | INFO | Model:
+ResNet(
+  (conv1): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (maxpool): Identity()
+  (layer1): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer2): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(64, 128, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(64, 128, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(128, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer3): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(128, 256, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(128, 256, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (layer4): Sequential(
+    (0): BasicBlock(
+      (conv1): Conv2d(256, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (downsample): Sequential(
+        (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+        (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      )
+    )
+    (1): BasicBlock(
+      (conv1): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+      (relu): ReLU(inplace=True)
+      (conv2): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      (bn2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    )
+  )
+  (avgpool): AdaptiveAvgPool2d(output_size=(1, 1))
+  (fc): Linear(in_features=512, out_features=10, bias=True)
+)
+2026-03-23 00:03:37 | INFO | ======================================================================
+2026-03-23 00:03:39 | INFO | Starting training | mode=scratch_ls
+2026-03-23 00:03:39 | INFO | Train size: 45000 | Val size: 5000
+2026-03-23 00:03:39 | INFO | Epoch 1/100
+2026-03-23 00:03:49 | INFO |   [Batch   50/352] train_loss=1.9661 | train_acc=0.3100
+2026-03-23 00:03:52 | INFO |   [Batch  100/352] train_loss=1.8427 | train_acc=0.3673
+2026-03-23 00:03:55 | INFO |   [Batch  150/352] train_loss=1.7717 | train_acc=0.4024
+2026-03-23 00:03:57 | INFO |   [Batch  200/352] train_loss=1.7170 | train_acc=0.4305
+2026-03-23 00:04:00 | INFO |   [Batch  250/352] train_loss=1.6625 | train_acc=0.4574
+2026-03-23 00:04:03 | INFO |   [Batch  300/352] train_loss=1.6246 | train_acc=0.4761
+2026-03-23 00:04:06 | INFO |   [Batch  350/352] train_loss=1.5875 | train_acc=0.4946
+2026-03-23 00:04:15 | INFO |   Train | loss=1.5865 acc=0.4953 | Val | loss=1.3506 acc=0.5360 | lr=0.001000
+2026-03-23 00:04:15 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=1.3506)
+2026-03-23 00:04:15 | INFO | Epoch 2/100
+2026-03-23 00:04:25 | INFO |   [Batch   50/352] train_loss=1.3210 | train_acc=0.6336
+2026-03-23 00:04:28 | INFO |   [Batch  100/352] train_loss=1.3008 | train_acc=0.6422
+2026-03-23 00:04:31 | INFO |   [Batch  150/352] train_loss=1.2937 | train_acc=0.6444
+2026-03-23 00:04:33 | INFO |   [Batch  200/352] train_loss=1.2718 | train_acc=0.6547
+2026-03-23 00:04:36 | INFO |   [Batch  250/352] train_loss=1.2602 | train_acc=0.6605
+2026-03-23 00:04:39 | INFO |   [Batch  300/352] train_loss=1.2466 | train_acc=0.6667
+2026-03-23 00:04:42 | INFO |   [Batch  350/352] train_loss=1.2368 | train_acc=0.6707
+2026-03-23 00:04:51 | INFO |   Train | loss=1.2363 acc=0.6709 | Val | loss=1.0509 acc=0.6390 | lr=0.000999
+2026-03-23 00:04:51 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=1.0509)
+2026-03-23 00:04:51 | INFO | Epoch 3/100
+2026-03-23 00:05:01 | INFO |   [Batch   50/352] train_loss=1.1447 | train_acc=0.7170
+2026-03-23 00:05:03 | INFO |   [Batch  100/352] train_loss=1.1320 | train_acc=0.7234
+2026-03-23 00:05:06 | INFO |   [Batch  150/352] train_loss=1.1210 | train_acc=0.7277
+2026-03-23 00:05:09 | INFO |   [Batch  200/352] train_loss=1.1117 | train_acc=0.7326
+2026-03-23 00:05:12 | INFO |   [Batch  250/352] train_loss=1.1009 | train_acc=0.7389
+2026-03-23 00:05:15 | INFO |   [Batch  300/352] train_loss=1.0929 | train_acc=0.7419
+2026-03-23 00:05:18 | INFO |   [Batch  350/352] train_loss=1.0864 | train_acc=0.7450
+2026-03-23 00:05:26 | INFO |   Train | loss=1.0860 acc=0.7453 | Val | loss=0.8165 acc=0.7280 | lr=0.000998
+2026-03-23 00:05:27 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.8165)
+2026-03-23 00:05:27 | INFO | Epoch 4/100
+2026-03-23 00:05:36 | INFO |   [Batch   50/352] train_loss=1.0081 | train_acc=0.7827
+2026-03-23 00:05:39 | INFO |   [Batch  100/352] train_loss=1.0240 | train_acc=0.7760
+2026-03-23 00:05:42 | INFO |   [Batch  150/352] train_loss=1.0189 | train_acc=0.7794
+2026-03-23 00:05:45 | INFO |   [Batch  200/352] train_loss=1.0138 | train_acc=0.7807
+2026-03-23 00:05:48 | INFO |   [Batch  250/352] train_loss=1.0113 | train_acc=0.7811
+2026-03-23 00:05:51 | INFO |   [Batch  300/352] train_loss=1.0061 | train_acc=0.7833
+2026-03-23 00:05:54 | INFO |   [Batch  350/352] train_loss=1.0006 | train_acc=0.7855
+2026-03-23 00:06:02 | INFO |   Train | loss=1.0003 acc=0.7855 | Val | loss=0.7306 acc=0.7596 | lr=0.000996
+2026-03-23 00:06:02 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.7306)
+2026-03-23 00:06:02 | INFO | Epoch 5/100
+2026-03-23 00:06:12 | INFO |   [Batch   50/352] train_loss=0.9541 | train_acc=0.8053
+2026-03-23 00:06:15 | INFO |   [Batch  100/352] train_loss=0.9577 | train_acc=0.8045
+2026-03-23 00:06:18 | INFO |   [Batch  150/352] train_loss=0.9565 | train_acc=0.8053
+2026-03-23 00:06:21 | INFO |   [Batch  200/352] train_loss=0.9535 | train_acc=0.8067
+2026-03-23 00:06:24 | INFO |   [Batch  250/352] train_loss=0.9500 | train_acc=0.8082
+2026-03-23 00:06:26 | INFO |   [Batch  300/352] train_loss=0.9478 | train_acc=0.8089
+2026-03-23 00:06:29 | INFO |   [Batch  350/352] train_loss=0.9461 | train_acc=0.8102
+2026-03-23 00:06:38 | INFO |   Train | loss=0.9462 acc=0.8101 | Val | loss=0.5690 acc=0.8238 | lr=0.000994
+2026-03-23 00:06:38 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.5690)
+2026-03-23 00:06:38 | INFO | Epoch 6/100
+2026-03-23 00:06:48 | INFO |   [Batch   50/352] train_loss=0.9118 | train_acc=0.8241
+2026-03-23 00:06:51 | INFO |   [Batch  100/352] train_loss=0.9093 | train_acc=0.8261
+2026-03-23 00:06:54 | INFO |   [Batch  150/352] train_loss=0.9068 | train_acc=0.8260
+2026-03-23 00:06:57 | INFO |   [Batch  200/352] train_loss=0.9044 | train_acc=0.8278
+2026-03-23 00:07:00 | INFO |   [Batch  250/352] train_loss=0.9034 | train_acc=0.8279
+2026-03-23 00:07:03 | INFO |   [Batch  300/352] train_loss=0.9035 | train_acc=0.8283
+2026-03-23 00:07:06 | INFO |   [Batch  350/352] train_loss=0.9036 | train_acc=0.8279
+2026-03-23 00:07:14 | INFO |   Train | loss=0.9033 acc=0.8280 | Val | loss=0.6296 acc=0.8040 | lr=0.000991
+2026-03-23 00:07:14 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:07:14 | INFO | Epoch 7/100
+2026-03-23 00:07:24 | INFO |   [Batch   50/352] train_loss=0.8664 | train_acc=0.8458
+2026-03-23 00:07:27 | INFO |   [Batch  100/352] train_loss=0.8782 | train_acc=0.8395
+2026-03-23 00:07:30 | INFO |   [Batch  150/352] train_loss=0.8802 | train_acc=0.8402
+2026-03-23 00:07:33 | INFO |   [Batch  200/352] train_loss=0.8778 | train_acc=0.8402
+2026-03-23 00:07:35 | INFO |   [Batch  250/352] train_loss=0.8771 | train_acc=0.8410
+2026-03-23 00:07:38 | INFO |   [Batch  300/352] train_loss=0.8770 | train_acc=0.8408
+2026-03-23 00:07:41 | INFO |   [Batch  350/352] train_loss=0.8780 | train_acc=0.8400
+2026-03-23 00:07:50 | INFO |   Train | loss=0.8778 acc=0.8401 | Val | loss=0.6597 acc=0.7926 | lr=0.000988
+2026-03-23 00:07:50 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:07:50 | INFO | Epoch 8/100
+2026-03-23 00:08:00 | INFO |   [Batch   50/352] train_loss=0.8465 | train_acc=0.8536
+2026-03-23 00:08:03 | INFO |   [Batch  100/352] train_loss=0.8424 | train_acc=0.8552
+2026-03-23 00:08:06 | INFO |   [Batch  150/352] train_loss=0.8470 | train_acc=0.8533
+2026-03-23 00:08:08 | INFO |   [Batch  200/352] train_loss=0.8487 | train_acc=0.8518
+2026-03-23 00:08:11 | INFO |   [Batch  250/352] train_loss=0.8474 | train_acc=0.8521
+2026-03-23 00:08:14 | INFO |   [Batch  300/352] train_loss=0.8475 | train_acc=0.8513
+2026-03-23 00:08:17 | INFO |   [Batch  350/352] train_loss=0.8465 | train_acc=0.8519
+2026-03-23 00:08:25 | INFO |   Train | loss=0.8466 acc=0.8518 | Val | loss=0.5261 acc=0.8362 | lr=0.000984
+2026-03-23 00:08:25 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.5261)
+2026-03-23 00:08:25 | INFO | Epoch 9/100
+2026-03-23 00:08:36 | INFO |   [Batch   50/352] train_loss=0.8151 | train_acc=0.8689
+2026-03-23 00:08:39 | INFO |   [Batch  100/352] train_loss=0.8171 | train_acc=0.8676
+2026-03-23 00:08:41 | INFO |   [Batch  150/352] train_loss=0.8168 | train_acc=0.8681
+2026-03-23 00:08:44 | INFO |   [Batch  200/352] train_loss=0.8220 | train_acc=0.8648
+2026-03-23 00:08:47 | INFO |   [Batch  250/352] train_loss=0.8248 | train_acc=0.8628
+2026-03-23 00:08:50 | INFO |   [Batch  300/352] train_loss=0.8269 | train_acc=0.8622
+2026-03-23 00:08:53 | INFO |   [Batch  350/352] train_loss=0.8270 | train_acc=0.8615
+2026-03-23 00:09:02 | INFO |   Train | loss=0.8269 acc=0.8615 | Val | loss=0.6919 acc=0.7872 | lr=0.000980
+2026-03-23 00:09:02 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:09:02 | INFO | Epoch 10/100
+2026-03-23 00:09:12 | INFO |   [Batch   50/352] train_loss=0.8137 | train_acc=0.8633
+2026-03-23 00:09:15 | INFO |   [Batch  100/352] train_loss=0.8096 | train_acc=0.8660
+2026-03-23 00:09:17 | INFO |   [Batch  150/352] train_loss=0.8078 | train_acc=0.8673
+2026-03-23 00:09:20 | INFO |   [Batch  200/352] train_loss=0.8076 | train_acc=0.8683
+2026-03-23 00:09:23 | INFO |   [Batch  250/352] train_loss=0.8056 | train_acc=0.8699
+2026-03-23 00:09:26 | INFO |   [Batch  300/352] train_loss=0.8057 | train_acc=0.8699
+2026-03-23 00:09:29 | INFO |   [Batch  350/352] train_loss=0.8064 | train_acc=0.8698
+2026-03-23 00:09:38 | INFO |   Train | loss=0.8068 acc=0.8697 | Val | loss=0.5814 acc=0.8194 | lr=0.000976
+2026-03-23 00:09:38 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:09:38 | INFO | Epoch 11/100
+2026-03-23 00:09:47 | INFO |   [Batch   50/352] train_loss=0.7871 | train_acc=0.8812
+2026-03-23 00:09:50 | INFO |   [Batch  100/352] train_loss=0.7901 | train_acc=0.8795
+2026-03-23 00:09:53 | INFO |   [Batch  150/352] train_loss=0.7927 | train_acc=0.8779
+2026-03-23 00:09:56 | INFO |   [Batch  200/352] train_loss=0.7896 | train_acc=0.8782
+2026-03-23 00:09:59 | INFO |   [Batch  250/352] train_loss=0.7901 | train_acc=0.8781
+2026-03-23 00:10:02 | INFO |   [Batch  300/352] train_loss=0.7892 | train_acc=0.8784
+2026-03-23 00:10:05 | INFO |   [Batch  350/352] train_loss=0.7906 | train_acc=0.8774
+2026-03-23 00:10:13 | INFO |   Train | loss=0.7906 acc=0.8773 | Val | loss=0.5140 acc=0.8438 | lr=0.000970
+2026-03-23 00:10:13 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.5140)
+2026-03-23 00:10:13 | INFO | Epoch 12/100
+2026-03-23 00:10:23 | INFO |   [Batch   50/352] train_loss=0.7742 | train_acc=0.8828
+2026-03-23 00:10:26 | INFO |   [Batch  100/352] train_loss=0.7797 | train_acc=0.8816
+2026-03-23 00:10:29 | INFO |   [Batch  150/352] train_loss=0.7767 | train_acc=0.8844
+2026-03-23 00:10:32 | INFO |   [Batch  200/352] train_loss=0.7757 | train_acc=0.8841
+2026-03-23 00:10:35 | INFO |   [Batch  250/352] train_loss=0.7775 | train_acc=0.8830
+2026-03-23 00:10:38 | INFO |   [Batch  300/352] train_loss=0.7758 | train_acc=0.8840
+2026-03-23 00:10:40 | INFO |   [Batch  350/352] train_loss=0.7770 | train_acc=0.8833
+2026-03-23 00:10:49 | INFO |   Train | loss=0.7771 acc=0.8833 | Val | loss=0.4875 acc=0.8586 | lr=0.000965
+2026-03-23 00:10:49 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.4875)
+2026-03-23 00:10:49 | INFO | Epoch 13/100
+2026-03-23 00:10:59 | INFO |   [Batch   50/352] train_loss=0.7457 | train_acc=0.8936
+2026-03-23 00:11:02 | INFO |   [Batch  100/352] train_loss=0.7465 | train_acc=0.8948
+2026-03-23 00:11:05 | INFO |   [Batch  150/352] train_loss=0.7541 | train_acc=0.8916
+2026-03-23 00:11:07 | INFO |   [Batch  200/352] train_loss=0.7548 | train_acc=0.8911
+2026-03-23 00:11:10 | INFO |   [Batch  250/352] train_loss=0.7547 | train_acc=0.8921
+2026-03-23 00:11:13 | INFO |   [Batch  300/352] train_loss=0.7572 | train_acc=0.8912
+2026-03-23 00:11:16 | INFO |   [Batch  350/352] train_loss=0.7594 | train_acc=0.8899
+2026-03-23 00:11:25 | INFO |   Train | loss=0.7591 acc=0.8901 | Val | loss=0.4896 acc=0.8528 | lr=0.000959
+2026-03-23 00:11:25 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:11:25 | INFO | Epoch 14/100
+2026-03-23 00:11:35 | INFO |   [Batch   50/352] train_loss=0.7366 | train_acc=0.9009
+2026-03-23 00:11:37 | INFO |   [Batch  100/352] train_loss=0.7387 | train_acc=0.8996
+2026-03-23 00:11:40 | INFO |   [Batch  150/352] train_loss=0.7482 | train_acc=0.8959
+2026-03-23 00:11:43 | INFO |   [Batch  200/352] train_loss=0.7517 | train_acc=0.8949
+2026-03-23 00:11:46 | INFO |   [Batch  250/352] train_loss=0.7480 | train_acc=0.8962
+2026-03-23 00:11:49 | INFO |   [Batch  300/352] train_loss=0.7475 | train_acc=0.8959
+2026-03-23 00:11:52 | INFO |   [Batch  350/352] train_loss=0.7464 | train_acc=0.8956
+2026-03-23 00:12:01 | INFO |   Train | loss=0.7465 acc=0.8956 | Val | loss=0.4762 acc=0.8606 | lr=0.000952
+2026-03-23 00:12:01 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.4762)
+2026-03-23 00:12:01 | INFO | Epoch 15/100
+2026-03-23 00:12:11 | INFO |   [Batch   50/352] train_loss=0.7366 | train_acc=0.8988
+2026-03-23 00:12:13 | INFO |   [Batch  100/352] train_loss=0.7387 | train_acc=0.8991
+2026-03-23 00:12:16 | INFO |   [Batch  150/352] train_loss=0.7340 | train_acc=0.9009
+2026-03-23 00:12:19 | INFO |   [Batch  200/352] train_loss=0.7349 | train_acc=0.9009
+2026-03-23 00:12:22 | INFO |   [Batch  250/352] train_loss=0.7338 | train_acc=0.9009
+2026-03-23 00:12:25 | INFO |   [Batch  300/352] train_loss=0.7350 | train_acc=0.9006
+2026-03-23 00:12:28 | INFO |   [Batch  350/352] train_loss=0.7358 | train_acc=0.8995
+2026-03-23 00:12:37 | INFO |   Train | loss=0.7360 acc=0.8994 | Val | loss=0.4838 acc=0.8598 | lr=0.000946
+2026-03-23 00:12:37 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:12:37 | INFO | Epoch 16/100
+2026-03-23 00:12:46 | INFO |   [Batch   50/352] train_loss=0.7253 | train_acc=0.9052
+2026-03-23 00:12:49 | INFO |   [Batch  100/352] train_loss=0.7275 | train_acc=0.9040
+2026-03-23 00:12:52 | INFO |   [Batch  150/352] train_loss=0.7262 | train_acc=0.9046
+2026-03-23 00:12:55 | INFO |   [Batch  200/352] train_loss=0.7277 | train_acc=0.9035
+2026-03-23 00:12:58 | INFO |   [Batch  250/352] train_loss=0.7284 | train_acc=0.9027
+2026-03-23 00:13:01 | INFO |   [Batch  300/352] train_loss=0.7291 | train_acc=0.9024
+2026-03-23 00:13:04 | INFO |   [Batch  350/352] train_loss=0.7293 | train_acc=0.9022
+2026-03-23 00:13:12 | INFO |   Train | loss=0.7293 acc=0.9022 | Val | loss=0.6060 acc=0.8088 | lr=0.000938
+2026-03-23 00:13:12 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:13:12 | INFO | Epoch 17/100
+2026-03-23 00:13:22 | INFO |   [Batch   50/352] train_loss=0.7121 | train_acc=0.9086
+2026-03-23 00:13:24 | INFO |   [Batch  100/352] train_loss=0.7121 | train_acc=0.9103
+2026-03-23 00:13:27 | INFO |   [Batch  150/352] train_loss=0.7097 | train_acc=0.9106
+2026-03-23 00:13:30 | INFO |   [Batch  200/352] train_loss=0.7141 | train_acc=0.9082
+2026-03-23 00:13:33 | INFO |   [Batch  250/352] train_loss=0.7145 | train_acc=0.9083
+2026-03-23 00:13:36 | INFO |   [Batch  300/352] train_loss=0.7137 | train_acc=0.9086
+2026-03-23 00:13:39 | INFO |   [Batch  350/352] train_loss=0.7148 | train_acc=0.9081
+2026-03-23 00:13:47 | INFO |   Train | loss=0.7144 acc=0.9083 | Val | loss=0.4407 acc=0.8722 | lr=0.000930
+2026-03-23 00:13:47 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.4407)
+2026-03-23 00:13:47 | INFO | Epoch 18/100
+2026-03-23 00:13:57 | INFO |   [Batch   50/352] train_loss=0.6996 | train_acc=0.9186
+2026-03-23 00:14:00 | INFO |   [Batch  100/352] train_loss=0.6972 | train_acc=0.9185
+2026-03-23 00:14:03 | INFO |   [Batch  150/352] train_loss=0.7045 | train_acc=0.9146
+2026-03-23 00:14:06 | INFO |   [Batch  200/352] train_loss=0.7042 | train_acc=0.9148
+2026-03-23 00:14:09 | INFO |   [Batch  250/352] train_loss=0.7048 | train_acc=0.9144
+2026-03-23 00:14:12 | INFO |   [Batch  300/352] train_loss=0.7052 | train_acc=0.9140
+2026-03-23 00:14:15 | INFO |   [Batch  350/352] train_loss=0.7059 | train_acc=0.9135
+2026-03-23 00:14:23 | INFO |   Train | loss=0.7060 acc=0.9134 | Val | loss=0.4767 acc=0.8634 | lr=0.000922
+2026-03-23 00:14:23 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:14:23 | INFO | Epoch 19/100
+2026-03-23 00:14:33 | INFO |   [Batch   50/352] train_loss=0.6951 | train_acc=0.9195
+2026-03-23 00:14:36 | INFO |   [Batch  100/352] train_loss=0.6944 | train_acc=0.9183
+2026-03-23 00:14:39 | INFO |   [Batch  150/352] train_loss=0.6955 | train_acc=0.9172
+2026-03-23 00:14:41 | INFO |   [Batch  200/352] train_loss=0.6953 | train_acc=0.9169
+2026-03-23 00:14:44 | INFO |   [Batch  250/352] train_loss=0.6975 | train_acc=0.9157
+2026-03-23 00:14:47 | INFO |   [Batch  300/352] train_loss=0.6983 | train_acc=0.9152
+2026-03-23 00:14:50 | INFO |   [Batch  350/352] train_loss=0.6976 | train_acc=0.9154
+2026-03-23 00:14:59 | INFO |   Train | loss=0.6978 acc=0.9153 | Val | loss=0.4053 acc=0.8856 | lr=0.000914
+2026-03-23 00:14:59 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.4053)
+2026-03-23 00:14:59 | INFO | Epoch 20/100
+2026-03-23 00:15:08 | INFO |   [Batch   50/352] train_loss=0.6766 | train_acc=0.9253
+2026-03-23 00:15:11 | INFO |   [Batch  100/352] train_loss=0.6792 | train_acc=0.9258
+2026-03-23 00:15:14 | INFO |   [Batch  150/352] train_loss=0.6827 | train_acc=0.9237
+2026-03-23 00:15:17 | INFO |   [Batch  200/352] train_loss=0.6855 | train_acc=0.9228
+2026-03-23 00:15:20 | INFO |   [Batch  250/352] train_loss=0.6865 | train_acc=0.9223
+2026-03-23 00:15:23 | INFO |   [Batch  300/352] train_loss=0.6869 | train_acc=0.9224
+2026-03-23 00:15:26 | INFO |   [Batch  350/352] train_loss=0.6880 | train_acc=0.9218
+2026-03-23 00:15:34 | INFO |   Train | loss=0.6880 acc=0.9218 | Val | loss=0.4268 acc=0.8736 | lr=0.000905
+2026-03-23 00:15:34 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:15:34 | INFO | Epoch 21/100
+2026-03-23 00:15:44 | INFO |   [Batch   50/352] train_loss=0.6621 | train_acc=0.9334
+2026-03-23 00:15:47 | INFO |   [Batch  100/352] train_loss=0.6696 | train_acc=0.9295
+2026-03-23 00:15:50 | INFO |   [Batch  150/352] train_loss=0.6723 | train_acc=0.9283
+2026-03-23 00:15:53 | INFO |   [Batch  200/352] train_loss=0.6765 | train_acc=0.9259
+2026-03-23 00:15:55 | INFO |   [Batch  250/352] train_loss=0.6808 | train_acc=0.9245
+2026-03-23 00:15:58 | INFO |   [Batch  300/352] train_loss=0.6815 | train_acc=0.9239
+2026-03-23 00:16:01 | INFO |   [Batch  350/352] train_loss=0.6828 | train_acc=0.9231
+2026-03-23 00:16:10 | INFO |   Train | loss=0.6826 acc=0.9232 | Val | loss=0.3832 acc=0.8944 | lr=0.000895
+2026-03-23 00:16:10 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3832)
+2026-03-23 00:16:10 | INFO | Epoch 22/100
+2026-03-23 00:16:19 | INFO |   [Batch   50/352] train_loss=0.6531 | train_acc=0.9356
+2026-03-23 00:16:22 | INFO |   [Batch  100/352] train_loss=0.6616 | train_acc=0.9316
+2026-03-23 00:16:25 | INFO |   [Batch  150/352] train_loss=0.6645 | train_acc=0.9304
+2026-03-23 00:16:28 | INFO |   [Batch  200/352] train_loss=0.6664 | train_acc=0.9293
+2026-03-23 00:16:31 | INFO |   [Batch  250/352] train_loss=0.6714 | train_acc=0.9266
+2026-03-23 00:16:34 | INFO |   [Batch  300/352] train_loss=0.6716 | train_acc=0.9269
+2026-03-23 00:16:37 | INFO |   [Batch  350/352] train_loss=0.6731 | train_acc=0.9262
+2026-03-23 00:16:45 | INFO |   Train | loss=0.6732 acc=0.9262 | Val | loss=0.3688 acc=0.8948 | lr=0.000885
+2026-03-23 00:16:45 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3688)
+2026-03-23 00:16:45 | INFO | Epoch 23/100
+2026-03-23 00:16:55 | INFO |   [Batch   50/352] train_loss=0.6485 | train_acc=0.9389
+2026-03-23 00:16:58 | INFO |   [Batch  100/352] train_loss=0.6563 | train_acc=0.9348
+2026-03-23 00:17:01 | INFO |   [Batch  150/352] train_loss=0.6637 | train_acc=0.9319
+2026-03-23 00:17:04 | INFO |   [Batch  200/352] train_loss=0.6654 | train_acc=0.9315
+2026-03-23 00:17:07 | INFO |   [Batch  250/352] train_loss=0.6671 | train_acc=0.9305
+2026-03-23 00:17:10 | INFO |   [Batch  300/352] train_loss=0.6718 | train_acc=0.9280
+2026-03-23 00:17:12 | INFO |   [Batch  350/352] train_loss=0.6720 | train_acc=0.9279
+2026-03-23 00:17:21 | INFO |   Train | loss=0.6720 acc=0.9279 | Val | loss=0.4120 acc=0.8892 | lr=0.000875
+2026-03-23 00:17:21 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:17:21 | INFO | Epoch 24/100
+2026-03-23 00:17:31 | INFO |   [Batch   50/352] train_loss=0.6562 | train_acc=0.9322
+2026-03-23 00:17:34 | INFO |   [Batch  100/352] train_loss=0.6595 | train_acc=0.9319
+2026-03-23 00:17:36 | INFO |   [Batch  150/352] train_loss=0.6657 | train_acc=0.9302
+2026-03-23 00:17:39 | INFO |   [Batch  200/352] train_loss=0.6618 | train_acc=0.9325
+2026-03-23 00:17:42 | INFO |   [Batch  250/352] train_loss=0.6622 | train_acc=0.9326
+2026-03-23 00:17:45 | INFO |   [Batch  300/352] train_loss=0.6623 | train_acc=0.9324
+2026-03-23 00:17:48 | INFO |   [Batch  350/352] train_loss=0.6628 | train_acc=0.9327
+2026-03-23 00:17:56 | INFO |   Train | loss=0.6632 acc=0.9326 | Val | loss=0.4058 acc=0.8816 | lr=0.000865
+2026-03-23 00:17:56 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:17:56 | INFO | Epoch 25/100
+2026-03-23 00:18:06 | INFO |   [Batch   50/352] train_loss=0.6563 | train_acc=0.9345
+2026-03-23 00:18:09 | INFO |   [Batch  100/352] train_loss=0.6515 | train_acc=0.9355
+2026-03-23 00:18:12 | INFO |   [Batch  150/352] train_loss=0.6549 | train_acc=0.9342
+2026-03-23 00:18:15 | INFO |   [Batch  200/352] train_loss=0.6577 | train_acc=0.9333
+2026-03-23 00:18:18 | INFO |   [Batch  250/352] train_loss=0.6603 | train_acc=0.9325
+2026-03-23 00:18:21 | INFO |   [Batch  300/352] train_loss=0.6616 | train_acc=0.9316
+2026-03-23 00:18:24 | INFO |   [Batch  350/352] train_loss=0.6601 | train_acc=0.9325
+2026-03-23 00:18:32 | INFO |   Train | loss=0.6602 acc=0.9324 | Val | loss=0.3765 acc=0.8964 | lr=0.000854
+2026-03-23 00:18:32 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:18:32 | INFO | Epoch 26/100
+2026-03-23 00:18:41 | INFO |   [Batch   50/352] train_loss=0.6523 | train_acc=0.9352
+2026-03-23 00:18:44 | INFO |   [Batch  100/352] train_loss=0.6451 | train_acc=0.9384
+2026-03-23 00:18:47 | INFO |   [Batch  150/352] train_loss=0.6494 | train_acc=0.9365
+2026-03-23 00:18:50 | INFO |   [Batch  200/352] train_loss=0.6519 | train_acc=0.9347
+2026-03-23 00:18:53 | INFO |   [Batch  250/352] train_loss=0.6522 | train_acc=0.9353
+2026-03-23 00:18:56 | INFO |   [Batch  300/352] train_loss=0.6511 | train_acc=0.9360
+2026-03-23 00:18:59 | INFO |   [Batch  350/352] train_loss=0.6509 | train_acc=0.9361
+2026-03-23 00:19:08 | INFO |   Train | loss=0.6507 acc=0.9361 | Val | loss=0.4150 acc=0.8814 | lr=0.000842
+2026-03-23 00:19:08 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 00:19:08 | INFO | Epoch 27/100
+2026-03-23 00:19:17 | INFO |   [Batch   50/352] train_loss=0.6522 | train_acc=0.9356
+2026-03-23 00:19:20 | INFO |   [Batch  100/352] train_loss=0.6465 | train_acc=0.9386
+2026-03-23 00:19:23 | INFO |   [Batch  150/352] train_loss=0.6448 | train_acc=0.9399
+2026-03-23 00:19:26 | INFO |   [Batch  200/352] train_loss=0.6423 | train_acc=0.9403
+2026-03-23 00:19:29 | INFO |   [Batch  250/352] train_loss=0.6442 | train_acc=0.9393
+2026-03-23 00:19:32 | INFO |   [Batch  300/352] train_loss=0.6448 | train_acc=0.9393
+2026-03-23 00:19:35 | INFO |   [Batch  350/352] train_loss=0.6466 | train_acc=0.9388
+2026-03-23 00:19:43 | INFO |   Train | loss=0.6467 acc=0.9388 | Val | loss=0.4207 acc=0.8798 | lr=0.000831
+2026-03-23 00:19:43 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 00:19:43 | INFO | Epoch 28/100
+2026-03-23 00:19:53 | INFO |   [Batch   50/352] train_loss=0.6346 | train_acc=0.9409
+2026-03-23 00:19:56 | INFO |   [Batch  100/352] train_loss=0.6350 | train_acc=0.9404
+2026-03-23 00:19:59 | INFO |   [Batch  150/352] train_loss=0.6374 | train_acc=0.9405
+2026-03-23 00:20:02 | INFO |   [Batch  200/352] train_loss=0.6375 | train_acc=0.9403
+2026-03-23 00:20:05 | INFO |   [Batch  250/352] train_loss=0.6396 | train_acc=0.9398
+2026-03-23 00:20:08 | INFO |   [Batch  300/352] train_loss=0.6413 | train_acc=0.9391
+2026-03-23 00:20:11 | INFO |   [Batch  350/352] train_loss=0.6410 | train_acc=0.9396
+2026-03-23 00:20:20 | INFO |   Train | loss=0.6411 acc=0.9394 | Val | loss=0.4236 acc=0.8828 | lr=0.000819
+2026-03-23 00:20:20 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 00:20:20 | INFO | Epoch 29/100
+2026-03-23 00:20:29 | INFO |   [Batch   50/352] train_loss=0.6340 | train_acc=0.9459
+2026-03-23 00:20:32 | INFO |   [Batch  100/352] train_loss=0.6332 | train_acc=0.9451
+2026-03-23 00:20:35 | INFO |   [Batch  150/352] train_loss=0.6312 | train_acc=0.9458
+2026-03-23 00:20:38 | INFO |   [Batch  200/352] train_loss=0.6351 | train_acc=0.9432
+2026-03-23 00:20:41 | INFO |   [Batch  250/352] train_loss=0.6357 | train_acc=0.9434
+2026-03-23 00:20:44 | INFO |   [Batch  300/352] train_loss=0.6358 | train_acc=0.9430
+2026-03-23 00:20:47 | INFO |   [Batch  350/352] train_loss=0.6369 | train_acc=0.9425
+2026-03-23 00:20:55 | INFO |   Train | loss=0.6371 acc=0.9424 | Val | loss=0.3725 acc=0.9026 | lr=0.000807
+2026-03-23 00:20:55 | INFO |   No improvement. Patience counter: 7/15
+2026-03-23 00:20:55 | INFO | Epoch 30/100
+2026-03-23 00:21:05 | INFO |   [Batch   50/352] train_loss=0.6205 | train_acc=0.9511
+2026-03-23 00:21:08 | INFO |   [Batch  100/352] train_loss=0.6259 | train_acc=0.9483
+2026-03-23 00:21:11 | INFO |   [Batch  150/352] train_loss=0.6271 | train_acc=0.9467
+2026-03-23 00:21:13 | INFO |   [Batch  200/352] train_loss=0.6273 | train_acc=0.9466
+2026-03-23 00:21:16 | INFO |   [Batch  250/352] train_loss=0.6286 | train_acc=0.9461
+2026-03-23 00:21:19 | INFO |   [Batch  300/352] train_loss=0.6283 | train_acc=0.9466
+2026-03-23 00:21:22 | INFO |   [Batch  350/352] train_loss=0.6303 | train_acc=0.9458
+2026-03-23 00:21:31 | INFO |   Train | loss=0.6301 acc=0.9458 | Val | loss=0.3571 acc=0.9054 | lr=0.000794
+2026-03-23 00:21:31 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3571)
+2026-03-23 00:21:31 | INFO | Epoch 31/100
+2026-03-23 00:21:41 | INFO |   [Batch   50/352] train_loss=0.6235 | train_acc=0.9464
+2026-03-23 00:21:43 | INFO |   [Batch  100/352] train_loss=0.6231 | train_acc=0.9491
+2026-03-23 00:21:46 | INFO |   [Batch  150/352] train_loss=0.6200 | train_acc=0.9507
+2026-03-23 00:21:49 | INFO |   [Batch  200/352] train_loss=0.6205 | train_acc=0.9503
+2026-03-23 00:21:52 | INFO |   [Batch  250/352] train_loss=0.6252 | train_acc=0.9477
+2026-03-23 00:21:55 | INFO |   [Batch  300/352] train_loss=0.6255 | train_acc=0.9474
+2026-03-23 00:21:58 | INFO |   [Batch  350/352] train_loss=0.6258 | train_acc=0.9472
+2026-03-23 00:22:06 | INFO |   Train | loss=0.6258 acc=0.9472 | Val | loss=0.3761 acc=0.8958 | lr=0.000781
+2026-03-23 00:22:06 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:22:06 | INFO | Epoch 32/100
+2026-03-23 00:22:16 | INFO |   [Batch   50/352] train_loss=0.6241 | train_acc=0.9453
+2026-03-23 00:22:19 | INFO |   [Batch  100/352] train_loss=0.6178 | train_acc=0.9478
+2026-03-23 00:22:22 | INFO |   [Batch  150/352] train_loss=0.6226 | train_acc=0.9466
+2026-03-23 00:22:25 | INFO |   [Batch  200/352] train_loss=0.6237 | train_acc=0.9467
+2026-03-23 00:22:28 | INFO |   [Batch  250/352] train_loss=0.6245 | train_acc=0.9465
+2026-03-23 00:22:31 | INFO |   [Batch  300/352] train_loss=0.6246 | train_acc=0.9468
+2026-03-23 00:22:34 | INFO |   [Batch  350/352] train_loss=0.6243 | train_acc=0.9471
+2026-03-23 00:22:42 | INFO |   Train | loss=0.6245 acc=0.9470 | Val | loss=0.4126 acc=0.8848 | lr=0.000768
+2026-03-23 00:22:42 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:22:42 | INFO | Epoch 33/100
+2026-03-23 00:22:52 | INFO |   [Batch   50/352] train_loss=0.6055 | train_acc=0.9558
+2026-03-23 00:22:55 | INFO |   [Batch  100/352] train_loss=0.6132 | train_acc=0.9530
+2026-03-23 00:22:58 | INFO |   [Batch  150/352] train_loss=0.6126 | train_acc=0.9527
+2026-03-23 00:23:00 | INFO |   [Batch  200/352] train_loss=0.6168 | train_acc=0.9507
+2026-03-23 00:23:03 | INFO |   [Batch  250/352] train_loss=0.6171 | train_acc=0.9506
+2026-03-23 00:23:06 | INFO |   [Batch  300/352] train_loss=0.6176 | train_acc=0.9506
+2026-03-23 00:23:09 | INFO |   [Batch  350/352] train_loss=0.6194 | train_acc=0.9498
+2026-03-23 00:23:18 | INFO |   Train | loss=0.6196 acc=0.9497 | Val | loss=0.3727 acc=0.8972 | lr=0.000755
+2026-03-23 00:23:18 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:23:18 | INFO | Epoch 34/100
+2026-03-23 00:23:28 | INFO |   [Batch   50/352] train_loss=0.6093 | train_acc=0.9552
+2026-03-23 00:23:30 | INFO |   [Batch  100/352] train_loss=0.6049 | train_acc=0.9558
+2026-03-23 00:23:33 | INFO |   [Batch  150/352] train_loss=0.6074 | train_acc=0.9553
+2026-03-23 00:23:36 | INFO |   [Batch  200/352] train_loss=0.6102 | train_acc=0.9542
+2026-03-23 00:23:39 | INFO |   [Batch  250/352] train_loss=0.6107 | train_acc=0.9536
+2026-03-23 00:23:42 | INFO |   [Batch  300/352] train_loss=0.6113 | train_acc=0.9534
+2026-03-23 00:23:45 | INFO |   [Batch  350/352] train_loss=0.6115 | train_acc=0.9536
+2026-03-23 00:23:53 | INFO |   Train | loss=0.6115 acc=0.9536 | Val | loss=0.3404 acc=0.9114 | lr=0.000741
+2026-03-23 00:23:53 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3404)
+2026-03-23 00:23:53 | INFO | Epoch 35/100
+2026-03-23 00:24:03 | INFO |   [Batch   50/352] train_loss=0.6034 | train_acc=0.9570
+2026-03-23 00:24:06 | INFO |   [Batch  100/352] train_loss=0.6097 | train_acc=0.9527
+2026-03-23 00:24:09 | INFO |   [Batch  150/352] train_loss=0.6075 | train_acc=0.9541
+2026-03-23 00:24:12 | INFO |   [Batch  200/352] train_loss=0.6094 | train_acc=0.9536
+2026-03-23 00:24:15 | INFO |   [Batch  250/352] train_loss=0.6087 | train_acc=0.9536
+2026-03-23 00:24:18 | INFO |   [Batch  300/352] train_loss=0.6122 | train_acc=0.9521
+2026-03-23 00:24:20 | INFO |   [Batch  350/352] train_loss=0.6128 | train_acc=0.9520
+2026-03-23 00:24:29 | INFO |   Train | loss=0.6129 acc=0.9519 | Val | loss=0.3639 acc=0.9042 | lr=0.000727
+2026-03-23 00:24:29 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:24:29 | INFO | Epoch 36/100
+2026-03-23 00:24:39 | INFO |   [Batch   50/352] train_loss=0.5930 | train_acc=0.9611
+2026-03-23 00:24:41 | INFO |   [Batch  100/352] train_loss=0.5949 | train_acc=0.9613
+2026-03-23 00:24:44 | INFO |   [Batch  150/352] train_loss=0.5960 | train_acc=0.9604
+2026-03-23 00:24:47 | INFO |   [Batch  200/352] train_loss=0.5992 | train_acc=0.9588
+2026-03-23 00:24:50 | INFO |   [Batch  250/352] train_loss=0.5998 | train_acc=0.9586
+2026-03-23 00:24:53 | INFO |   [Batch  300/352] train_loss=0.6011 | train_acc=0.9578
+2026-03-23 00:24:56 | INFO |   [Batch  350/352] train_loss=0.6029 | train_acc=0.9569
+2026-03-23 00:25:05 | INFO |   Train | loss=0.6030 acc=0.9569 | Val | loss=0.3559 acc=0.9064 | lr=0.000713
+2026-03-23 00:25:05 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:25:05 | INFO | Epoch 37/100
+2026-03-23 00:25:14 | INFO |   [Batch   50/352] train_loss=0.5920 | train_acc=0.9630
+2026-03-23 00:25:17 | INFO |   [Batch  100/352] train_loss=0.5904 | train_acc=0.9641
+2026-03-23 00:25:20 | INFO |   [Batch  150/352] train_loss=0.5994 | train_acc=0.9597
+2026-03-23 00:25:23 | INFO |   [Batch  200/352] train_loss=0.5994 | train_acc=0.9600
+2026-03-23 00:25:26 | INFO |   [Batch  250/352] train_loss=0.5992 | train_acc=0.9602
+2026-03-23 00:25:29 | INFO |   [Batch  300/352] train_loss=0.6002 | train_acc=0.9593
+2026-03-23 00:25:31 | INFO |   [Batch  350/352] train_loss=0.6015 | train_acc=0.9586
+2026-03-23 00:25:40 | INFO |   Train | loss=0.6015 acc=0.9586 | Val | loss=0.3754 acc=0.8986 | lr=0.000699
+2026-03-23 00:25:40 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:25:40 | INFO | Epoch 38/100
+2026-03-23 00:25:50 | INFO |   [Batch   50/352] train_loss=0.5869 | train_acc=0.9650
+2026-03-23 00:25:53 | INFO |   [Batch  100/352] train_loss=0.5858 | train_acc=0.9648
+2026-03-23 00:25:56 | INFO |   [Batch  150/352] train_loss=0.5892 | train_acc=0.9639
+2026-03-23 00:25:59 | INFO |   [Batch  200/352] train_loss=0.5886 | train_acc=0.9640
+2026-03-23 00:26:01 | INFO |   [Batch  250/352] train_loss=0.5924 | train_acc=0.9619
+2026-03-23 00:26:04 | INFO |   [Batch  300/352] train_loss=0.5950 | train_acc=0.9606
+2026-03-23 00:26:07 | INFO |   [Batch  350/352] train_loss=0.5986 | train_acc=0.9594
+2026-03-23 00:26:16 | INFO |   Train | loss=0.5985 acc=0.9594 | Val | loss=0.3679 acc=0.9022 | lr=0.000684
+2026-03-23 00:26:16 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 00:26:16 | INFO | Epoch 39/100
+2026-03-23 00:26:26 | INFO |   [Batch   50/352] train_loss=0.5792 | train_acc=0.9666
+2026-03-23 00:26:29 | INFO |   [Batch  100/352] train_loss=0.5912 | train_acc=0.9624
+2026-03-23 00:26:32 | INFO |   [Batch  150/352] train_loss=0.5893 | train_acc=0.9631
+2026-03-23 00:26:35 | INFO |   [Batch  200/352] train_loss=0.5913 | train_acc=0.9621
+2026-03-23 00:26:37 | INFO |   [Batch  250/352] train_loss=0.5936 | train_acc=0.9608
+2026-03-23 00:26:40 | INFO |   [Batch  300/352] train_loss=0.5952 | train_acc=0.9601
+2026-03-23 00:26:43 | INFO |   [Batch  350/352] train_loss=0.5962 | train_acc=0.9593
+2026-03-23 00:26:52 | INFO |   Train | loss=0.5962 acc=0.9593 | Val | loss=0.3576 acc=0.9054 | lr=0.000670
+2026-03-23 00:26:52 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 00:26:52 | INFO | Epoch 40/100
+2026-03-23 00:27:02 | INFO |   [Batch   50/352] train_loss=0.5887 | train_acc=0.9625
+2026-03-23 00:27:05 | INFO |   [Batch  100/352] train_loss=0.5910 | train_acc=0.9616
+2026-03-23 00:27:08 | INFO |   [Batch  150/352] train_loss=0.5895 | train_acc=0.9622
+2026-03-23 00:27:11 | INFO |   [Batch  200/352] train_loss=0.5893 | train_acc=0.9622
+2026-03-23 00:27:13 | INFO |   [Batch  250/352] train_loss=0.5895 | train_acc=0.9619
+2026-03-23 00:27:16 | INFO |   [Batch  300/352] train_loss=0.5911 | train_acc=0.9617
+2026-03-23 00:27:19 | INFO |   [Batch  350/352] train_loss=0.5923 | train_acc=0.9612
+2026-03-23 00:27:28 | INFO |   Train | loss=0.5923 acc=0.9611 | Val | loss=0.3519 acc=0.9066 | lr=0.000655
+2026-03-23 00:27:28 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 00:27:28 | INFO | Epoch 41/100
+2026-03-23 00:27:37 | INFO |   [Batch   50/352] train_loss=0.5851 | train_acc=0.9644
+2026-03-23 00:27:40 | INFO |   [Batch  100/352] train_loss=0.5795 | train_acc=0.9673
+2026-03-23 00:27:43 | INFO |   [Batch  150/352] train_loss=0.5829 | train_acc=0.9660
+2026-03-23 00:27:46 | INFO |   [Batch  200/352] train_loss=0.5832 | train_acc=0.9657
+2026-03-23 00:27:49 | INFO |   [Batch  250/352] train_loss=0.5857 | train_acc=0.9646
+2026-03-23 00:27:52 | INFO |   [Batch  300/352] train_loss=0.5863 | train_acc=0.9642
+2026-03-23 00:27:55 | INFO |   [Batch  350/352] train_loss=0.5878 | train_acc=0.9632
+2026-03-23 00:28:03 | INFO |   Train | loss=0.5881 acc=0.9631 | Val | loss=0.3791 acc=0.8978 | lr=0.000640
+2026-03-23 00:28:03 | INFO |   No improvement. Patience counter: 7/15
+2026-03-23 00:28:03 | INFO | Epoch 42/100
+2026-03-23 00:28:12 | INFO |   [Batch   50/352] train_loss=0.5763 | train_acc=0.9664
+2026-03-23 00:28:15 | INFO |   [Batch  100/352] train_loss=0.5800 | train_acc=0.9665
+2026-03-23 00:28:18 | INFO |   [Batch  150/352] train_loss=0.5824 | train_acc=0.9655
+2026-03-23 00:28:21 | INFO |   [Batch  200/352] train_loss=0.5835 | train_acc=0.9649
+2026-03-23 00:28:24 | INFO |   [Batch  250/352] train_loss=0.5839 | train_acc=0.9646
+2026-03-23 00:28:27 | INFO |   [Batch  300/352] train_loss=0.5851 | train_acc=0.9643
+2026-03-23 00:28:30 | INFO |   [Batch  350/352] train_loss=0.5863 | train_acc=0.9640
+2026-03-23 00:28:38 | INFO |   Train | loss=0.5862 acc=0.9641 | Val | loss=0.3571 acc=0.9028 | lr=0.000625
+2026-03-23 00:28:38 | INFO |   No improvement. Patience counter: 8/15
+2026-03-23 00:28:38 | INFO | Epoch 43/100
+2026-03-23 00:28:48 | INFO |   [Batch   50/352] train_loss=0.5845 | train_acc=0.9670
+2026-03-23 00:28:51 | INFO |   [Batch  100/352] train_loss=0.5795 | train_acc=0.9681
+2026-03-23 00:28:54 | INFO |   [Batch  150/352] train_loss=0.5783 | train_acc=0.9685
+2026-03-23 00:28:57 | INFO |   [Batch  200/352] train_loss=0.5778 | train_acc=0.9680
+2026-03-23 00:29:00 | INFO |   [Batch  250/352] train_loss=0.5788 | train_acc=0.9681
+2026-03-23 00:29:02 | INFO |   [Batch  300/352] train_loss=0.5807 | train_acc=0.9669
+2026-03-23 00:29:05 | INFO |   [Batch  350/352] train_loss=0.5810 | train_acc=0.9668
+2026-03-23 00:29:14 | INFO |   Train | loss=0.5811 acc=0.9667 | Val | loss=0.3404 acc=0.9104 | lr=0.000609
+2026-03-23 00:29:14 | INFO |   No improvement. Patience counter: 9/15
+2026-03-23 00:29:14 | INFO | Epoch 44/100
+2026-03-23 00:29:23 | INFO |   [Batch   50/352] train_loss=0.5775 | train_acc=0.9666
+2026-03-23 00:29:26 | INFO |   [Batch  100/352] train_loss=0.5816 | train_acc=0.9653
+2026-03-23 00:29:29 | INFO |   [Batch  150/352] train_loss=0.5776 | train_acc=0.9673
+2026-03-23 00:29:32 | INFO |   [Batch  200/352] train_loss=0.5764 | train_acc=0.9675
+2026-03-23 00:29:35 | INFO |   [Batch  250/352] train_loss=0.5781 | train_acc=0.9668
+2026-03-23 00:29:38 | INFO |   [Batch  300/352] train_loss=0.5786 | train_acc=0.9668
+2026-03-23 00:29:41 | INFO |   [Batch  350/352] train_loss=0.5790 | train_acc=0.9666
+2026-03-23 00:29:49 | INFO |   Train | loss=0.5792 acc=0.9665 | Val | loss=0.3621 acc=0.9042 | lr=0.000594
+2026-03-23 00:29:49 | INFO |   No improvement. Patience counter: 10/15
+2026-03-23 00:29:49 | INFO | Epoch 45/100
+2026-03-23 00:29:59 | INFO |   [Batch   50/352] train_loss=0.5732 | train_acc=0.9697
+2026-03-23 00:30:02 | INFO |   [Batch  100/352] train_loss=0.5735 | train_acc=0.9698
+2026-03-23 00:30:04 | INFO |   [Batch  150/352] train_loss=0.5694 | train_acc=0.9713
+2026-03-23 00:30:07 | INFO |   [Batch  200/352] train_loss=0.5714 | train_acc=0.9704
+2026-03-23 00:30:10 | INFO |   [Batch  250/352] train_loss=0.5738 | train_acc=0.9690
+2026-03-23 00:30:13 | INFO |   [Batch  300/352] train_loss=0.5759 | train_acc=0.9683
+2026-03-23 00:30:16 | INFO |   [Batch  350/352] train_loss=0.5781 | train_acc=0.9673
+2026-03-23 00:30:24 | INFO |   Train | loss=0.5781 acc=0.9672 | Val | loss=0.3324 acc=0.9186 | lr=0.000579
+2026-03-23 00:30:24 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3324)
+2026-03-23 00:30:24 | INFO | Epoch 46/100
+2026-03-23 00:30:34 | INFO |   [Batch   50/352] train_loss=0.5704 | train_acc=0.9720
+2026-03-23 00:30:37 | INFO |   [Batch  100/352] train_loss=0.5673 | train_acc=0.9720
+2026-03-23 00:30:40 | INFO |   [Batch  150/352] train_loss=0.5683 | train_acc=0.9710
+2026-03-23 00:30:43 | INFO |   [Batch  200/352] train_loss=0.5690 | train_acc=0.9710
+2026-03-23 00:30:46 | INFO |   [Batch  250/352] train_loss=0.5708 | train_acc=0.9701
+2026-03-23 00:30:49 | INFO |   [Batch  300/352] train_loss=0.5728 | train_acc=0.9694
+2026-03-23 00:30:52 | INFO |   [Batch  350/352] train_loss=0.5728 | train_acc=0.9694
+2026-03-23 00:31:00 | INFO |   Train | loss=0.5727 acc=0.9695 | Val | loss=0.3570 acc=0.9068 | lr=0.000563
+2026-03-23 00:31:00 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:31:00 | INFO | Epoch 47/100
+2026-03-23 00:31:10 | INFO |   [Batch   50/352] train_loss=0.5642 | train_acc=0.9744
+2026-03-23 00:31:13 | INFO |   [Batch  100/352] train_loss=0.5649 | train_acc=0.9741
+2026-03-23 00:31:16 | INFO |   [Batch  150/352] train_loss=0.5663 | train_acc=0.9728
+2026-03-23 00:31:18 | INFO |   [Batch  200/352] train_loss=0.5694 | train_acc=0.9717
+2026-03-23 00:31:21 | INFO |   [Batch  250/352] train_loss=0.5710 | train_acc=0.9708
+2026-03-23 00:31:24 | INFO |   [Batch  300/352] train_loss=0.5705 | train_acc=0.9710
+2026-03-23 00:31:27 | INFO |   [Batch  350/352] train_loss=0.5717 | train_acc=0.9705
+2026-03-23 00:31:36 | INFO |   Train | loss=0.5717 acc=0.9705 | Val | loss=0.3637 acc=0.9056 | lr=0.000548
+2026-03-23 00:31:36 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:31:36 | INFO | Epoch 48/100
+2026-03-23 00:31:45 | INFO |   [Batch   50/352] train_loss=0.5609 | train_acc=0.9745
+2026-03-23 00:31:48 | INFO |   [Batch  100/352] train_loss=0.5629 | train_acc=0.9744
+2026-03-23 00:31:51 | INFO |   [Batch  150/352] train_loss=0.5632 | train_acc=0.9747
+2026-03-23 00:31:54 | INFO |   [Batch  200/352] train_loss=0.5622 | train_acc=0.9752
+2026-03-23 00:31:57 | INFO |   [Batch  250/352] train_loss=0.5650 | train_acc=0.9738
+2026-03-23 00:32:00 | INFO |   [Batch  300/352] train_loss=0.5674 | train_acc=0.9718
+2026-03-23 00:32:03 | INFO |   [Batch  350/352] train_loss=0.5678 | train_acc=0.9719
+2026-03-23 00:32:11 | INFO |   Train | loss=0.5678 acc=0.9719 | Val | loss=0.3629 acc=0.9058 | lr=0.000532
+2026-03-23 00:32:11 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:32:11 | INFO | Epoch 49/100
+2026-03-23 00:32:21 | INFO |   [Batch   50/352] train_loss=0.5665 | train_acc=0.9723
+2026-03-23 00:32:24 | INFO |   [Batch  100/352] train_loss=0.5642 | train_acc=0.9736
+2026-03-23 00:32:27 | INFO |   [Batch  150/352] train_loss=0.5610 | train_acc=0.9749
+2026-03-23 00:32:29 | INFO |   [Batch  200/352] train_loss=0.5628 | train_acc=0.9743
+2026-03-23 00:32:32 | INFO |   [Batch  250/352] train_loss=0.5635 | train_acc=0.9739
+2026-03-23 00:32:35 | INFO |   [Batch  300/352] train_loss=0.5641 | train_acc=0.9736
+2026-03-23 00:32:38 | INFO |   [Batch  350/352] train_loss=0.5647 | train_acc=0.9733
+2026-03-23 00:32:46 | INFO |   Train | loss=0.5646 acc=0.9734 | Val | loss=0.3458 acc=0.9122 | lr=0.000516
+2026-03-23 00:32:46 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 00:32:46 | INFO | Epoch 50/100
+2026-03-23 00:32:56 | INFO |   [Batch   50/352] train_loss=0.5552 | train_acc=0.9780
+2026-03-23 00:32:59 | INFO |   [Batch  100/352] train_loss=0.5524 | train_acc=0.9789
+2026-03-23 00:33:02 | INFO |   [Batch  150/352] train_loss=0.5557 | train_acc=0.9777
+2026-03-23 00:33:05 | INFO |   [Batch  200/352] train_loss=0.5577 | train_acc=0.9770
+2026-03-23 00:33:07 | INFO |   [Batch  250/352] train_loss=0.5580 | train_acc=0.9768
+2026-03-23 00:33:10 | INFO |   [Batch  300/352] train_loss=0.5589 | train_acc=0.9762
+2026-03-23 00:33:13 | INFO |   [Batch  350/352] train_loss=0.5601 | train_acc=0.9758
+2026-03-23 00:33:22 | INFO |   Train | loss=0.5603 acc=0.9757 | Val | loss=0.3357 acc=0.9144 | lr=0.000501
+2026-03-23 00:33:22 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 00:33:22 | INFO | Epoch 51/100
+2026-03-23 00:33:31 | INFO |   [Batch   50/352] train_loss=0.5578 | train_acc=0.9773
+2026-03-23 00:33:34 | INFO |   [Batch  100/352] train_loss=0.5561 | train_acc=0.9775
+2026-03-23 00:33:37 | INFO |   [Batch  150/352] train_loss=0.5555 | train_acc=0.9777
+2026-03-23 00:33:40 | INFO |   [Batch  200/352] train_loss=0.5561 | train_acc=0.9771
+2026-03-23 00:33:43 | INFO |   [Batch  250/352] train_loss=0.5561 | train_acc=0.9771
+2026-03-23 00:33:46 | INFO |   [Batch  300/352] train_loss=0.5568 | train_acc=0.9767
+2026-03-23 00:33:48 | INFO |   [Batch  350/352] train_loss=0.5581 | train_acc=0.9760
+2026-03-23 00:33:57 | INFO |   Train | loss=0.5580 acc=0.9761 | Val | loss=0.3499 acc=0.9072 | lr=0.000485
+2026-03-23 00:33:57 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 00:33:57 | INFO | Epoch 52/100
+2026-03-23 00:34:06 | INFO |   [Batch   50/352] train_loss=0.5491 | train_acc=0.9803
+2026-03-23 00:34:09 | INFO |   [Batch  100/352] train_loss=0.5503 | train_acc=0.9794
+2026-03-23 00:34:12 | INFO |   [Batch  150/352] train_loss=0.5529 | train_acc=0.9781
+2026-03-23 00:34:15 | INFO |   [Batch  200/352] train_loss=0.5547 | train_acc=0.9772
+2026-03-23 00:34:18 | INFO |   [Batch  250/352] train_loss=0.5547 | train_acc=0.9772
+2026-03-23 00:34:21 | INFO |   [Batch  300/352] train_loss=0.5549 | train_acc=0.9771
+2026-03-23 00:34:24 | INFO |   [Batch  350/352] train_loss=0.5564 | train_acc=0.9767
+2026-03-23 00:34:32 | INFO |   Train | loss=0.5566 acc=0.9766 | Val | loss=0.3319 acc=0.9190 | lr=0.000469
+2026-03-23 00:34:32 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3319)
+2026-03-23 00:34:32 | INFO | Epoch 53/100
+2026-03-23 00:34:42 | INFO |   [Batch   50/352] train_loss=0.5532 | train_acc=0.9784
+2026-03-23 00:34:44 | INFO |   [Batch  100/352] train_loss=0.5508 | train_acc=0.9795
+2026-03-23 00:34:47 | INFO |   [Batch  150/352] train_loss=0.5543 | train_acc=0.9776
+2026-03-23 00:34:50 | INFO |   [Batch  200/352] train_loss=0.5548 | train_acc=0.9773
+2026-03-23 00:34:53 | INFO |   [Batch  250/352] train_loss=0.5557 | train_acc=0.9769
+2026-03-23 00:34:56 | INFO |   [Batch  300/352] train_loss=0.5550 | train_acc=0.9773
+2026-03-23 00:34:59 | INFO |   [Batch  350/352] train_loss=0.5545 | train_acc=0.9776
+2026-03-23 00:35:07 | INFO |   Train | loss=0.5545 acc=0.9776 | Val | loss=0.3465 acc=0.9140 | lr=0.000453
+2026-03-23 00:35:07 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:35:07 | INFO | Epoch 54/100
+2026-03-23 00:35:17 | INFO |   [Batch   50/352] train_loss=0.5496 | train_acc=0.9791
+2026-03-23 00:35:20 | INFO |   [Batch  100/352] train_loss=0.5499 | train_acc=0.9790
+2026-03-23 00:35:23 | INFO |   [Batch  150/352] train_loss=0.5490 | train_acc=0.9797
+2026-03-23 00:35:25 | INFO |   [Batch  200/352] train_loss=0.5480 | train_acc=0.9805
+2026-03-23 00:35:28 | INFO |   [Batch  250/352] train_loss=0.5489 | train_acc=0.9801
+2026-03-23 00:35:31 | INFO |   [Batch  300/352] train_loss=0.5496 | train_acc=0.9795
+2026-03-23 00:35:34 | INFO |   [Batch  350/352] train_loss=0.5503 | train_acc=0.9791
+2026-03-23 00:35:42 | INFO |   Train | loss=0.5505 acc=0.9790 | Val | loss=0.3448 acc=0.9138 | lr=0.000438
+2026-03-23 00:35:42 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:35:42 | INFO | Epoch 55/100
+2026-03-23 00:35:52 | INFO |   [Batch   50/352] train_loss=0.5504 | train_acc=0.9800
+2026-03-23 00:35:55 | INFO |   [Batch  100/352] train_loss=0.5474 | train_acc=0.9813
+2026-03-23 00:35:58 | INFO |   [Batch  150/352] train_loss=0.5479 | train_acc=0.9811
+2026-03-23 00:36:01 | INFO |   [Batch  200/352] train_loss=0.5466 | train_acc=0.9817
+2026-03-23 00:36:03 | INFO |   [Batch  250/352] train_loss=0.5484 | train_acc=0.9811
+2026-03-23 00:36:06 | INFO |   [Batch  300/352] train_loss=0.5494 | train_acc=0.9802
+2026-03-23 00:36:09 | INFO |   [Batch  350/352] train_loss=0.5500 | train_acc=0.9798
+2026-03-23 00:36:18 | INFO |   Train | loss=0.5500 acc=0.9798 | Val | loss=0.3322 acc=0.9136 | lr=0.000422
+2026-03-23 00:36:18 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:36:18 | INFO | Epoch 56/100
+2026-03-23 00:36:27 | INFO |   [Batch   50/352] train_loss=0.5427 | train_acc=0.9830
+2026-03-23 00:36:30 | INFO |   [Batch  100/352] train_loss=0.5430 | train_acc=0.9832
+2026-03-23 00:36:33 | INFO |   [Batch  150/352] train_loss=0.5429 | train_acc=0.9830
+2026-03-23 00:36:36 | INFO |   [Batch  200/352] train_loss=0.5438 | train_acc=0.9823
+2026-03-23 00:36:39 | INFO |   [Batch  250/352] train_loss=0.5443 | train_acc=0.9821
+2026-03-23 00:36:42 | INFO |   [Batch  300/352] train_loss=0.5447 | train_acc=0.9819
+2026-03-23 00:36:45 | INFO |   [Batch  350/352] train_loss=0.5467 | train_acc=0.9811
+2026-03-23 00:36:53 | INFO |   Train | loss=0.5466 acc=0.9811 | Val | loss=0.3252 acc=0.9214 | lr=0.000407
+2026-03-23 00:36:53 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3252)
+2026-03-23 00:36:53 | INFO | Epoch 57/100
+2026-03-23 00:37:02 | INFO |   [Batch   50/352] train_loss=0.5384 | train_acc=0.9853
+2026-03-23 00:37:05 | INFO |   [Batch  100/352] train_loss=0.5380 | train_acc=0.9855
+2026-03-23 00:37:08 | INFO |   [Batch  150/352] train_loss=0.5402 | train_acc=0.9845
+2026-03-23 00:37:11 | INFO |   [Batch  200/352] train_loss=0.5395 | train_acc=0.9846
+2026-03-23 00:37:14 | INFO |   [Batch  250/352] train_loss=0.5407 | train_acc=0.9838
+2026-03-23 00:37:17 | INFO |   [Batch  300/352] train_loss=0.5423 | train_acc=0.9830
+2026-03-23 00:37:20 | INFO |   [Batch  350/352] train_loss=0.5429 | train_acc=0.9828
+2026-03-23 00:37:28 | INFO |   Train | loss=0.5431 acc=0.9826 | Val | loss=0.3335 acc=0.9178 | lr=0.000392
+2026-03-23 00:37:28 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:37:28 | INFO | Epoch 58/100
+2026-03-23 00:37:38 | INFO |   [Batch   50/352] train_loss=0.5366 | train_acc=0.9861
+2026-03-23 00:37:41 | INFO |   [Batch  100/352] train_loss=0.5375 | train_acc=0.9859
+2026-03-23 00:37:43 | INFO |   [Batch  150/352] train_loss=0.5382 | train_acc=0.9855
+2026-03-23 00:37:46 | INFO |   [Batch  200/352] train_loss=0.5388 | train_acc=0.9851
+2026-03-23 00:37:49 | INFO |   [Batch  250/352] train_loss=0.5386 | train_acc=0.9849
+2026-03-23 00:37:52 | INFO |   [Batch  300/352] train_loss=0.5388 | train_acc=0.9848
+2026-03-23 00:37:55 | INFO |   [Batch  350/352] train_loss=0.5399 | train_acc=0.9846
+2026-03-23 00:38:03 | INFO |   Train | loss=0.5399 acc=0.9846 | Val | loss=0.3295 acc=0.9172 | lr=0.000376
+2026-03-23 00:38:03 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:38:03 | INFO | Epoch 59/100
+2026-03-23 00:38:13 | INFO |   [Batch   50/352] train_loss=0.5338 | train_acc=0.9881
+2026-03-23 00:38:16 | INFO |   [Batch  100/352] train_loss=0.5359 | train_acc=0.9867
+2026-03-23 00:38:19 | INFO |   [Batch  150/352] train_loss=0.5353 | train_acc=0.9871
+2026-03-23 00:38:21 | INFO |   [Batch  200/352] train_loss=0.5362 | train_acc=0.9866
+2026-03-23 00:38:24 | INFO |   [Batch  250/352] train_loss=0.5370 | train_acc=0.9860
+2026-03-23 00:38:27 | INFO |   [Batch  300/352] train_loss=0.5371 | train_acc=0.9858
+2026-03-23 00:38:30 | INFO |   [Batch  350/352] train_loss=0.5380 | train_acc=0.9852
+2026-03-23 00:38:38 | INFO |   Train | loss=0.5381 acc=0.9851 | Val | loss=0.3489 acc=0.9162 | lr=0.000361
+2026-03-23 00:38:38 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:38:38 | INFO | Epoch 60/100
+2026-03-23 00:38:48 | INFO |   [Batch   50/352] train_loss=0.5395 | train_acc=0.9839
+2026-03-23 00:38:51 | INFO |   [Batch  100/352] train_loss=0.5364 | train_acc=0.9855
+2026-03-23 00:38:54 | INFO |   [Batch  150/352] train_loss=0.5356 | train_acc=0.9860
+2026-03-23 00:38:57 | INFO |   [Batch  200/352] train_loss=0.5361 | train_acc=0.9857
+2026-03-23 00:39:00 | INFO |   [Batch  250/352] train_loss=0.5366 | train_acc=0.9857
+2026-03-23 00:39:02 | INFO |   [Batch  300/352] train_loss=0.5373 | train_acc=0.9853
+2026-03-23 00:39:05 | INFO |   [Batch  350/352] train_loss=0.5373 | train_acc=0.9851
+2026-03-23 00:39:14 | INFO |   Train | loss=0.5373 acc=0.9851 | Val | loss=0.3338 acc=0.9164 | lr=0.000346
+2026-03-23 00:39:14 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 00:39:14 | INFO | Epoch 61/100
+2026-03-23 00:39:23 | INFO |   [Batch   50/352] train_loss=0.5319 | train_acc=0.9873
+2026-03-23 00:39:26 | INFO |   [Batch  100/352] train_loss=0.5317 | train_acc=0.9876
+2026-03-23 00:39:29 | INFO |   [Batch  150/352] train_loss=0.5324 | train_acc=0.9872
+2026-03-23 00:39:32 | INFO |   [Batch  200/352] train_loss=0.5332 | train_acc=0.9869
+2026-03-23 00:39:35 | INFO |   [Batch  250/352] train_loss=0.5343 | train_acc=0.9865
+2026-03-23 00:39:38 | INFO |   [Batch  300/352] train_loss=0.5348 | train_acc=0.9860
+2026-03-23 00:39:41 | INFO |   [Batch  350/352] train_loss=0.5341 | train_acc=0.9864
+2026-03-23 00:39:49 | INFO |   Train | loss=0.5341 acc=0.9864 | Val | loss=0.3394 acc=0.9200 | lr=0.000331
+2026-03-23 00:39:49 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 00:39:49 | INFO | Epoch 62/100
+2026-03-23 00:39:58 | INFO |   [Batch   50/352] train_loss=0.5341 | train_acc=0.9859
+2026-03-23 00:40:01 | INFO |   [Batch  100/352] train_loss=0.5327 | train_acc=0.9870
+2026-03-23 00:40:04 | INFO |   [Batch  150/352] train_loss=0.5317 | train_acc=0.9877
+2026-03-23 00:40:07 | INFO |   [Batch  200/352] train_loss=0.5321 | train_acc=0.9875
+2026-03-23 00:40:10 | INFO |   [Batch  250/352] train_loss=0.5330 | train_acc=0.9869
+2026-03-23 00:40:13 | INFO |   [Batch  300/352] train_loss=0.5325 | train_acc=0.9873
+2026-03-23 00:40:16 | INFO |   [Batch  350/352] train_loss=0.5327 | train_acc=0.9873
+2026-03-23 00:40:24 | INFO |   Train | loss=0.5326 acc=0.9874 | Val | loss=0.3410 acc=0.9146 | lr=0.000317
+2026-03-23 00:40:24 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 00:40:24 | INFO | Epoch 63/100
+2026-03-23 00:40:34 | INFO |   [Batch   50/352] train_loss=0.5250 | train_acc=0.9897
+2026-03-23 00:40:36 | INFO |   [Batch  100/352] train_loss=0.5288 | train_acc=0.9880
+2026-03-23 00:40:39 | INFO |   [Batch  150/352] train_loss=0.5285 | train_acc=0.9880
+2026-03-23 00:40:42 | INFO |   [Batch  200/352] train_loss=0.5290 | train_acc=0.9879
+2026-03-23 00:40:45 | INFO |   [Batch  250/352] train_loss=0.5305 | train_acc=0.9875
+2026-03-23 00:40:48 | INFO |   [Batch  300/352] train_loss=0.5311 | train_acc=0.9873
+2026-03-23 00:40:51 | INFO |   [Batch  350/352] train_loss=0.5316 | train_acc=0.9872
+2026-03-23 00:40:59 | INFO |   Train | loss=0.5317 acc=0.9872 | Val | loss=0.3223 acc=0.9242 | lr=0.000302
+2026-03-23 00:40:59 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3223)
+2026-03-23 00:40:59 | INFO | Epoch 64/100
+2026-03-23 00:41:09 | INFO |   [Batch   50/352] train_loss=0.5279 | train_acc=0.9880
+2026-03-23 00:41:12 | INFO |   [Batch  100/352] train_loss=0.5278 | train_acc=0.9886
+2026-03-23 00:41:15 | INFO |   [Batch  150/352] train_loss=0.5282 | train_acc=0.9886
+2026-03-23 00:41:17 | INFO |   [Batch  200/352] train_loss=0.5291 | train_acc=0.9881
+2026-03-23 00:41:20 | INFO |   [Batch  250/352] train_loss=0.5287 | train_acc=0.9884
+2026-03-23 00:41:23 | INFO |   [Batch  300/352] train_loss=0.5289 | train_acc=0.9886
+2026-03-23 00:41:26 | INFO |   [Batch  350/352] train_loss=0.5298 | train_acc=0.9882
+2026-03-23 00:41:34 | INFO |   Train | loss=0.5298 acc=0.9882 | Val | loss=0.3304 acc=0.9220 | lr=0.000288
+2026-03-23 00:41:34 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:41:34 | INFO | Epoch 65/100
+2026-03-23 00:41:44 | INFO |   [Batch   50/352] train_loss=0.5288 | train_acc=0.9892
+2026-03-23 00:41:47 | INFO |   [Batch  100/352] train_loss=0.5259 | train_acc=0.9898
+2026-03-23 00:41:50 | INFO |   [Batch  150/352] train_loss=0.5265 | train_acc=0.9896
+2026-03-23 00:41:53 | INFO |   [Batch  200/352] train_loss=0.5286 | train_acc=0.9885
+2026-03-23 00:41:55 | INFO |   [Batch  250/352] train_loss=0.5281 | train_acc=0.9888
+2026-03-23 00:41:58 | INFO |   [Batch  300/352] train_loss=0.5276 | train_acc=0.9892
+2026-03-23 00:42:01 | INFO |   [Batch  350/352] train_loss=0.5274 | train_acc=0.9894
+2026-03-23 00:42:10 | INFO |   Train | loss=0.5274 acc=0.9894 | Val | loss=0.3095 acc=0.9278 | lr=0.000274
+2026-03-23 00:42:10 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3095)
+2026-03-23 00:42:10 | INFO | Epoch 66/100
+2026-03-23 00:42:19 | INFO |   [Batch   50/352] train_loss=0.5253 | train_acc=0.9912
+2026-03-23 00:42:22 | INFO |   [Batch  100/352] train_loss=0.5248 | train_acc=0.9911
+2026-03-23 00:42:25 | INFO |   [Batch  150/352] train_loss=0.5253 | train_acc=0.9908
+2026-03-23 00:42:28 | INFO |   [Batch  200/352] train_loss=0.5263 | train_acc=0.9901
+2026-03-23 00:42:31 | INFO |   [Batch  250/352] train_loss=0.5274 | train_acc=0.9898
+2026-03-23 00:42:34 | INFO |   [Batch  300/352] train_loss=0.5283 | train_acc=0.9895
+2026-03-23 00:42:37 | INFO |   [Batch  350/352] train_loss=0.5281 | train_acc=0.9896
+2026-03-23 00:42:45 | INFO |   Train | loss=0.5281 acc=0.9896 | Val | loss=0.3129 acc=0.9268 | lr=0.000260
+2026-03-23 00:42:45 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:42:45 | INFO | Epoch 67/100
+2026-03-23 00:42:56 | INFO |   [Batch   50/352] train_loss=0.5225 | train_acc=0.9916
+2026-03-23 00:42:58 | INFO |   [Batch  100/352] train_loss=0.5202 | train_acc=0.9927
+2026-03-23 00:43:01 | INFO |   [Batch  150/352] train_loss=0.5217 | train_acc=0.9921
+2026-03-23 00:43:04 | INFO |   [Batch  200/352] train_loss=0.5213 | train_acc=0.9922
+2026-03-23 00:43:07 | INFO |   [Batch  250/352] train_loss=0.5230 | train_acc=0.9914
+2026-03-23 00:43:10 | INFO |   [Batch  300/352] train_loss=0.5235 | train_acc=0.9913
+2026-03-23 00:43:13 | INFO |   [Batch  350/352] train_loss=0.5230 | train_acc=0.9917
+2026-03-23 00:43:22 | INFO |   Train | loss=0.5230 acc=0.9917 | Val | loss=0.3041 acc=0.9278 | lr=0.000246
+2026-03-23 00:43:22 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.3041)
+2026-03-23 00:43:22 | INFO | Epoch 68/100
+2026-03-23 00:43:31 | INFO |   [Batch   50/352] train_loss=0.5224 | train_acc=0.9919
+2026-03-23 00:43:34 | INFO |   [Batch  100/352] train_loss=0.5214 | train_acc=0.9922
+2026-03-23 00:43:37 | INFO |   [Batch  150/352] train_loss=0.5208 | train_acc=0.9922
+2026-03-23 00:43:40 | INFO |   [Batch  200/352] train_loss=0.5202 | train_acc=0.9928
+2026-03-23 00:43:43 | INFO |   [Batch  250/352] train_loss=0.5198 | train_acc=0.9930
+2026-03-23 00:43:46 | INFO |   [Batch  300/352] train_loss=0.5204 | train_acc=0.9927
+2026-03-23 00:43:49 | INFO |   [Batch  350/352] train_loss=0.5209 | train_acc=0.9924
+2026-03-23 00:43:57 | INFO |   Train | loss=0.5208 acc=0.9924 | Val | loss=0.3055 acc=0.9288 | lr=0.000233
+2026-03-23 00:43:57 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:43:57 | INFO | Epoch 69/100
+2026-03-23 00:44:07 | INFO |   [Batch   50/352] train_loss=0.5161 | train_acc=0.9944
+2026-03-23 00:44:10 | INFO |   [Batch  100/352] train_loss=0.5193 | train_acc=0.9928
+2026-03-23 00:44:13 | INFO |   [Batch  150/352] train_loss=0.5200 | train_acc=0.9924
+2026-03-23 00:44:16 | INFO |   [Batch  200/352] train_loss=0.5197 | train_acc=0.9924
+2026-03-23 00:44:18 | INFO |   [Batch  250/352] train_loss=0.5197 | train_acc=0.9923
+2026-03-23 00:44:21 | INFO |   [Batch  300/352] train_loss=0.5195 | train_acc=0.9922
+2026-03-23 00:44:24 | INFO |   [Batch  350/352] train_loss=0.5205 | train_acc=0.9920
+2026-03-23 00:44:33 | INFO |   Train | loss=0.5205 acc=0.9920 | Val | loss=0.3107 acc=0.9288 | lr=0.000220
+2026-03-23 00:44:33 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:44:33 | INFO | Epoch 70/100
+2026-03-23 00:44:42 | INFO |   [Batch   50/352] train_loss=0.5155 | train_acc=0.9945
+2026-03-23 00:44:45 | INFO |   [Batch  100/352] train_loss=0.5163 | train_acc=0.9941
+2026-03-23 00:44:48 | INFO |   [Batch  150/352] train_loss=0.5170 | train_acc=0.9936
+2026-03-23 00:44:51 | INFO |   [Batch  200/352] train_loss=0.5176 | train_acc=0.9933
+2026-03-23 00:44:54 | INFO |   [Batch  250/352] train_loss=0.5185 | train_acc=0.9929
+2026-03-23 00:44:57 | INFO |   [Batch  300/352] train_loss=0.5189 | train_acc=0.9929
+2026-03-23 00:44:59 | INFO |   [Batch  350/352] train_loss=0.5192 | train_acc=0.9928
+2026-03-23 00:45:08 | INFO |   Train | loss=0.5192 acc=0.9928 | Val | loss=0.2963 acc=0.9294 | lr=0.000207
+2026-03-23 00:45:08 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2963)
+2026-03-23 00:45:08 | INFO | Epoch 71/100
+2026-03-23 00:45:18 | INFO |   [Batch   50/352] train_loss=0.5164 | train_acc=0.9939
+2026-03-23 00:45:21 | INFO |   [Batch  100/352] train_loss=0.5165 | train_acc=0.9944
+2026-03-23 00:45:24 | INFO |   [Batch  150/352] train_loss=0.5162 | train_acc=0.9945
+2026-03-23 00:45:26 | INFO |   [Batch  200/352] train_loss=0.5163 | train_acc=0.9945
+2026-03-23 00:45:29 | INFO |   [Batch  250/352] train_loss=0.5163 | train_acc=0.9944
+2026-03-23 00:45:32 | INFO |   [Batch  300/352] train_loss=0.5160 | train_acc=0.9943
+2026-03-23 00:45:35 | INFO |   [Batch  350/352] train_loss=0.5165 | train_acc=0.9941
+2026-03-23 00:45:44 | INFO |   Train | loss=0.5165 acc=0.9941 | Val | loss=0.3235 acc=0.9258 | lr=0.000194
+2026-03-23 00:45:44 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:45:44 | INFO | Epoch 72/100
+2026-03-23 00:45:53 | INFO |   [Batch   50/352] train_loss=0.5170 | train_acc=0.9928
+2026-03-23 00:45:56 | INFO |   [Batch  100/352] train_loss=0.5150 | train_acc=0.9940
+2026-03-23 00:45:59 | INFO |   [Batch  150/352] train_loss=0.5152 | train_acc=0.9943
+2026-03-23 00:46:02 | INFO |   [Batch  200/352] train_loss=0.5156 | train_acc=0.9942
+2026-03-23 00:46:05 | INFO |   [Batch  250/352] train_loss=0.5149 | train_acc=0.9946
+2026-03-23 00:46:07 | INFO |   [Batch  300/352] train_loss=0.5152 | train_acc=0.9945
+2026-03-23 00:46:10 | INFO |   [Batch  350/352] train_loss=0.5157 | train_acc=0.9944
+2026-03-23 00:46:19 | INFO |   Train | loss=0.5157 acc=0.9944 | Val | loss=0.3211 acc=0.9220 | lr=0.000182
+2026-03-23 00:46:19 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 00:46:19 | INFO | Epoch 73/100
+2026-03-23 00:46:29 | INFO |   [Batch   50/352] train_loss=0.5145 | train_acc=0.9952
+2026-03-23 00:46:32 | INFO |   [Batch  100/352] train_loss=0.5154 | train_acc=0.9945
+2026-03-23 00:46:35 | INFO |   [Batch  150/352] train_loss=0.5170 | train_acc=0.9935
+2026-03-23 00:46:38 | INFO |   [Batch  200/352] train_loss=0.5163 | train_acc=0.9939
+2026-03-23 00:46:41 | INFO |   [Batch  250/352] train_loss=0.5164 | train_acc=0.9938
+2026-03-23 00:46:44 | INFO |   [Batch  300/352] train_loss=0.5168 | train_acc=0.9937
+2026-03-23 00:46:46 | INFO |   [Batch  350/352] train_loss=0.5165 | train_acc=0.9940
+2026-03-23 00:46:55 | INFO |   Train | loss=0.5165 acc=0.9940 | Val | loss=0.3010 acc=0.9298 | lr=0.000170
+2026-03-23 00:46:55 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 00:46:55 | INFO | Epoch 74/100
+2026-03-23 00:47:05 | INFO |   [Batch   50/352] train_loss=0.5134 | train_acc=0.9955
+2026-03-23 00:47:08 | INFO |   [Batch  100/352] train_loss=0.5126 | train_acc=0.9956
+2026-03-23 00:47:10 | INFO |   [Batch  150/352] train_loss=0.5121 | train_acc=0.9959
+2026-03-23 00:47:13 | INFO |   [Batch  200/352] train_loss=0.5132 | train_acc=0.9954
+2026-03-23 00:47:16 | INFO |   [Batch  250/352] train_loss=0.5134 | train_acc=0.9953
+2026-03-23 00:47:19 | INFO |   [Batch  300/352] train_loss=0.5138 | train_acc=0.9951
+2026-03-23 00:47:22 | INFO |   [Batch  350/352] train_loss=0.5136 | train_acc=0.9952
+2026-03-23 00:47:31 | INFO |   Train | loss=0.5136 acc=0.9952 | Val | loss=0.3057 acc=0.9278 | lr=0.000159
+2026-03-23 00:47:31 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 00:47:31 | INFO | Epoch 75/100
+2026-03-23 00:47:40 | INFO |   [Batch   50/352] train_loss=0.5115 | train_acc=0.9967
+2026-03-23 00:47:43 | INFO |   [Batch  100/352] train_loss=0.5103 | train_acc=0.9967
+2026-03-23 00:47:46 | INFO |   [Batch  150/352] train_loss=0.5114 | train_acc=0.9961
+2026-03-23 00:47:49 | INFO |   [Batch  200/352] train_loss=0.5124 | train_acc=0.9957
+2026-03-23 00:47:52 | INFO |   [Batch  250/352] train_loss=0.5119 | train_acc=0.9958
+2026-03-23 00:47:55 | INFO |   [Batch  300/352] train_loss=0.5121 | train_acc=0.9959
+2026-03-23 00:47:58 | INFO |   [Batch  350/352] train_loss=0.5117 | train_acc=0.9959
+2026-03-23 00:48:06 | INFO |   Train | loss=0.5118 acc=0.9959 | Val | loss=0.3011 acc=0.9320 | lr=0.000147
+2026-03-23 00:48:06 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 00:48:06 | INFO | Epoch 76/100
+2026-03-23 00:48:15 | INFO |   [Batch   50/352] train_loss=0.5109 | train_acc=0.9962
+2026-03-23 00:48:18 | INFO |   [Batch  100/352] train_loss=0.5103 | train_acc=0.9969
+2026-03-23 00:48:21 | INFO |   [Batch  150/352] train_loss=0.5105 | train_acc=0.9966
+2026-03-23 00:48:24 | INFO |   [Batch  200/352] train_loss=0.5105 | train_acc=0.9966
+2026-03-23 00:48:27 | INFO |   [Batch  250/352] train_loss=0.5104 | train_acc=0.9966
+2026-03-23 00:48:30 | INFO |   [Batch  300/352] train_loss=0.5109 | train_acc=0.9964
+2026-03-23 00:48:33 | INFO |   [Batch  350/352] train_loss=0.5115 | train_acc=0.9962
+2026-03-23 00:48:41 | INFO |   Train | loss=0.5114 acc=0.9962 | Val | loss=0.3131 acc=0.9290 | lr=0.000136
+2026-03-23 00:48:41 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 00:48:41 | INFO | Epoch 77/100
+2026-03-23 00:48:51 | INFO |   [Batch   50/352] train_loss=0.5124 | train_acc=0.9956
+2026-03-23 00:48:54 | INFO |   [Batch  100/352] train_loss=0.5114 | train_acc=0.9962
+2026-03-23 00:48:57 | INFO |   [Batch  150/352] train_loss=0.5114 | train_acc=0.9960
+2026-03-23 00:48:59 | INFO |   [Batch  200/352] train_loss=0.5119 | train_acc=0.9958
+2026-03-23 00:49:02 | INFO |   [Batch  250/352] train_loss=0.5119 | train_acc=0.9958
+2026-03-23 00:49:05 | INFO |   [Batch  300/352] train_loss=0.5116 | train_acc=0.9958
+2026-03-23 00:49:08 | INFO |   [Batch  350/352] train_loss=0.5116 | train_acc=0.9959
+2026-03-23 00:49:16 | INFO |   Train | loss=0.5116 acc=0.9959 | Val | loss=0.3038 acc=0.9334 | lr=0.000126
+2026-03-23 00:49:16 | INFO |   No improvement. Patience counter: 7/15
+2026-03-23 00:49:16 | INFO | Epoch 78/100
+2026-03-23 00:49:26 | INFO |   [Batch   50/352] train_loss=0.5095 | train_acc=0.9967
+2026-03-23 00:49:29 | INFO |   [Batch  100/352] train_loss=0.5098 | train_acc=0.9963
+2026-03-23 00:49:32 | INFO |   [Batch  150/352] train_loss=0.5093 | train_acc=0.9966
+2026-03-23 00:49:35 | INFO |   [Batch  200/352] train_loss=0.5093 | train_acc=0.9966
+2026-03-23 00:49:38 | INFO |   [Batch  250/352] train_loss=0.5093 | train_acc=0.9968
+2026-03-23 00:49:41 | INFO |   [Batch  300/352] train_loss=0.5092 | train_acc=0.9969
+2026-03-23 00:49:44 | INFO |   [Batch  350/352] train_loss=0.5091 | train_acc=0.9969
+2026-03-23 00:49:52 | INFO |   Train | loss=0.5091 acc=0.9970 | Val | loss=0.3035 acc=0.9310 | lr=0.000116
+2026-03-23 00:49:52 | INFO |   No improvement. Patience counter: 8/15
+2026-03-23 00:49:52 | INFO | Epoch 79/100
+2026-03-23 00:50:02 | INFO |   [Batch   50/352] train_loss=0.5062 | train_acc=0.9980
+2026-03-23 00:50:05 | INFO |   [Batch  100/352] train_loss=0.5076 | train_acc=0.9977
+2026-03-23 00:50:08 | INFO |   [Batch  150/352] train_loss=0.5074 | train_acc=0.9979
+2026-03-23 00:50:11 | INFO |   [Batch  200/352] train_loss=0.5072 | train_acc=0.9980
+2026-03-23 00:50:14 | INFO |   [Batch  250/352] train_loss=0.5074 | train_acc=0.9979
+2026-03-23 00:50:16 | INFO |   [Batch  300/352] train_loss=0.5076 | train_acc=0.9978
+2026-03-23 00:50:19 | INFO |   [Batch  350/352] train_loss=0.5079 | train_acc=0.9977
+2026-03-23 00:50:28 | INFO |   Train | loss=0.5079 acc=0.9977 | Val | loss=0.3069 acc=0.9330 | lr=0.000106
+2026-03-23 00:50:28 | INFO |   No improvement. Patience counter: 9/15
+2026-03-23 00:50:28 | INFO | Epoch 80/100
+2026-03-23 00:50:38 | INFO |   [Batch   50/352] train_loss=0.5072 | train_acc=0.9984
+2026-03-23 00:50:41 | INFO |   [Batch  100/352] train_loss=0.5064 | train_acc=0.9988
+2026-03-23 00:50:44 | INFO |   [Batch  150/352] train_loss=0.5080 | train_acc=0.9978
+2026-03-23 00:50:46 | INFO |   [Batch  200/352] train_loss=0.5079 | train_acc=0.9978
+2026-03-23 00:50:49 | INFO |   [Batch  250/352] train_loss=0.5079 | train_acc=0.9978
+2026-03-23 00:50:52 | INFO |   [Batch  300/352] train_loss=0.5082 | train_acc=0.9977
+2026-03-23 00:50:55 | INFO |   [Batch  350/352] train_loss=0.5080 | train_acc=0.9977
+2026-03-23 00:51:04 | INFO |   Train | loss=0.5080 acc=0.9977 | Val | loss=0.3001 acc=0.9348 | lr=0.000096
+2026-03-23 00:51:04 | INFO |   No improvement. Patience counter: 10/15
+2026-03-23 00:51:04 | INFO | Epoch 81/100
+2026-03-23 00:51:14 | INFO |   [Batch   50/352] train_loss=0.5067 | train_acc=0.9983
+2026-03-23 00:51:17 | INFO |   [Batch  100/352] train_loss=0.5076 | train_acc=0.9975
+2026-03-23 00:51:20 | INFO |   [Batch  150/352] train_loss=0.5075 | train_acc=0.9977
+2026-03-23 00:51:22 | INFO |   [Batch  200/352] train_loss=0.5071 | train_acc=0.9979
+2026-03-23 00:51:25 | INFO |   [Batch  250/352] train_loss=0.5076 | train_acc=0.9977
+2026-03-23 00:51:28 | INFO |   [Batch  300/352] train_loss=0.5075 | train_acc=0.9978
+2026-03-23 00:51:31 | INFO |   [Batch  350/352] train_loss=0.5073 | train_acc=0.9979
+2026-03-23 00:51:40 | INFO |   Train | loss=0.5073 acc=0.9978 | Val | loss=0.2972 acc=0.9344 | lr=0.000087
+2026-03-23 00:51:40 | INFO |   No improvement. Patience counter: 11/15
+2026-03-23 00:51:40 | INFO | Epoch 82/100
+2026-03-23 00:51:50 | INFO |   [Batch   50/352] train_loss=0.5056 | train_acc=0.9986
+2026-03-23 00:51:53 | INFO |   [Batch  100/352] train_loss=0.5064 | train_acc=0.9983
+2026-03-23 00:51:55 | INFO |   [Batch  150/352] train_loss=0.5066 | train_acc=0.9982
+2026-03-23 00:51:58 | INFO |   [Batch  200/352] train_loss=0.5068 | train_acc=0.9982
+2026-03-23 00:52:01 | INFO |   [Batch  250/352] train_loss=0.5068 | train_acc=0.9982
+2026-03-23 00:52:04 | INFO |   [Batch  300/352] train_loss=0.5068 | train_acc=0.9982
+2026-03-23 00:52:07 | INFO |   [Batch  350/352] train_loss=0.5068 | train_acc=0.9982
+2026-03-23 00:52:16 | INFO |   Train | loss=0.5067 acc=0.9982 | Val | loss=0.3090 acc=0.9324 | lr=0.000079
+2026-03-23 00:52:16 | INFO |   No improvement. Patience counter: 12/15
+2026-03-23 00:52:16 | INFO | Epoch 83/100
+2026-03-23 00:52:26 | INFO |   [Batch   50/352] train_loss=0.5067 | train_acc=0.9983
+2026-03-23 00:52:29 | INFO |   [Batch  100/352] train_loss=0.5063 | train_acc=0.9984
+2026-03-23 00:52:31 | INFO |   [Batch  150/352] train_loss=0.5064 | train_acc=0.9981
+2026-03-23 00:52:34 | INFO |   [Batch  200/352] train_loss=0.5061 | train_acc=0.9983
+2026-03-23 00:52:37 | INFO |   [Batch  250/352] train_loss=0.5061 | train_acc=0.9984
+2026-03-23 00:52:40 | INFO |   [Batch  300/352] train_loss=0.5060 | train_acc=0.9984
+2026-03-23 00:52:43 | INFO |   [Batch  350/352] train_loss=0.5061 | train_acc=0.9982
+2026-03-23 00:52:52 | INFO |   Train | loss=0.5061 acc=0.9982 | Val | loss=0.3023 acc=0.9356 | lr=0.000071
+2026-03-23 00:52:52 | INFO |   No improvement. Patience counter: 13/15
+2026-03-23 00:52:52 | INFO | Epoch 84/100
+2026-03-23 00:53:01 | INFO |   [Batch   50/352] train_loss=0.5059 | train_acc=0.9988
+2026-03-23 00:53:04 | INFO |   [Batch  100/352] train_loss=0.5057 | train_acc=0.9989
+2026-03-23 00:53:07 | INFO |   [Batch  150/352] train_loss=0.5056 | train_acc=0.9988
+2026-03-23 00:53:10 | INFO |   [Batch  200/352] train_loss=0.5054 | train_acc=0.9989
+2026-03-23 00:53:13 | INFO |   [Batch  250/352] train_loss=0.5055 | train_acc=0.9988
+2026-03-23 00:53:16 | INFO |   [Batch  300/352] train_loss=0.5052 | train_acc=0.9989
+2026-03-23 00:53:18 | INFO |   [Batch  350/352] train_loss=0.5051 | train_acc=0.9989
+2026-03-23 00:53:27 | INFO |   Train | loss=0.5050 acc=0.9989 | Val | loss=0.2989 acc=0.9346 | lr=0.000063
+2026-03-23 00:53:27 | INFO |   No improvement. Patience counter: 14/15
+2026-03-23 00:53:27 | INFO | Epoch 85/100
+2026-03-23 00:53:37 | INFO |   [Batch   50/352] train_loss=0.5063 | train_acc=0.9980
+2026-03-23 00:53:40 | INFO |   [Batch  100/352] train_loss=0.5058 | train_acc=0.9982
+2026-03-23 00:53:43 | INFO |   [Batch  150/352] train_loss=0.5055 | train_acc=0.9984
+2026-03-23 00:53:45 | INFO |   [Batch  200/352] train_loss=0.5054 | train_acc=0.9985
+2026-03-23 00:53:48 | INFO |   [Batch  250/352] train_loss=0.5050 | train_acc=0.9987
+2026-03-23 00:53:51 | INFO |   [Batch  300/352] train_loss=0.5050 | train_acc=0.9987
+2026-03-23 00:53:54 | INFO |   [Batch  350/352] train_loss=0.5050 | train_acc=0.9987
+2026-03-23 00:54:03 | INFO |   Train | loss=0.5050 acc=0.9987 | Val | loss=0.2953 acc=0.9366 | lr=0.000055
+2026-03-23 00:54:03 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2953)
+2026-03-23 00:54:03 | INFO | Epoch 86/100
+2026-03-23 00:54:13 | INFO |   [Batch   50/352] train_loss=0.5040 | train_acc=0.9992
+2026-03-23 00:54:15 | INFO |   [Batch  100/352] train_loss=0.5043 | train_acc=0.9989
+2026-03-23 00:54:18 | INFO |   [Batch  150/352] train_loss=0.5043 | train_acc=0.9990
+2026-03-23 00:54:21 | INFO |   [Batch  200/352] train_loss=0.5043 | train_acc=0.9991
+2026-03-23 00:54:24 | INFO |   [Batch  250/352] train_loss=0.5043 | train_acc=0.9991
+2026-03-23 00:54:27 | INFO |   [Batch  300/352] train_loss=0.5043 | train_acc=0.9991
+2026-03-23 00:54:30 | INFO |   [Batch  350/352] train_loss=0.5042 | train_acc=0.9990
+2026-03-23 00:54:39 | INFO |   Train | loss=0.5042 acc=0.9990 | Val | loss=0.2921 acc=0.9384 | lr=0.000049
+2026-03-23 00:54:39 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2921)
+2026-03-23 00:54:39 | INFO | Epoch 87/100
+2026-03-23 00:54:49 | INFO |   [Batch   50/352] train_loss=0.5034 | train_acc=0.9991
+2026-03-23 00:54:51 | INFO |   [Batch  100/352] train_loss=0.5039 | train_acc=0.9991
+2026-03-23 00:54:54 | INFO |   [Batch  150/352] train_loss=0.5044 | train_acc=0.9987
+2026-03-23 00:54:57 | INFO |   [Batch  200/352] train_loss=0.5043 | train_acc=0.9988
+2026-03-23 00:55:00 | INFO |   [Batch  250/352] train_loss=0.5046 | train_acc=0.9987
+2026-03-23 00:55:03 | INFO |   [Batch  300/352] train_loss=0.5046 | train_acc=0.9987
+2026-03-23 00:55:06 | INFO |   [Batch  350/352] train_loss=0.5044 | train_acc=0.9988
+2026-03-23 00:55:14 | INFO |   Train | loss=0.5044 acc=0.9987 | Val | loss=0.2925 acc=0.9386 | lr=0.000042
+2026-03-23 00:55:14 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:55:14 | INFO | Epoch 88/100
+2026-03-23 00:55:24 | INFO |   [Batch   50/352] train_loss=0.5050 | train_acc=0.9984
+2026-03-23 00:55:27 | INFO |   [Batch  100/352] train_loss=0.5046 | train_acc=0.9988
+2026-03-23 00:55:30 | INFO |   [Batch  150/352] train_loss=0.5044 | train_acc=0.9989
+2026-03-23 00:55:33 | INFO |   [Batch  200/352] train_loss=0.5041 | train_acc=0.9989
+2026-03-23 00:55:36 | INFO |   [Batch  250/352] train_loss=0.5042 | train_acc=0.9989
+2026-03-23 00:55:39 | INFO |   [Batch  300/352] train_loss=0.5040 | train_acc=0.9990
+2026-03-23 00:55:42 | INFO |   [Batch  350/352] train_loss=0.5040 | train_acc=0.9990
+2026-03-23 00:55:50 | INFO |   Train | loss=0.5041 acc=0.9990 | Val | loss=0.2909 acc=0.9364 | lr=0.000036
+2026-03-23 00:55:50 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2909)
+2026-03-23 00:55:50 | INFO | Epoch 89/100
+2026-03-23 00:56:00 | INFO |   [Batch   50/352] train_loss=0.5045 | train_acc=0.9989
+2026-03-23 00:56:03 | INFO |   [Batch  100/352] train_loss=0.5047 | train_acc=0.9987
+2026-03-23 00:56:06 | INFO |   [Batch  150/352] train_loss=0.5043 | train_acc=0.9990
+2026-03-23 00:56:09 | INFO |   [Batch  200/352] train_loss=0.5040 | train_acc=0.9991
+2026-03-23 00:56:12 | INFO |   [Batch  250/352] train_loss=0.5039 | train_acc=0.9991
+2026-03-23 00:56:15 | INFO |   [Batch  300/352] train_loss=0.5039 | train_acc=0.9992
+2026-03-23 00:56:18 | INFO |   [Batch  350/352] train_loss=0.5037 | train_acc=0.9993
+2026-03-23 00:56:26 | INFO |   Train | loss=0.5037 acc=0.9993 | Val | loss=0.2936 acc=0.9394 | lr=0.000031
+2026-03-23 00:56:26 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:56:26 | INFO | Epoch 90/100
+2026-03-23 00:56:36 | INFO |   [Batch   50/352] train_loss=0.5027 | train_acc=0.9997
+2026-03-23 00:56:39 | INFO |   [Batch  100/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 00:56:42 | INFO |   [Batch  150/352] train_loss=0.5029 | train_acc=0.9996
+2026-03-23 00:56:45 | INFO |   [Batch  200/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 00:56:48 | INFO |   [Batch  250/352] train_loss=0.5028 | train_acc=0.9996
+2026-03-23 00:56:51 | INFO |   [Batch  300/352] train_loss=0.5028 | train_acc=0.9996
+2026-03-23 00:56:53 | INFO |   [Batch  350/352] train_loss=0.5027 | train_acc=0.9996
+2026-03-23 00:57:02 | INFO |   Train | loss=0.5027 acc=0.9996 | Val | loss=0.2894 acc=0.9378 | lr=0.000025
+2026-03-23 00:57:02 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2894)
+2026-03-23 00:57:02 | INFO | Epoch 91/100
+2026-03-23 00:57:12 | INFO |   [Batch   50/352] train_loss=0.5032 | train_acc=0.9997
+2026-03-23 00:57:15 | INFO |   [Batch  100/352] train_loss=0.5032 | train_acc=0.9996
+2026-03-23 00:57:18 | INFO |   [Batch  150/352] train_loss=0.5036 | train_acc=0.9995
+2026-03-23 00:57:21 | INFO |   [Batch  200/352] train_loss=0.5035 | train_acc=0.9995
+2026-03-23 00:57:23 | INFO |   [Batch  250/352] train_loss=0.5034 | train_acc=0.9994
+2026-03-23 00:57:26 | INFO |   [Batch  300/352] train_loss=0.5032 | train_acc=0.9995
+2026-03-23 00:57:29 | INFO |   [Batch  350/352] train_loss=0.5031 | train_acc=0.9995
+2026-03-23 00:57:38 | INFO |   Train | loss=0.5031 acc=0.9995 | Val | loss=0.2883 acc=0.9390 | lr=0.000021
+2026-03-23 00:57:38 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2883)
+2026-03-23 00:57:38 | INFO | Epoch 92/100
+2026-03-23 00:57:48 | INFO |   [Batch   50/352] train_loss=0.5033 | train_acc=0.9994
+2026-03-23 00:57:50 | INFO |   [Batch  100/352] train_loss=0.5032 | train_acc=0.9995
+2026-03-23 00:57:53 | INFO |   [Batch  150/352] train_loss=0.5032 | train_acc=0.9993
+2026-03-23 00:57:56 | INFO |   [Batch  200/352] train_loss=0.5030 | train_acc=0.9995
+2026-03-23 00:57:59 | INFO |   [Batch  250/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 00:58:02 | INFO |   [Batch  300/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 00:58:05 | INFO |   [Batch  350/352] train_loss=0.5030 | train_acc=0.9994
+2026-03-23 00:58:13 | INFO |   Train | loss=0.5030 acc=0.9994 | Val | loss=0.2902 acc=0.9404 | lr=0.000017
+2026-03-23 00:58:13 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 00:58:13 | INFO | Epoch 93/100
+2026-03-23 00:58:23 | INFO |   [Batch   50/352] train_loss=0.5030 | train_acc=0.9994
+2026-03-23 00:58:26 | INFO |   [Batch  100/352] train_loss=0.5030 | train_acc=0.9993
+2026-03-23 00:58:29 | INFO |   [Batch  150/352] train_loss=0.5029 | train_acc=0.9994
+2026-03-23 00:58:32 | INFO |   [Batch  200/352] train_loss=0.5030 | train_acc=0.9994
+2026-03-23 00:58:35 | INFO |   [Batch  250/352] train_loss=0.5029 | train_acc=0.9994
+2026-03-23 00:58:38 | INFO |   [Batch  300/352] train_loss=0.5030 | train_acc=0.9994
+2026-03-23 00:58:41 | INFO |   [Batch  350/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 00:58:49 | INFO |   Train | loss=0.5029 acc=0.9995 | Val | loss=0.2881 acc=0.9410 | lr=0.000013
+2026-03-23 00:58:49 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2881)
+2026-03-23 00:58:49 | INFO | Epoch 94/100
+2026-03-23 00:58:59 | INFO |   [Batch   50/352] train_loss=0.5024 | train_acc=0.9994
+2026-03-23 00:59:02 | INFO |   [Batch  100/352] train_loss=0.5026 | train_acc=0.9995
+2026-03-23 00:59:05 | INFO |   [Batch  150/352] train_loss=0.5025 | train_acc=0.9996
+2026-03-23 00:59:08 | INFO |   [Batch  200/352] train_loss=0.5028 | train_acc=0.9995
+2026-03-23 00:59:11 | INFO |   [Batch  250/352] train_loss=0.5028 | train_acc=0.9994
+2026-03-23 00:59:13 | INFO |   [Batch  300/352] train_loss=0.5028 | train_acc=0.9995
+2026-03-23 00:59:16 | INFO |   [Batch  350/352] train_loss=0.5027 | train_acc=0.9995
+2026-03-23 00:59:25 | INFO |   Train | loss=0.5027 acc=0.9995 | Val | loss=0.2856 acc=0.9416 | lr=0.000010
+2026-03-23 00:59:25 | INFO |   Saved best model → C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt (val_loss=0.2856)
+2026-03-23 00:59:25 | INFO | Epoch 95/100
+2026-03-23 00:59:35 | INFO |   [Batch   50/352] train_loss=0.5029 | train_acc=0.9997
+2026-03-23 00:59:38 | INFO |   [Batch  100/352] train_loss=0.5025 | train_acc=0.9997
+2026-03-23 00:59:41 | INFO |   [Batch  150/352] train_loss=0.5028 | train_acc=0.9996
+2026-03-23 00:59:43 | INFO |   [Batch  200/352] train_loss=0.5026 | train_acc=0.9996
+2026-03-23 00:59:46 | INFO |   [Batch  250/352] train_loss=0.5028 | train_acc=0.9996
+2026-03-23 00:59:49 | INFO |   [Batch  300/352] train_loss=0.5027 | train_acc=0.9996
+2026-03-23 00:59:52 | INFO |   [Batch  350/352] train_loss=0.5026 | train_acc=0.9997
+2026-03-23 01:00:01 | INFO |   Train | loss=0.5026 acc=0.9997 | Val | loss=0.2867 acc=0.9420 | lr=0.000007
+2026-03-23 01:00:01 | INFO |   No improvement. Patience counter: 1/15
+2026-03-23 01:00:01 | INFO | Epoch 96/100
+2026-03-23 01:00:11 | INFO |   [Batch   50/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 01:00:14 | INFO |   [Batch  100/352] train_loss=0.5028 | train_acc=0.9996
+2026-03-23 01:00:17 | INFO |   [Batch  150/352] train_loss=0.5027 | train_acc=0.9996
+2026-03-23 01:00:19 | INFO |   [Batch  200/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 01:00:22 | INFO |   [Batch  250/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 01:00:25 | INFO |   [Batch  300/352] train_loss=0.5025 | train_acc=0.9997
+2026-03-23 01:00:28 | INFO |   [Batch  350/352] train_loss=0.5026 | train_acc=0.9996
+2026-03-23 01:00:37 | INFO |   Train | loss=0.5026 acc=0.9996 | Val | loss=0.2864 acc=0.9428 | lr=0.000005
+2026-03-23 01:00:37 | INFO |   No improvement. Patience counter: 2/15
+2026-03-23 01:00:37 | INFO | Epoch 97/100
+2026-03-23 01:00:47 | INFO |   [Batch   50/352] train_loss=0.5022 | train_acc=1.0000
+2026-03-23 01:00:50 | INFO |   [Batch  100/352] train_loss=0.5021 | train_acc=0.9999
+2026-03-23 01:00:52 | INFO |   [Batch  150/352] train_loss=0.5023 | train_acc=0.9998
+2026-03-23 01:00:55 | INFO |   [Batch  200/352] train_loss=0.5024 | train_acc=0.9998
+2026-03-23 01:00:58 | INFO |   [Batch  250/352] train_loss=0.5024 | train_acc=0.9998
+2026-03-23 01:01:01 | INFO |   [Batch  300/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 01:01:04 | INFO |   [Batch  350/352] train_loss=0.5023 | train_acc=0.9997
+2026-03-23 01:01:12 | INFO |   Train | loss=0.5023 acc=0.9997 | Val | loss=0.2878 acc=0.9410 | lr=0.000003
+2026-03-23 01:01:12 | INFO |   No improvement. Patience counter: 3/15
+2026-03-23 01:01:12 | INFO | Epoch 98/100
+2026-03-23 01:01:22 | INFO |   [Batch   50/352] train_loss=0.5022 | train_acc=0.9997
+2026-03-23 01:01:25 | INFO |   [Batch  100/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 01:01:28 | INFO |   [Batch  150/352] train_loss=0.5022 | train_acc=0.9998
+2026-03-23 01:01:31 | INFO |   [Batch  200/352] train_loss=0.5022 | train_acc=0.9998
+2026-03-23 01:01:34 | INFO |   [Batch  250/352] train_loss=0.5026 | train_acc=0.9997
+2026-03-23 01:01:37 | INFO |   [Batch  300/352] train_loss=0.5026 | train_acc=0.9997
+2026-03-23 01:01:40 | INFO |   [Batch  350/352] train_loss=0.5026 | train_acc=0.9997
+2026-03-23 01:01:48 | INFO |   Train | loss=0.5026 acc=0.9997 | Val | loss=0.2857 acc=0.9404 | lr=0.000002
+2026-03-23 01:01:48 | INFO |   No improvement. Patience counter: 4/15
+2026-03-23 01:01:48 | INFO | Epoch 99/100
+2026-03-23 01:01:58 | INFO |   [Batch   50/352] train_loss=0.5017 | train_acc=0.9998
+2026-03-23 01:02:01 | INFO |   [Batch  100/352] train_loss=0.5024 | train_acc=0.9997
+2026-03-23 01:02:04 | INFO |   [Batch  150/352] train_loss=0.5025 | train_acc=0.9996
+2026-03-23 01:02:06 | INFO |   [Batch  200/352] train_loss=0.5028 | train_acc=0.9995
+2026-03-23 01:02:09 | INFO |   [Batch  250/352] train_loss=0.5029 | train_acc=0.9995
+2026-03-23 01:02:12 | INFO |   [Batch  300/352] train_loss=0.5027 | train_acc=0.9995
+2026-03-23 01:02:15 | INFO |   [Batch  350/352] train_loss=0.5027 | train_acc=0.9996
+2026-03-23 01:02:24 | INFO |   Train | loss=0.5027 acc=0.9996 | Val | loss=0.2862 acc=0.9426 | lr=0.000001
+2026-03-23 01:02:24 | INFO |   No improvement. Patience counter: 5/15
+2026-03-23 01:02:24 | INFO | Epoch 100/100
+2026-03-23 01:02:33 | INFO |   [Batch   50/352] train_loss=0.5030 | train_acc=0.9994
+2026-03-23 01:02:36 | INFO |   [Batch  100/352] train_loss=0.5030 | train_acc=0.9993
+2026-03-23 01:02:39 | INFO |   [Batch  150/352] train_loss=0.5030 | train_acc=0.9993
+2026-03-23 01:02:42 | INFO |   [Batch  200/352] train_loss=0.5028 | train_acc=0.9994
+2026-03-23 01:02:45 | INFO |   [Batch  250/352] train_loss=0.5027 | train_acc=0.9995
+2026-03-23 01:02:48 | INFO |   [Batch  300/352] train_loss=0.5026 | train_acc=0.9995
+2026-03-23 01:02:51 | INFO |   [Batch  350/352] train_loss=0.5026 | train_acc=0.9996
+2026-03-23 01:02:59 | INFO |   Train | loss=0.5026 acc=0.9996 | Val | loss=0.2879 acc=0.9416 | lr=0.000001
+2026-03-23 01:02:59 | INFO |   No improvement. Patience counter: 6/15
+2026-03-23 01:02:59 | INFO | Training complete.
+2026-03-23 01:02:59 | INFO | Best epoch    : 94
+2026-03-23 01:02:59 | INFO | Best val loss : 0.2856
+2026-03-23 01:02:59 | INFO | Best val acc  : 0.9416
+2026-03-23 01:02:59 | INFO | Checkpoint    : C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt
+2026-03-23 01:02:59 | INFO | Loss curve saved -> C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\plots\HW2\resnet_scratch_ls\resnet_scratch_ls_loss.png
+2026-03-23 01:02:59 | INFO | Accuracy curve saved -> C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\plots\HW2\resnet_scratch_ls\resnet_scratch_ls_accuracy.png
+2026-03-23 01:02:59 | INFO | LR curve saved -> C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\plots\HW2\resnet_scratch_ls\resnet_scratch_ls_lr.png
+2026-03-23 01:02:59 | INFO | Loading checkpoint from C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\checkpoints\HW2\resnet_scratch_ls\resnet_scratch_ls_best_model.pt
+2026-03-23 01:03:00 | INFO | Starting test evaluation on 10000 samples...
+2026-03-23 01:03:08 | INFO | ======================================================================
+2026-03-23 01:03:08 | INFO | Test Results  [resnet_scratch_ls]
+2026-03-23 01:03:08 | INFO | ======================================================================
+2026-03-23 01:03:08 | INFO | Test loss        : 0.3021
+2026-03-23 01:03:08 | INFO | Overall accuracy : 0.9364  (9364 / 10000)
+2026-03-23 01:03:08 | INFO | MACs             : 557.78 MMac
+2026-03-23 01:03:08 | INFO | Parameters       : 11.17 M
+2026-03-23 01:03:08 | INFO | ----------------------------------------------------------------------
+2026-03-23 01:03:08 | INFO | Per-class accuracy:
+2026-03-23 01:03:08 | INFO |   airplane     : 0.9420  (942 / 1000)
+2026-03-23 01:03:08 | INFO |   automobile   : 0.9800  (980 / 1000)
+2026-03-23 01:03:08 | INFO |   bird         : 0.9040  (904 / 1000)
+2026-03-23 01:03:08 | INFO |   cat          : 0.8720  (872 / 1000)
+2026-03-23 01:03:08 | INFO |   deer         : 0.9500  (950 / 1000)
+2026-03-23 01:03:08 | INFO |   dog          : 0.9040  (904 / 1000)
+2026-03-23 01:03:08 | INFO |   frog         : 0.9610  (961 / 1000)
+2026-03-23 01:03:08 | INFO |   horse        : 0.9480  (948 / 1000)
+2026-03-23 01:03:08 | INFO |   ship         : 0.9530  (953 / 1000)
+2026-03-23 01:03:08 | INFO |   truck        : 0.9500  (950 / 1000)
+2026-03-23 01:03:08 | INFO | ======================================================================
+2026-03-23 01:03:08 | INFO | Confusion matrix saved -> C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\plots\HW2\resnet_scratch_ls\resnet_scratch_ls_confusion_matrix.png
+2026-03-23 01:03:09 | INFO | Collecting embeddings for t-SNE (2000 samples max)...
+2026-03-23 01:03:16 | INFO | Running t-SNE on 2000 samples (dim=512)...
+2026-03-23 01:03:21 | INFO | t-SNE plot saved -> C:\Users\İhsan\Desktop\Development\cs515\aigul_CS515\results\plots\HW2\resnet_scratch_ls\resnet_scratch_ls_tsne.png
+2026-03-23 01:03:21 | INFO | Run completed successfully.

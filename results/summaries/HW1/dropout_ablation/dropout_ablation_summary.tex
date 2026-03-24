@@ -1,0 +1,14 @@
+\begin{table*}[t]
+    \centering
+    \caption{Dropout Ablation Results}
+    \label{tab:dropout_ablation}
+    \begin{tabular}{llllllll}
+        \toprule
+        Experiment & Hidden Sizes & Activation & Dropout & BN & Best Val Loss & Best Val Acc & Test Acc \\
+        \midrule
+        dropout_02 & [256, 128] & relu & 0.2 & No & 0.0741 & 0.9793 & 0.9804 \\
+        dropout_00 & [256, 128] & relu & 0.0 & No & 0.0829 & 0.9760 & 0.9784 \\
+        dropout_05 & [256, 128] & relu & 0.5 & No & 0.0859 & 0.9748 & 0.9791 \\
+        \bottomrule
+    \end{tabular}
+\end{table*}

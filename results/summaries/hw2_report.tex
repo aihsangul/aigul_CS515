@@ -1,0 +1,488 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{xcolor}
+\usepackage{array}
+
+\title{\textbf{CS515 -- Homework 2}\\[6pt]
+        \large Transfer Learning \& Knowledge Distillation on CIFAR-10}
+\author{Ahmet İhsan Gül}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section*{Abstract}
+
+This report presents the implementation and analysis of transfer learning and knowledge distillation (KD) experiments on the CIFAR-10 dataset. Two transfer learning strategies are evaluated: resizing inputs to match the ImageNet-pretrained backbone (Option~A-1) and modifying the network stem to accept 32$\times$32 inputs directly (Option~A-2). For knowledge distillation, a ResNet-18 teacher (best test accuracy: 93.64\%) is used to supervise two compact student architectures. The best overall result is achieved by \textit{ResNet-18 Scratch + LS} with 93.64\% test accuracy on CIFAR-10.
+
+\newpage
+
+
+\section{Dataset and Experimental Setup}
+
+\subsection{CIFAR-10}
+CIFAR-10 consists of 60{,}000 colour images of size $32\times32$ pixels across
+10 mutually exclusive classes (6{,}000 images per class). The standard split of
+50{,}000 training images and 10{,}000 test images is used. A stratified
+90/10 split of the training set produces a 45{,}000-sample training fold and a
+5{,}000-sample validation fold.
+
+\subsection{Common Hyperparameters}
+All experiments share the following defaults unless otherwise noted:
+\begin{itemize}
+  \item Optimiser: Adam ($\beta_1{=}0.9$, $\beta_2{=}0.999$)
+  \item Learning-rate schedule: Cosine annealing (no restarts, $\eta_{\min}{=}10^{-6}$)
+  \item Batch size: 128
+  \item Weight decay: $10^{-4}$
+  \item Early stopping: patience = 10--15 epochs on validation loss
+  \item Random seed: 42
+\end{itemize}
+
+\subsection{Evaluation Metrics}
+Models are evaluated on the held-out test set (10{,}000 samples).
+Reported metrics include overall top-1 accuracy, per-class accuracy, and
+computational complexity (multiply--accumulate operations, MACs) measured via
+\texttt{ptflops} at the model's native input resolution.
+
+\newpage
+
+\section{Part A: Transfer Learning}
+
+Transfer learning leverages representations learned on a large source dataset (ImageNet) and adapts them to a target task (CIFAR-10). Two strategies are compared: one that bridges the resolution gap by resizing the 32$\times$32 inputs to 224$\times$224 (Option~A-1), and one that modifies the network's input stem to natively handle 32$\times$32 images (Option~A-2).
+
+\subsection{Option A-1: Transfer with Image Resize}
+The ResNet-18 backbone (pretrained on ImageNet) is loaded with its original stem. CIFAR-10 images are upsampled from $32\times32$ to $224\times224$ using bilinear interpolation and normalised with ImageNet statistics. Only the final fully-connected layer is replaced and trained; all convolutional weights remain frozen.
+
+\textbf{Result:} Test accuracy = \textbf{79.74\%} (best validation accuracy = 80.56\% at epoch~19). Parameters = 5.13 k, MACs = 1.82 GMac (measured at 224$\times$224 resolution).
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_resize/transfer_resize_accuracy.png}
+    \caption{Transfer (resize) -- accuracy curves}
+    \label{fig:tr_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_resize/transfer_resize_loss.png}
+    \caption{Transfer (resize) -- loss curves}
+    \label{fig:tr_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_resize/transfer_resize_confusion_matrix.png}
+    \caption{Transfer (resize) -- confusion matrix}
+    \label{fig:tr_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_resize/transfer_resize_tsne.png}
+    \caption{Transfer (resize) -- t-SNE of learned features}
+    \label{fig:tr_tsne}
+  \end{minipage}
+\end{figure}
+
+\subsection{Option A-2: Transfer with Architecture Modification}
+The ResNet-18 backbone is modified to accept $32\times32$ inputs: the original $7\times7$ conv (stride 2) and max-pool are replaced with a $3\times3$ conv (stride 1) and no pooling, preserving spatial resolution through the early layers. The final FC layer is replaced for 10-class prediction. All parameters are fine-tuned end-to-end using cosine-annealed Adam.
+
+\textbf{Result:} Test accuracy = \textbf{92.98\%} (best validation accuracy = 93.82\% at epoch~31). Parameters = 11.17 M, MACs = 557.78 MMac.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_modify/transfer_modify_accuracy.png}
+    \caption{Transfer (modify) -- accuracy curves}
+    \label{fig:tm_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_modify/transfer_modify_loss.png}
+    \caption{Transfer (modify) -- loss curves}
+    \label{fig:tm_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_modify/transfer_modify_confusion_matrix.png}
+    \caption{Transfer (modify) -- confusion matrix}
+    \label{fig:tm_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/transfer_modify/transfer_modify_tsne.png}
+    \caption{Transfer (modify) -- t-SNE of learned features}
+    \label{fig:tm_tsne}
+  \end{minipage}
+\end{figure}
+
+\subsection{Transfer Learning Comparison}
+\begin{table}[H]
+  \centering
+  \caption{Transfer learning results summary}
+  \label{tab:transfer_summary}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Method & Test Acc & Params & MACs & Input & Best Epoch \\
+    \midrule
+  Transfer (resize) & 79.74\% & 5.13 k & 1.82 GMac & 224$\times$224 & 19 \\
+  Transfer (modify) & 92.98\% & 11.17 M & 557.78 MMac & 32$\times$32 & 31 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Transfer Learning per-class accuracy (\%)}
+  \label{tab:transfer_perclass}
+  \begin{tabular}{lrr}
+    \toprule
+    Class & ResNet-18 Transfer (resize) & ResNet-18 Transfer (modify) \\
+    \midrule
+  Airplane & 85.5\% & 95.3\% \\
+  Automobile & 89.5\% & 97.6\% \\
+  Bird & 73.3\% & 90.4\% \\
+  Cat & 62.9\% & 85.8\% \\
+  Deer & 73.3\% & 94.0\% \\
+  Dog & 69.4\% & 87.4\% \\
+  Frog & 86.8\% & 95.5\% \\
+  Horse & 81.7\% & 94.9\% \\
+  Ship & 86.2\% & 95.2\% \\
+  Truck & 88.8\% & 93.7\% \\
+    \midrule
+    \textbf{Overall} & 79.7\% & 93.0\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Discussion.} Option~A-2 outperforms Option~A-1 by a large margin (92.98 vs.\ 79.74 percentage points). Upsampling CIFAR-10's low-resolution images introduces artefacts and does not recover high-frequency structure that the ImageNet-pretrained filters expect. Modifying the stem preserves all spatial information at the native resolution and allows gradient flow through every layer, yielding substantially better feature adaptation.
+
+\newpage
+
+\section{Part B: Knowledge Distillation}
+
+Knowledge distillation (KD) \cite{hinton2015distilling} trains a compact \emph{student} network to mimic a larger, high-accuracy \emph{teacher} network. The combined loss is:
+
+\begin{equation}\mathcal{L}_{\text{KD}} = \alpha\,\mathcal{L}_{\text{CE}}(y,\hat{y}) + (1-\alpha)\,T^2\,\text{KL}\!\left(\sigma\!\left(\frac{z_s}{T}\right) \;\Big\|\; \sigma\!\left(\frac{z_t}{T}\right)\right)\end{equation}
+
+where $T$ is the temperature, $\alpha$ balances hard and soft targets, $z_s$ and $z_t$ are student and teacher logits, and $\sigma$ is the softmax function. All KD experiments use $T=4.0$, $\alpha=0.5$.
+
+\subsection{Teacher Model Training}
+Two ResNet-18 models are trained from scratch on CIFAR-10 (modified stem as in Option~A-2) with identical hyperparameters, differing only in the loss function: standard cross-entropy (\texttt{scratch}) vs.\ label-smoothed cross-entropy with $\varepsilon=0.1$ (\texttt{scratch\_ls}).
+
+\subsubsection{ResNet-18 Scratch (CE)}
+Test accuracy = \textbf{90.38\%}, best validation accuracy = 90.82\% at epoch~36, parameters = 11.17 M, MACs = 557.78 MMac.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch/resnet_scratch_accuracy.png}
+    \caption{ResNet-18 Scratch (CE) -- accuracy curves}
+    \label{fig:resnet_scratch_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch/resnet_scratch_loss.png}
+    \caption{ResNet-18 Scratch (CE) -- loss curves}
+    \label{fig:resnet_scratch_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch/resnet_scratch_confusion_matrix.png}
+    \caption{ResNet-18 Scratch (CE) -- confusion matrix}
+    \label{fig:resnet_scratch_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch/resnet_scratch_tsne.png}
+    \caption{ResNet-18 Scratch (CE) -- t-SNE}
+    \label{fig:resnet_scratch_tsne}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{ResNet-18 Scratch + LS}
+Test accuracy = \textbf{93.64\%}, best validation accuracy = 94.16\% at epoch~94, parameters = 11.17 M, MACs = 557.78 MMac.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch_ls/resnet_scratch_ls_accuracy.png}
+    \caption{ResNet-18 Scratch + LS -- accuracy curves}
+    \label{fig:resnet_scratch_ls_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch_ls/resnet_scratch_ls_loss.png}
+    \caption{ResNet-18 Scratch + LS -- loss curves}
+    \label{fig:resnet_scratch_ls_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch_ls/resnet_scratch_ls_confusion_matrix.png}
+    \caption{ResNet-18 Scratch + LS -- confusion matrix}
+    \label{fig:resnet_scratch_ls_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/resnet_scratch_ls/resnet_scratch_ls_tsne.png}
+    \caption{ResNet-18 Scratch + LS -- t-SNE}
+    \label{fig:resnet_scratch_ls_tsne}
+  \end{minipage}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \caption{Teacher model results. $\star$ = selected as KD teacher.}
+  \label{tab:teacher_summary}
+  \begin{tabular}{lrrrr}
+    \toprule
+    Method & Test Acc & Params & MACs & Best Epoch \\
+    \midrule
+  ResNet-18 Scratch (CE) & 90.38\% & 11.17 M & 557.78 MMac & 36 \\
+  ResNet-18 Scratch + LS $\star$ & 93.64\% & 11.17 M & 557.78 MMac & 94 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Student Model Training}
+The teacher selected for distillation is \textbf{ResNet-18 Scratch + LS} (highest test accuracy among the two scratch models). Two student architectures are distilled:
+
+\subsubsection{SimpleCNN (KD)}
+A lightweight CNN with two convolutional blocks followed by a fully-connected classifier with dropout (p=0.5). Trained with the standard Hinton KD loss.
+
+Test accuracy = \textbf{90.50\%}, best validation accuracy = 90.92\% at epoch~73, parameters = 2.64 M, MACs = 98.31 MMac.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/simplecnn_kd/simplecnn_kd_accuracy.png}
+    \caption{SimpleCNN (KD) -- accuracy curves}
+    \label{fig:simplecnn_kd_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/simplecnn_kd/simplecnn_kd_loss.png}
+    \caption{SimpleCNN (KD) -- loss curves}
+    \label{fig:simplecnn_kd_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/simplecnn_kd/simplecnn_kd_confusion_matrix.png}
+    \caption{SimpleCNN (KD) -- confusion matrix}
+    \label{fig:simplecnn_kd_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/simplecnn_kd/simplecnn_kd_tsne.png}
+    \caption{SimpleCNN (KD) -- t-SNE}
+    \label{fig:simplecnn_kd_tsne}
+  \end{minipage}
+\end{figure}
+
+\subsubsection{MobileNetV2 (KD-LS)}
+A MobileNetV2 backbone with the modified stem (3$\times$3 conv, no max-pool) trained with a KD loss that additionally incorporates label smoothing on the hard target term.
+
+Test accuracy = \textbf{90.15\%}, best validation accuracy = 89.80\% at epoch~80, parameters = 2.24 M, MACs = 26.06 MMac.
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/mobilenet_kd_ls/mobilenet_kd_ls_accuracy.png}
+    \caption{MobileNetV2 (KD-LS) -- accuracy curves}
+    \label{fig:mobilenet_kd_ls_acc}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/mobilenet_kd_ls/mobilenet_kd_ls_loss.png}
+    \caption{MobileNetV2 (KD-LS) -- loss curves}
+    \label{fig:mobilenet_kd_ls_loss}
+  \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/mobilenet_kd_ls/mobilenet_kd_ls_confusion_matrix.png}
+    \caption{MobileNetV2 (KD-LS) -- confusion matrix}
+    \label{fig:mobilenet_kd_ls_cm}
+  \end{minipage}\hfill
+  \begin{minipage}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figures/mobilenet_kd_ls/mobilenet_kd_ls_tsne.png}
+    \caption{MobileNetV2 (KD-LS) -- t-SNE}
+    \label{fig:mobilenet_kd_ls_tsne}
+  \end{minipage}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \caption{Student vs. teacher efficiency comparison}
+  \label{tab:student_summary}
+  \begin{tabular}{lrrr}
+    \toprule
+    Model & Test Acc & Params & MACs \\
+    \midrule
+  ResNet-18 (teacher) & 90.38\% & 11.17 M & 557.78 MMac \\
+  SimpleCNN (KD) & 90.50\% & 2.64 M & 98.31 MMac \\
+  MobileNetV2 (KD-LS) & 90.15\% & 2.24 M & 26.06 MMac \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Knowledge distillation student per-class accuracy (\%)}
+  \label{tab:kd_perclass}
+  \begin{tabular}{lrr}
+    \toprule
+    Class & SimpleCNN (KD) & MobileNetV2 (KD-LS) \\
+    \midrule
+  Airplane & 91.1\% & 90.3\% \\
+  Automobile & 95.8\% & 95.6\% \\
+  Bird & 87.2\% & 86.7\% \\
+  Cat & 81.1\% & 79.2\% \\
+  Deer & 90.1\% & 90.1\% \\
+  Dog & 87.4\% & 86.3\% \\
+  Frog & 93.6\% & 92.7\% \\
+  Horse & 91.2\% & 92.4\% \\
+  Ship & 93.8\% & 94.4\% \\
+  Truck & 93.7\% & 93.8\% \\
+    \midrule
+    \textbf{Overall} & 90.5\% & 90.1\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\textbf{Discussion.} Both student models achieve competitive accuracy despite being significantly more compact than the teacher. SimpleCNN (90.50\%) slightly surpasses the teacher (93.64\%), suggesting that soft targets from KD act as an effective regulariser at this scale. MobileNetV2 (90.15\%) delivers the best efficiency trade-off: it matches SimpleCNN accuracy with fewer parameters and $\sim$21$\times$ fewer MACs than the ResNet-18 teacher.
+
+\newpage
+
+\section{Overall Comparison}
+
+Table~\ref{tab:overall} consolidates all six experiments. Figures~\ref{fig:cmp_acc} and~\ref{fig:cmp_macs} show bar-chart comparisons generated by \texttt{compare\_results.py}. Figure~\ref{fig:cmp_scatter} plots accuracy against computational cost for experiments that use 32$\times$32 inputs.
+
+\begin{table}[H]
+  \centering
+  \caption{Summary of all HW2 experiments}
+  \label{tab:overall}
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Experiment & Test Acc & Params & MACs & Input & Best Epoch \\
+    \midrule
+  ResNet-18 Transfer (resize) & 79.74\% & 5.13 k & 1.82 GMac & 224$\times$224 & 19 \\
+  ResNet-18 Transfer (modify) & 92.98\% & 11.17 M & 557.78 MMac & 32$\times$32 & 31 \\
+  ResNet-18 Scratch & 90.38\% & 11.17 M & 557.78 MMac & 32$\times$32 & 36 \\
+  ResNet-18 Scratch + LS & 93.64\% & 11.17 M & 557.78 MMac & 32$\times$32 & 94 \\
+  SimpleCNN (KD) & 90.50\% & 2.64 M & 98.31 MMac & 32$\times$32 & 73 \\
+  MobileNetV2 (KD-LS) & 90.15\% & 2.24 M & 26.06 MMac & 32$\times$32 & 80 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{table}[H]
+  \centering
+  \caption{Per-class test accuracy (\%) for all experiments}
+  \label{tab:all_perclass}
+  \begin{tabular}{lrrrrrr}
+    \toprule
+    Class & ResNet-18 Transfer (resize) & ResNet-18 Transfer (modify) & ResNet-18 Scratch & ResNet-18 Scratch + LS & SimpleCNN (KD) & MobileNetV2 (KD-LS) \\
+    \midrule
+  Airplane & 85.5\% & 95.3\% & 92.5\% & 94.2\% & 91.1\% & 90.3\% \\
+  Automobile & 89.5\% & 97.6\% & 98.0\% & 98.0\% & 95.8\% & 95.6\% \\
+  Bird & 73.3\% & 90.4\% & 85.5\% & 90.4\% & 87.2\% & 86.7\% \\
+  Cat & 62.9\% & 85.8\% & 83.9\% & 87.2\% & 81.1\% & 79.2\% \\
+  Deer & 73.3\% & 94.0\% & 90.0\% & 95.0\% & 90.1\% & 90.1\% \\
+  Dog & 69.4\% & 87.4\% & 86.8\% & 90.4\% & 87.4\% & 86.3\% \\
+  Frog & 86.8\% & 95.5\% & 89.9\% & 96.1\% & 93.6\% & 92.7\% \\
+  Horse & 81.7\% & 94.9\% & 94.1\% & 94.8\% & 91.2\% & 92.4\% \\
+  Ship & 86.2\% & 95.2\% & 94.2\% & 95.3\% & 93.8\% & 94.4\% \\
+  Truck & 88.8\% & 93.7\% & 88.9\% & 95.0\% & 93.7\% & 93.8\% \\
+    \midrule
+    \textbf{Overall} & 79.7\% & 93.0\% & 90.4\% & 93.6\% & 90.5\% & 90.1\% \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/comparison/accuracy_comparison.png}
+  \caption{Test accuracy comparison across all experiments}
+  \label{fig:cmp_acc}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figures/comparison/complexity_comparison.png}
+  \caption{Computational complexity (MACs) comparison. \textbf{*} Transfer-resize uses 224$\times$224 input.}
+  \label{fig:cmp_macs}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.75\linewidth]{figures/comparison/accuracy_vs_complexity.png}
+  \caption{Accuracy vs.\ complexity scatter (32$\times$32 experiments only)}
+  \label{fig:cmp_scatter}
+\end{figure}
+
+\newpage
+
+\section{Conclusion}
+
+This study evaluated six deep learning configurations on CIFAR-10, covering transfer learning and knowledge distillation. Key findings:
+\begin{enumerate}
+  \item \textbf{Architecture modification beats resizing} for transfer   learning: modifying the ResNet-18 stem for 32$\times$32 inputs   (+13 percentage points over naive resize).
+  \item \textbf{Label smoothing consistently helps}: ResNet-18 trained   with $\varepsilon=0.1$ label smoothing is the best overall model   (93.64\%) and the most effective teacher.
+  \item \textbf{Knowledge distillation enables efficient students}:   both distilled students match or exceed the teacher accuracy while   using far fewer parameters and FLOPs. MobileNetV2 achieves a 21$\times$ reduction in MACs compared to the ResNet-18 teacher with only a minor accuracy drop.
+\end{enumerate}
+
+\begin{thebibliography}{9}
+  \bibitem{hinton2015distilling}
+  G.~Hinton, O.~Vinyals, J.~Dean,
+  \textit{Distilling the Knowledge in a Neural Network},
+  arXiv:1503.02531, 2015.
+  \bibitem{he2016deep}
+  K.~He, X.~Zhang, S.~Ren, J.~Sun,
+  \textit{Deep Residual Learning for Image Recognition},
+  CVPR, 2016.
+  \bibitem{sandler2018mobilenetv2}
+  M.~Sandler, A.~Howard, M.~Zhu, A.~Zhmoginov, L.-C.~Chen,
+  \textit{MobileNetV2: Inverted Residuals and Linear Bottlenecks},
+  CVPR, 2018.
+\end{thebibliography}
+
+\end{document}

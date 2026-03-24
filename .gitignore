@@ -7,3 +7,8 @@ __pycache__/
 .idea/
 .vscode/
 *.swp
+
+# Datasets (downloaded at runtime)
+data/
+
+

@@ -1,0 +1,248 @@
+2026-03-09 02:17:14 | INFO | Log file path: results\logs\HW1\dropout_05\dropout_05_20260309_021714.log
+2026-03-09 02:17:14 | INFO | Config snapshot path: results\logs\HW1\dropout_05\dropout_05_20260309_021714.config.json
+2026-03-09 02:17:14 | INFO | Environment information
+2026-03-09 02:17:14 | INFO | Python platform: Windows-10-10.0.26200-SP0
+2026-03-09 02:17:14 | INFO | PyTorch version: 2.9.0+cpu
+2026-03-09 02:17:14 | INFO | CUDA available: False
+2026-03-09 02:17:14 | INFO | MPS available: False
+2026-03-09 02:17:14 | INFO | ======================================================================
+2026-03-09 02:17:14 | INFO | CS515 HW1a - MNIST Classification with MLP
+2026-03-09 02:17:14 | INFO | ======================================================================
+2026-03-09 02:17:14 | INFO | Mode             : both
+2026-03-09 02:17:14 | INFO | Project name     : HW1
+2026-03-09 02:17:14 | INFO | Experiment name  : dropout_05
+2026-03-09 02:17:14 | INFO | Seed             : 42
+2026-03-09 02:17:14 | INFO | Device           : cpu
+2026-03-09 02:17:14 | INFO | Dataset          : mnist
+2026-03-09 02:17:14 | INFO | Input size       : 784
+2026-03-09 02:17:14 | INFO | Num classes      : 10
+2026-03-09 02:17:14 | INFO | Hidden sizes     : [256, 128]
+2026-03-09 02:17:14 | INFO | Activation       : relu
+2026-03-09 02:17:14 | INFO | Dropout          : 0.5
+2026-03-09 02:17:14 | INFO | BatchNorm        : False
+2026-03-09 02:17:14 | INFO | Epochs           : 15
+2026-03-09 02:17:14 | INFO | Batch size       : 64
+2026-03-09 02:17:14 | INFO | Learning rate    : 0.001
+2026-03-09 02:17:14 | INFO | Optimizer        : adam
+2026-03-09 02:17:14 | INFO | Scheduler        : none
+2026-03-09 02:17:14 | INFO | Regularizer      : none
+2026-03-09 02:17:14 | INFO | reg_lambda       : 0.0
+2026-03-09 02:17:14 | INFO | Weight decay     : 0.0
+2026-03-09 02:17:14 | INFO | Checkpoint dir   : results\checkpoints\HW1\dropout_05
+2026-03-09 02:17:14 | INFO | Checkpoint path  : results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt
+2026-03-09 02:17:14 | INFO | Log directory    : results\logs\HW1\dropout_05
+2026-03-09 02:17:14 | INFO | Plot directory   : results\plots\HW1\dropout_05
+2026-03-09 02:17:14 | INFO | Trainable params : 235,146
+2026-03-09 02:17:14 | INFO | ======================================================================
+2026-03-09 02:17:14 | INFO | Model architecture:
+MLP(
+  (flatten): Flatten(start_dim=1, end_dim=-1)
+  (hidden_blocks): ModuleList(
+    (0): Sequential(
+      (0): Linear(in_features=784, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+    (1): Sequential(
+      (0): Linear(in_features=256, out_features=128, bias=True)
+      (1): ReLU()
+      (2): Dropout(p=0.5, inplace=False)
+    )
+  )
+  (classifier): Linear(in_features=128, out_features=10, bias=True)
+)
+2026-03-09 02:17:14 | INFO | ======================================================================
+2026-03-09 02:17:14 | INFO | Starting training...
+2026-03-09 02:17:14 | INFO | Train size: 54000 | Val size: 6000
+2026-03-09 02:17:14 | INFO | Epoch 1/15
+2026-03-09 02:17:20 | INFO |   [Batch  100/844] train_loss=1.0643 | train_acc=0.6481
+2026-03-09 02:17:21 | INFO |   [Batch  200/844] train_loss=0.7830 | train_acc=0.7477
+2026-03-09 02:17:22 | INFO |   [Batch  300/844] train_loss=0.6667 | train_acc=0.7884
+2026-03-09 02:17:23 | INFO |   [Batch  400/844] train_loss=0.5885 | train_acc=0.8147
+2026-03-09 02:17:23 | INFO |   [Batch  500/844] train_loss=0.5397 | train_acc=0.8314
+2026-03-09 02:17:24 | INFO |   [Batch  600/844] train_loss=0.5023 | train_acc=0.8439
+2026-03-09 02:17:25 | INFO |   [Batch  700/844] train_loss=0.4753 | train_acc=0.8525
+2026-03-09 02:17:26 | INFO |   [Batch  800/844] train_loss=0.4536 | train_acc=0.8597
+2026-03-09 02:17:35 | INFO |   Train | loss: 0.4441 | acc: 0.8627 | Val | loss: 0.1877 | acc: 0.9447 | LR: 0.001000
+2026-03-09 02:17:35 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.1877)
+2026-03-09 02:17:35 | INFO | Epoch 2/15
+2026-03-09 02:17:41 | INFO |   [Batch  100/844] train_loss=0.2424 | train_acc=0.9269
+2026-03-09 02:17:42 | INFO |   [Batch  200/844] train_loss=0.2501 | train_acc=0.9248
+2026-03-09 02:17:43 | INFO |   [Batch  300/844] train_loss=0.2485 | train_acc=0.9257
+2026-03-09 02:17:44 | INFO |   [Batch  400/844] train_loss=0.2464 | train_acc=0.9264
+2026-03-09 02:17:45 | INFO |   [Batch  500/844] train_loss=0.2437 | train_acc=0.9282
+2026-03-09 02:17:46 | INFO |   [Batch  600/844] train_loss=0.2400 | train_acc=0.9293
+2026-03-09 02:17:47 | INFO |   [Batch  700/844] train_loss=0.2374 | train_acc=0.9302
+2026-03-09 02:17:48 | INFO |   [Batch  800/844] train_loss=0.2364 | train_acc=0.9304
+2026-03-09 02:17:57 | INFO |   Train | loss: 0.2354 | acc: 0.9306 | Val | loss: 0.1434 | acc: 0.9593 | LR: 0.001000
+2026-03-09 02:17:57 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.1434)
+2026-03-09 02:17:57 | INFO | Epoch 3/15
+2026-03-09 02:18:04 | INFO |   [Batch  100/844] train_loss=0.2052 | train_acc=0.9383
+2026-03-09 02:18:05 | INFO |   [Batch  200/844] train_loss=0.2011 | train_acc=0.9387
+2026-03-09 02:18:06 | INFO |   [Batch  300/844] train_loss=0.2038 | train_acc=0.9395
+2026-03-09 02:18:07 | INFO |   [Batch  400/844] train_loss=0.2013 | train_acc=0.9402
+2026-03-09 02:18:08 | INFO |   [Batch  500/844] train_loss=0.2031 | train_acc=0.9406
+2026-03-09 02:18:08 | INFO |   [Batch  600/844] train_loss=0.2038 | train_acc=0.9406
+2026-03-09 02:18:09 | INFO |   [Batch  700/844] train_loss=0.2010 | train_acc=0.9416
+2026-03-09 02:18:10 | INFO |   [Batch  800/844] train_loss=0.2024 | train_acc=0.9415
+2026-03-09 02:18:19 | INFO |   Train | loss: 0.2020 | acc: 0.9419 | Val | loss: 0.1210 | acc: 0.9658 | LR: 0.001000
+2026-03-09 02:18:19 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.1210)
+2026-03-09 02:18:19 | INFO | Epoch 4/15
+2026-03-09 02:18:26 | INFO |   [Batch  100/844] train_loss=0.1773 | train_acc=0.9495
+2026-03-09 02:18:27 | INFO |   [Batch  200/844] train_loss=0.1801 | train_acc=0.9466
+2026-03-09 02:18:28 | INFO |   [Batch  300/844] train_loss=0.1775 | train_acc=0.9484
+2026-03-09 02:18:29 | INFO |   [Batch  400/844] train_loss=0.1768 | train_acc=0.9484
+2026-03-09 02:18:30 | INFO |   [Batch  500/844] train_loss=0.1755 | train_acc=0.9483
+2026-03-09 02:18:31 | INFO |   [Batch  600/844] train_loss=0.1758 | train_acc=0.9480
+2026-03-09 02:18:32 | INFO |   [Batch  700/844] train_loss=0.1742 | train_acc=0.9482
+2026-03-09 02:18:33 | INFO |   [Batch  800/844] train_loss=0.1770 | train_acc=0.9478
+2026-03-09 02:18:42 | INFO |   Train | loss: 0.1778 | acc: 0.9476 | Val | loss: 0.1133 | acc: 0.9685 | LR: 0.001000
+2026-03-09 02:18:42 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.1133)
+2026-03-09 02:18:42 | INFO | Epoch 5/15
+2026-03-09 02:18:48 | INFO |   [Batch  100/844] train_loss=0.1571 | train_acc=0.9534
+2026-03-09 02:18:49 | INFO |   [Batch  200/844] train_loss=0.1598 | train_acc=0.9535
+2026-03-09 02:18:51 | INFO |   [Batch  300/844] train_loss=0.1625 | train_acc=0.9529
+2026-03-09 02:18:52 | INFO |   [Batch  400/844] train_loss=0.1675 | train_acc=0.9507
+2026-03-09 02:18:53 | INFO |   [Batch  500/844] train_loss=0.1666 | train_acc=0.9512
+2026-03-09 02:18:54 | INFO |   [Batch  600/844] train_loss=0.1651 | train_acc=0.9515
+2026-03-09 02:18:55 | INFO |   [Batch  700/844] train_loss=0.1644 | train_acc=0.9518
+2026-03-09 02:18:57 | INFO |   [Batch  800/844] train_loss=0.1650 | train_acc=0.9515
+2026-03-09 02:19:05 | INFO |   Train | loss: 0.1641 | acc: 0.9517 | Val | loss: 0.1054 | acc: 0.9720 | LR: 0.001000
+2026-03-09 02:19:05 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.1054)
+2026-03-09 02:19:05 | INFO | Epoch 6/15
+2026-03-09 02:19:12 | INFO |   [Batch  100/844] train_loss=0.1347 | train_acc=0.9633
+2026-03-09 02:19:13 | INFO |   [Batch  200/844] train_loss=0.1441 | train_acc=0.9584
+2026-03-09 02:19:14 | INFO |   [Batch  300/844] train_loss=0.1444 | train_acc=0.9582
+2026-03-09 02:19:15 | INFO |   [Batch  400/844] train_loss=0.1463 | train_acc=0.9577
+2026-03-09 02:19:16 | INFO |   [Batch  500/844] train_loss=0.1467 | train_acc=0.9569
+2026-03-09 02:19:17 | INFO |   [Batch  600/844] train_loss=0.1503 | train_acc=0.9561
+2026-03-09 02:19:18 | INFO |   [Batch  700/844] train_loss=0.1515 | train_acc=0.9557
+2026-03-09 02:19:19 | INFO |   [Batch  800/844] train_loss=0.1511 | train_acc=0.9556
+2026-03-09 02:19:28 | INFO |   Train | loss: 0.1519 | acc: 0.9555 | Val | loss: 0.0981 | acc: 0.9717 | LR: 0.001000
+2026-03-09 02:19:28 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0981)
+2026-03-09 02:19:28 | INFO | Epoch 7/15
+2026-03-09 02:19:34 | INFO |   [Batch  100/844] train_loss=0.1513 | train_acc=0.9533
+2026-03-09 02:19:35 | INFO |   [Batch  200/844] train_loss=0.1456 | train_acc=0.9566
+2026-03-09 02:19:36 | INFO |   [Batch  300/844] train_loss=0.1431 | train_acc=0.9584
+2026-03-09 02:19:37 | INFO |   [Batch  400/844] train_loss=0.1406 | train_acc=0.9582
+2026-03-09 02:19:38 | INFO |   [Batch  500/844] train_loss=0.1383 | train_acc=0.9589
+2026-03-09 02:19:38 | INFO |   [Batch  600/844] train_loss=0.1385 | train_acc=0.9587
+2026-03-09 02:19:39 | INFO |   [Batch  700/844] train_loss=0.1396 | train_acc=0.9585
+2026-03-09 02:19:41 | INFO |   [Batch  800/844] train_loss=0.1418 | train_acc=0.9582
+2026-03-09 02:19:49 | INFO |   Train | loss: 0.1418 | acc: 0.9582 | Val | loss: 0.0978 | acc: 0.9740 | LR: 0.001000
+2026-03-09 02:19:49 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0978)
+2026-03-09 02:19:49 | INFO | Epoch 8/15
+2026-03-09 02:19:56 | INFO |   [Batch  100/844] train_loss=0.1251 | train_acc=0.9620
+2026-03-09 02:19:57 | INFO |   [Batch  200/844] train_loss=0.1212 | train_acc=0.9642
+2026-03-09 02:19:58 | INFO |   [Batch  300/844] train_loss=0.1288 | train_acc=0.9621
+2026-03-09 02:19:59 | INFO |   [Batch  400/844] train_loss=0.1370 | train_acc=0.9597
+2026-03-09 02:20:00 | INFO |   [Batch  500/844] train_loss=0.1403 | train_acc=0.9586
+2026-03-09 02:20:01 | INFO |   [Batch  600/844] train_loss=0.1393 | train_acc=0.9589
+2026-03-09 02:20:03 | INFO |   [Batch  700/844] train_loss=0.1394 | train_acc=0.9589
+2026-03-09 02:20:04 | INFO |   [Batch  800/844] train_loss=0.1383 | train_acc=0.9590
+2026-03-09 02:20:13 | INFO |   Train | loss: 0.1381 | acc: 0.9593 | Val | loss: 0.0913 | acc: 0.9742 | LR: 0.001000
+2026-03-09 02:20:13 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0913)
+2026-03-09 02:20:13 | INFO | Epoch 9/15
+2026-03-09 02:20:19 | INFO |   [Batch  100/844] train_loss=0.1414 | train_acc=0.9594
+2026-03-09 02:20:20 | INFO |   [Batch  200/844] train_loss=0.1336 | train_acc=0.9595
+2026-03-09 02:20:21 | INFO |   [Batch  300/844] train_loss=0.1336 | train_acc=0.9593
+2026-03-09 02:20:22 | INFO |   [Batch  400/844] train_loss=0.1351 | train_acc=0.9600
+2026-03-09 02:20:23 | INFO |   [Batch  500/844] train_loss=0.1346 | train_acc=0.9600
+2026-03-09 02:20:24 | INFO |   [Batch  600/844] train_loss=0.1374 | train_acc=0.9592
+2026-03-09 02:20:25 | INFO |   [Batch  700/844] train_loss=0.1382 | train_acc=0.9593
+2026-03-09 02:20:26 | INFO |   [Batch  800/844] train_loss=0.1389 | train_acc=0.9589
+2026-03-09 02:20:35 | INFO |   Train | loss: 0.1380 | acc: 0.9591 | Val | loss: 0.0883 | acc: 0.9757 | LR: 0.001000
+2026-03-09 02:20:35 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0883)
+2026-03-09 02:20:35 | INFO | Epoch 10/15
+2026-03-09 02:20:41 | INFO |   [Batch  100/844] train_loss=0.1204 | train_acc=0.9655
+2026-03-09 02:20:42 | INFO |   [Batch  200/844] train_loss=0.1232 | train_acc=0.9634
+2026-03-09 02:20:43 | INFO |   [Batch  300/844] train_loss=0.1229 | train_acc=0.9638
+2026-03-09 02:20:44 | INFO |   [Batch  400/844] train_loss=0.1226 | train_acc=0.9635
+2026-03-09 02:20:45 | INFO |   [Batch  500/844] train_loss=0.1275 | train_acc=0.9622
+2026-03-09 02:20:46 | INFO |   [Batch  600/844] train_loss=0.1291 | train_acc=0.9612
+2026-03-09 02:20:48 | INFO |   [Batch  700/844] train_loss=0.1289 | train_acc=0.9615
+2026-03-09 02:20:49 | INFO |   [Batch  800/844] train_loss=0.1289 | train_acc=0.9614
+2026-03-09 02:20:58 | INFO |   Train | loss: 0.1295 | acc: 0.9612 | Val | loss: 0.0972 | acc: 0.9737 | LR: 0.001000
+2026-03-09 02:20:58 | INFO |   No improvement in validation loss. Early-stop counter: 1/5
+2026-03-09 02:20:58 | INFO | Epoch 11/15
+2026-03-09 02:21:04 | INFO |   [Batch  100/844] train_loss=0.1172 | train_acc=0.9637
+2026-03-09 02:21:05 | INFO |   [Batch  200/844] train_loss=0.1132 | train_acc=0.9652
+2026-03-09 02:21:07 | INFO |   [Batch  300/844] train_loss=0.1164 | train_acc=0.9648
+2026-03-09 02:21:08 | INFO |   [Batch  400/844] train_loss=0.1196 | train_acc=0.9646
+2026-03-09 02:21:09 | INFO |   [Batch  500/844] train_loss=0.1208 | train_acc=0.9646
+2026-03-09 02:21:10 | INFO |   [Batch  600/844] train_loss=0.1225 | train_acc=0.9637
+2026-03-09 02:21:11 | INFO |   [Batch  700/844] train_loss=0.1218 | train_acc=0.9639
+2026-03-09 02:21:12 | INFO |   [Batch  800/844] train_loss=0.1232 | train_acc=0.9637
+2026-03-09 02:21:21 | INFO |   Train | loss: 0.1230 | acc: 0.9637 | Val | loss: 0.0882 | acc: 0.9738 | LR: 0.001000
+2026-03-09 02:21:21 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0882)
+2026-03-09 02:21:21 | INFO | Epoch 12/15
+2026-03-09 02:21:27 | INFO |   [Batch  100/844] train_loss=0.1077 | train_acc=0.9664
+2026-03-09 02:21:29 | INFO |   [Batch  200/844] train_loss=0.1082 | train_acc=0.9667
+2026-03-09 02:21:30 | INFO |   [Batch  300/844] train_loss=0.1179 | train_acc=0.9648
+2026-03-09 02:21:31 | INFO |   [Batch  400/844] train_loss=0.1182 | train_acc=0.9644
+2026-03-09 02:21:32 | INFO |   [Batch  500/844] train_loss=0.1201 | train_acc=0.9638
+2026-03-09 02:21:33 | INFO |   [Batch  600/844] train_loss=0.1225 | train_acc=0.9636
+2026-03-09 02:21:34 | INFO |   [Batch  700/844] train_loss=0.1214 | train_acc=0.9639
+2026-03-09 02:21:35 | INFO |   [Batch  800/844] train_loss=0.1240 | train_acc=0.9629
+2026-03-09 02:21:45 | INFO |   Train | loss: 0.1235 | acc: 0.9631 | Val | loss: 0.0917 | acc: 0.9732 | LR: 0.001000
+2026-03-09 02:21:45 | INFO |   No improvement in validation loss. Early-stop counter: 1/5
+2026-03-09 02:21:45 | INFO | Epoch 13/15
+2026-03-09 02:21:51 | INFO |   [Batch  100/844] train_loss=0.1155 | train_acc=0.9653
+2026-03-09 02:21:51 | INFO |   [Batch  200/844] train_loss=0.1148 | train_acc=0.9664
+2026-03-09 02:21:52 | INFO |   [Batch  300/844] train_loss=0.1182 | train_acc=0.9645
+2026-03-09 02:21:53 | INFO |   [Batch  400/844] train_loss=0.1172 | train_acc=0.9650
+2026-03-09 02:21:54 | INFO |   [Batch  500/844] train_loss=0.1185 | train_acc=0.9647
+2026-03-09 02:21:55 | INFO |   [Batch  600/844] train_loss=0.1175 | train_acc=0.9652
+2026-03-09 02:21:56 | INFO |   [Batch  700/844] train_loss=0.1185 | train_acc=0.9649
+2026-03-09 02:21:57 | INFO |   [Batch  800/844] train_loss=0.1182 | train_acc=0.9649
+2026-03-09 02:22:07 | INFO |   Train | loss: 0.1179 | acc: 0.9648 | Val | loss: 0.0893 | acc: 0.9753 | LR: 0.001000
+2026-03-09 02:22:07 | INFO |   No improvement in validation loss. Early-stop counter: 2/5
+2026-03-09 02:22:07 | INFO | Epoch 14/15
+2026-03-09 02:22:13 | INFO |   [Batch  100/844] train_loss=0.1105 | train_acc=0.9681
+2026-03-09 02:22:14 | INFO |   [Batch  200/844] train_loss=0.1137 | train_acc=0.9671
+2026-03-09 02:22:15 | INFO |   [Batch  300/844] train_loss=0.1141 | train_acc=0.9668
+2026-03-09 02:22:16 | INFO |   [Batch  400/844] train_loss=0.1144 | train_acc=0.9657
+2026-03-09 02:22:17 | INFO |   [Batch  500/844] train_loss=0.1161 | train_acc=0.9659
+2026-03-09 02:22:18 | INFO |   [Batch  600/844] train_loss=0.1163 | train_acc=0.9656
+2026-03-09 02:22:19 | INFO |   [Batch  700/844] train_loss=0.1165 | train_acc=0.9654
+2026-03-09 02:22:20 | INFO |   [Batch  800/844] train_loss=0.1157 | train_acc=0.9657
+2026-03-09 02:22:30 | INFO |   Train | loss: 0.1157 | acc: 0.9656 | Val | loss: 0.0931 | acc: 0.9745 | LR: 0.001000
+2026-03-09 02:22:30 | INFO |   No improvement in validation loss. Early-stop counter: 3/5
+2026-03-09 02:22:30 | INFO | Epoch 15/15
+2026-03-09 02:22:36 | INFO |   [Batch  100/844] train_loss=0.0902 | train_acc=0.9700
+2026-03-09 02:22:37 | INFO |   [Batch  200/844] train_loss=0.1058 | train_acc=0.9684
+2026-03-09 02:22:38 | INFO |   [Batch  300/844] train_loss=0.1086 | train_acc=0.9676
+2026-03-09 02:22:39 | INFO |   [Batch  400/844] train_loss=0.1083 | train_acc=0.9678
+2026-03-09 02:22:40 | INFO |   [Batch  500/844] train_loss=0.1079 | train_acc=0.9679
+2026-03-09 02:22:41 | INFO |   [Batch  600/844] train_loss=0.1068 | train_acc=0.9682
+2026-03-09 02:22:42 | INFO |   [Batch  700/844] train_loss=0.1068 | train_acc=0.9682
+2026-03-09 02:22:43 | INFO |   [Batch  800/844] train_loss=0.1088 | train_acc=0.9677
+2026-03-09 02:22:52 | INFO |   Train | loss: 0.1103 | acc: 0.9674 | Val | loss: 0.0859 | acc: 0.9748 | LR: 0.001000
+2026-03-09 02:22:52 | INFO |   Saved best model to results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt (best_val_loss=0.0859)
+2026-03-09 02:22:52 | INFO | Training complete.
+2026-03-09 02:22:52 | INFO | Best epoch     : 15
+2026-03-09 02:22:52 | INFO | Best val loss  : 0.0859
+2026-03-09 02:22:52 | INFO | Best val acc   : 0.9748
+2026-03-09 02:22:52 | INFO | Checkpoint     : results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt
+2026-03-09 02:22:52 | INFO | Loading checkpoint from results\checkpoints\HW1\dropout_05\dropout_05_best_model.pt
+2026-03-09 02:22:52 | INFO | Starting test evaluation...
+2026-03-09 02:22:52 | INFO | Test size: 10000
+2026-03-09 02:22:56 | INFO | ======================================================================
+2026-03-09 02:22:56 | INFO | Test Results
+2026-03-09 02:22:56 | INFO | ======================================================================
+2026-03-09 02:22:56 | INFO | Average test loss : 0.0785
+2026-03-09 02:22:56 | INFO | Overall accuracy  : 0.9791 (9791/10000)
+2026-03-09 02:22:56 | INFO | ----------------------------------------------------------------------
+2026-03-09 02:22:56 | INFO | Per-class accuracy:
+2026-03-09 02:22:56 | INFO |   Class 0: 0.9908 (971/980)
+2026-03-09 02:22:56 | INFO |   Class 1: 0.9921 (1126/1135)
+2026-03-09 02:22:56 | INFO |   Class 2: 0.9797 (1011/1032)
+2026-03-09 02:22:56 | INFO |   Class 3: 0.9812 (991/1010)
+2026-03-09 02:22:56 | INFO |   Class 4: 0.9786 (961/982)
+2026-03-09 02:22:56 | INFO |   Class 5: 0.9697 (865/892)
+2026-03-09 02:22:56 | INFO |   Class 6: 0.9760 (935/958)
+2026-03-09 02:22:56 | INFO |   Class 7: 0.9776 (1005/1028)
+2026-03-09 02:22:56 | INFO |   Class 8: 0.9671 (942/974)
+2026-03-09 02:22:56 | INFO |   Class 9: 0.9752 (984/1009)
+2026-03-09 02:22:56 | INFO | ======================================================================
+2026-03-09 02:22:56 | INFO | Run completed successfully.

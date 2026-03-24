@@ -1,0 +1,6 @@
+project_name,experiment_name,hidden_sizes,activation,dropout,use_batch_norm,optimizer,scheduler,regularizer,reg_lambda,weight_decay,learning_rate,batch_size,best_epoch,best_val_loss,best_val_acc,test_loss,test_accuracy
+HW1,train_plateau,"[256, 128]",relu,0.2,False,adam,plateau,none,0.0,0.0,0.001,64,11,0.06532134033677478,0.983,0.0690485674915035,0.9827
+HW1,baseline_relu,"[256, 128]",relu,0.2,False,adam,none,none,0.0,0.0,0.001,64,12,0.07414034351271888,0.9793333333333333,0.07526249337498593,0.9804
+HW1,train_cosine,"[256, 128]",relu,0.2,False,adam,cosine,none,0.0,0.0,0.001,64,14,0.07469713910203427,0.983,0.06533983393645103,0.9832
+HW1,train_lr_1e4,"[256, 128]",relu,0.2,False,adam,none,none,0.0,0.0,0.0001,64,15,0.07847719851632913,0.977,0.07005682649482041,0.979
+HW1,train_lr_3e3,"[256, 128]",relu,0.2,False,adam,none,none,0.0,0.0,0.003,64,4,0.1179951309065024,0.9671666666666666,0.10738948581167497,0.9685

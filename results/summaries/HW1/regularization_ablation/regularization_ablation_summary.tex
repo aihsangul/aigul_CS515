@@ -1,0 +1,15 @@
+\begin{table*}[t]
+    \centering
+    \caption{Regularization Ablation Results}
+    \label{tab:regularization_ablation}
+    \begin{tabular}{llllllll}
+        \toprule
+        Experiment & Hidden Sizes & Activation & Dropout & BN & Best Val Loss & Best Val Acc & Test Acc \\
+        \midrule
+        baseline_relu & [256, 128] & relu & 0.2 & No & 0.0741 & 0.9793 & 0.9804 \\
+        reg_l1_1e5 & [256, 128] & relu & 0.2 & No & 0.0743 & 0.9815 & 0.9808 \\
+        reg_l2_1e5 & [256, 128] & relu & 0.2 & No & 0.0776 & 0.9772 & 0.9817 \\
+        reg_l2_1e4 & [256, 128] & relu & 0.2 & No & 0.0792 & 0.9768 & 0.9773 \\
+        \bottomrule
+    \end{tabular}
+\end{table*}

@@ -1,0 +1,62 @@
+{
+  "data": {
+    "dataset": "mnist",
+    "data_dir": "./data",
+    "val_split": 0.1,
+    "num_workers": 2,
+    "pin_memory": false,
+    "input_size": 784,
+    "num_classes": 10,
+    "mean": [
+      0.1307
+    ],
+    "std": [
+      0.3081
+    ]
+  },
+  "model": {
+    "input_size": 784,
+    "hidden_sizes": [
+      512,
+      256,
+      128
+    ],
+    "num_classes": 10,
+    "activation": "relu",
+    "dropout": 0.2,
+    "use_batch_norm": false
+  },
+  "train": {
+    "epochs": 15,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "momentum": 0.9,
+    "scheduler": "none",
+    "step_size": 10,
+    "gamma": 0.1,
+    "scheduler_patience": 3,
+    "scheduler_factor": 0.5,
+    "min_lr": 1e-06,
+    "early_stopping_patience": 5,
+    "min_delta": 0.0,
+    "regularizer": "none",
+    "reg_lambda": 0.0,
+    "weight_decay": 0.0
+  },
+  "run": {
+    "mode": "both",
+    "seed": 42,
+    "device": "cpu",
+    "project_name": "HW1",
+    "experiment_name": "arch_deep_512_256_128",
+    "checkpoint_root": "./results/checkpoints",
+    "log_root": "./results/logs",
+    "plot_root": "./results/plots",
+    "checkpoint_dir": "results\\checkpoints\\HW1\\arch_deep_512_256_128",
+    "log_dir": "results\\logs\\HW1\\arch_deep_512_256_128",
+    "plot_dir": "results\\plots\\HW1\\arch_deep_512_256_128",
+    "save_path": "results\\checkpoints\\HW1\\arch_deep_512_256_128\\arch_deep_512_256_128_best_model.pt",
+    "log_interval": 100
+  }
+}
