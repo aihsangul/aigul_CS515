@@ -1,4 +1,4 @@
-# aigul_CS515_res
+# aigul_CS515
 
 Repository for CS515 Deep Learning coursework experiments, implementations, generated results, and report sources.
 
@@ -11,7 +11,7 @@ This repository currently contains completed work for:
 ## Repository Structure
 
 ```text
-aigul_CS515_res/
+aigul_CS515/
 ├── corecode/
 │   ├── HW1/                  # Homework 1 code and analysis scripts
 │   ├── HW2/                  # Homework 2 code and experiment runners
@@ -41,11 +41,6 @@ HW1 studies MNIST classification with fully connected networks. The code include
 - comparison scripts
 - plotting and t-SNE analysis
 
-Main entry points:
-
-- [corecode/HW1/main.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW1/main.py)
-- [corecode/HW1/run_ablation_suite.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW1/run_ablation_suite.py)
-- [corecode/HW1/compare_experiments.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW1/compare_experiments.py)
 
 ### HW2
 
@@ -56,11 +51,6 @@ HW2 studies CIFAR-10 classification with:
 - knowledge distillation into SimpleCNN and MobileNetV2 students
 - result comparison and complexity analysis
 
-Main entry points:
-
-- [corecode/HW2/main.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW2/main.py)
-- [corecode/HW2/run_experiments.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW2/run_experiments.py)
-- [corecode/HW2/compare_results.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW2/compare_results.py)
 
 ### HW3
 
@@ -73,11 +63,6 @@ HW3 extends CIFAR-10 experiments into robustness. It includes:
 - distillation from the AugMix teacher into SimpleCNN and MobileNetV2 students
 - black-box transferability evaluation
 
-Main entry points:
-
-- [corecode/HW3/main.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW3/main.py)
-- [corecode/HW3/run_experiments.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW3/run_experiments.py)
-- [corecode/HW3/compare_results.py](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/corecode/HW3/compare_results.py)
 
 ## Results Layout
 
@@ -107,7 +92,7 @@ The repository already contains:
 - MNIST
 - CIFAR-10 in python-batch format
 
-For HW3 corruption evaluation, `CIFAR-10-C` is also required, but it is not currently bundled under [data](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515_res/data). To run the `corrupted` evaluation mode, place the extracted dataset at:
+For HW3 corruption evaluation, `CIFAR-10-C` is also required, but it is not currently bundled under [data](C:/Users/İhsan/Desktop/Development/cs515/aigul_CS515/data). To run the `corrupted` evaluation mode, place the extracted dataset at:
 
 `data/CIFAR-10-C`
 
