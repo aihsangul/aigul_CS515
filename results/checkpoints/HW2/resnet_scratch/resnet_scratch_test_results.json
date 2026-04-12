@@ -1,4 +1,5 @@
 {
+  "eval_mode": "clean",
   "test_loss": 0.31988842029571535,
   "test_accuracy": 0.9038,
   "num_samples": 10000,
@@ -137,15 +138,5 @@
     ]
   ],
   "flops": "557.78 MMac",
-  "params": "11.17 M",
-  "config": {
-    "training_mode": "scratch",
-    "batch_size": 128,
-    "learning_rate": 0.001,
-    "optimizer": "adam",
-    "scheduler": "cosine",
-    "label_smoothing": 0.1,
-    "kd_temperature": 4.0,
-    "kd_alpha": 0.5
-  }
+  "params": "11.17 M"
 }

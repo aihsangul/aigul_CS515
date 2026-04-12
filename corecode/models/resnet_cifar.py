@@ -9,10 +9,9 @@ def build_resnet18_transfer_resize(
     num_classes: int = 10,
     freeze_backbone: bool = True,
 ) -> nn.Module:
-    """
-    -> Load pre-trained ResNet-18 for CIFAR-10 using the image-resize strategy.
+    """Load pre-trained ResNet-18 for CIFAR-10 using the image-resize strategy.
 
-    CIFAR-10 images are expected to be resized to 224x224 externally (via data
+    CIFAR-10 images are expected to be resized to 224×224 externally (via data
     transforms) so they match the original ImageNet input dimensions. The
     backbone weights are optionally frozen and only the final FC layer is
     updated during training.
@@ -38,16 +37,16 @@ def build_resnet18_transfer_resize(
 
 
 def build_resnet18_transfer_modify(num_classes: int = 10) -> nn.Module:
-    """Load pre-trained ResNet-18 adapted for 32x32 CIFAR-10 input.
+    """Load pre-trained ResNet-18 adapted for 32×32 CIFAR-10 input.
 
-    The original ResNet-18 stem (conv1: 7x7, stride 2 + MaxPool) aggressively
-    downsamples the spatial resolution. For 32x32 inputs this collapses the
+    The original ResNet-18 stem (conv1: 7×7, stride 2 + MaxPool) aggressively
+    downsamples the spatial resolution. For 32×32 inputs this collapses the
     feature maps too early. The following modifications preserve resolution:
 
     Modifications:
-        - conv1: 7x7 stride-2 -> 3x3 stride-1, padding 1 (no bias, matching BN)
-        - maxpool: replaced with "nn.Identity()"
-        - fc: replaced for "num_classes"
+        - conv1: 7×7 stride-2 → 3×3 stride-1, padding 1 (no bias, matching BN)
+        - maxpool: replaced with ``nn.Identity()``
+        - fc: replaced for ``num_classes``
 
     All layers remain trainable (full fine-tuning from ImageNet weights).
 
@@ -55,7 +54,7 @@ def build_resnet18_transfer_modify(num_classes: int = 10) -> nn.Module:
         num_classes: Number of output classes.
 
     Returns:
-        Modified ResNet-18 fine-tunable on 32x32 inputs.
+        Modified ResNet-18 fine-tunable on 32×32 inputs.
     """
     model = models.resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
 
@@ -71,15 +70,15 @@ def build_resnet18_transfer_modify(num_classes: int = 10) -> nn.Module:
 def build_resnet18_scratch(num_classes: int = 10) -> nn.Module:
     """Build ResNet-18 from random weights for CIFAR-10.
 
-    Same stem modifications as :func:'build_resnet18_transfer_modify' but
-    initialised randomly ("weights=None"). Used for the from-scratch
+    Same stem modifications as :func:`build_resnet18_transfer_modify` but
+    initialised randomly (``weights=None``). Used for the from-scratch
     baseline and as the teacher in knowledge distillation experiments.
 
     Args:
         num_classes: Number of output classes.
 
     Returns:
-        ResNet-18 with random weights and an adapted stem for 32x32 inputs.
+        ResNet-18 with random weights and an adapted stem for 32×32 inputs.
     """
     model = models.resnet18(weights=None)
 
